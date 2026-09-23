@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://a950523a.github.io/sitemap.xml

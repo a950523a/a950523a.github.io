@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>海龜電能｜iE125 原廠充電器改裝・TES 快充控制板</title>
+<meta name="description" content="海龜電能（新北中和，線上接單）：iE125 原廠充電器改裝，只保留原廠充電槍、換上自製電源與控制板，功率提升到 1 kW / 10 A，手機可監控、可設定充到幾 % 停；以及符合 TES-0D-02-01 的 TES 快充控制板。">
+<link rel="canonical" href="https://a950523a.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="海龜電能">
+<meta property="og:title" content="海龜電能｜iE125 原廠充電器改裝・TES 快充控制板">
+<meta property="og:description" content="iE125 原廠充電器改裝（1 kW / 10 A，手機監控）與 TES 快充控制板。新北中和，線上接單。">
+<meta property="og:url" content="https://a950523a.github.io/">
+<meta property="og:image" content="https://a950523a.github.io/img/charger-360w-retrofit.jpg">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='34' rx='20' ry='16' fill='%230f766e'/%3E%3Ccircle cx='32' cy='14' r='7' fill='%230f766e'/%3E%3Cpath d='M34 22l-6 12h6l-4 12 10-15h-6l4-9z' fill='%23fde047'/%3E%3C/svg%3E">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "海龜電能",
+  "url": "https://a950523a.github.io/",
+  "logo": "https://a950523a.github.io/img/charger-360w-retrofit.jpg",
+  "description": "專做 TES 規格電動機車（eMoving iE125 等）充電設備的個人工作室：iE125 原廠充電器改裝與 TES 快充控制板。",
+  "areaServed": { "@type": "Country", "name": "Taiwan" },
+  "knowsAbout": ["TES-0D-02-01", "電動機車快充", "eMoving iE125", "CAN Bus 充電交握", "J1772", "Type 2"],
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61582382523577",
+    "https://github.com/a950523a/TES-Taiwan-Electric-Scooter-Charging-Controller"
+  ],
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "iE125 原廠充電器改裝",
+        "description": "保留原廠充電槍，主電源與控制板換成自製；改裝後上限 1 kW / 10 A，可連 WiFi 以手機監控並設定充電上限。原廠 360 W 與 600 W 兩款皆可改。"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Product",
+        "name": "TES 快充控制板",
+        "description": "實作 TES-0D-02-01 快充通訊協定的充電控制板，透過 CAN Bus 與車輛 BMS 交握並控制整流模組。設計上限 120 V / 100 A。適合具高壓直流經驗、可自行組裝者。"
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"我的車可以用嗎？","acceptedAnswer":{"@type":"Answer","text":"原廠充電器改裝針對 iE125。控制板理論上支援 TES 標準（TES-0D-02-01）的車，例如 eMoving iE125、ZAU ES-2000；其他車款尚未測試。"}},
+    {"@type":"Question","name":"電源板已經燒掉的原廠充電器還能改嗎？","acceptedAnswer":{"@type":"Answer","text":"可以，只要充電槍完好。改裝只保留充電槍，主電源和控制板都會換成新的。"}},
+    {"@type":"Question","name":"改裝後可以多快？","acceptedAnswer":{"@type":"Answer","text":"上限 1 kW / 10 A，比原廠的 360～600 W 快，但做不到 30 分鐘等級的快充，因為保留下來的原廠充電槍線徑太細。"}},
+    {"@type":"Question","name":"車子要動到嗎？","acceptedAnswer":{"@type":"Answer","text":"不用。改的是充電器，接口一樣是 TES 規格，車輛本身完全不動。"}},
+    {"@type":"Question","name":"為什麼不賣 6 kW 的整套快充系統？","acceptedAnswer":{"@type":"Answer","text":"那是研究平台，目前還不夠安全到可以交給一般人使用，也還沒有成熟的方案，所以不對外販售。"}}
+  ]
+}
+</script>
+
+<style>
+:root{
+  --bg:#f7faf9; --surface:#ffffff; --text:#1f2a29; --muted:#5b6b69; --line:#dfe7e5;
+  --accent:#0f766e; --accent-ink:#ffffff; --accent-soft:#e3f2ef; --warn:#9a5b00; --warn-soft:#fff4e0;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1514; --surface:#162020; --text:#e4ecea; --muted:#9db0ad; --line:#26332f;
+    --accent:#2dd4bf; --accent-ink:#06201d; --accent-soft:#12302c; --warn:#f5b454; --warn-soft:#2c2213;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);
+  font:17px/1.75 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+a{color:var(--accent)}
+img{max-width:100%;height:auto;display:block}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:16px;height:52px}
+.brand{font-weight:700;color:var(--text);text-decoration:none;white-space:nowrap}
+nav{display:flex;gap:14px;font-size:15px;margin-left:auto}
+@media (max-width:520px){nav{gap:12px;font-size:14px} nav .opt{display:none}}
+nav a{color:var(--muted);text-decoration:none;white-space:nowrap}
+nav a:hover{color:var(--accent)}
+.hero{padding:48px 0 28px}
+.hero h1{font-size:clamp(30px,7vw,44px);line-height:1.2;margin:0 0 8px}
+.hero .tag{font-size:clamp(18px,4.2vw,22px);font-weight:600;margin:0 0 4px}
+.hero .where{color:var(--muted);margin:0 0 22px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:600}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{border:1px solid var(--line);color:var(--text);background:var(--surface)}
+section{padding:28px 0;border-top:1px solid var(--line);scroll-margin-top:52px}
+h2{font-size:24px;line-height:1.35;margin:0 0 14px}
+h3{font-size:19px;margin:24px 0 8px}
+ul{padding-left:1.2em;margin:10px 0}
+li{margin:4px 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
+.note{background:var(--warn-soft);border-left:4px solid var(--warn);border-radius:8px;padding:12px 16px;margin:16px 0}
+.pill{display:inline-block;font-size:13px;font-weight:600;padding:2px 10px;border-radius:99px;
+  background:var(--accent-soft);color:var(--accent);margin-bottom:6px}
+.pill.lab{background:var(--warn-soft);color:var(--warn)}
+figure{margin:18px 0}
+figure img{border-radius:12px;border:1px solid var(--line)}
+figcaption{font-size:14px;color:var(--muted);margin-top:6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}}
+.narrow{max-width:360px}
+.video{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:10px 0}
+summary{cursor:pointer;font-weight:600}
+details p{margin:8px 0 2px}
+footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">海龜電能</a>
+    <nav>
+      <a href="#retrofit">充電器改裝</a>
+      <a class="opt" href="#board">控制板</a>
+      <a class="opt" href="#lab">研究中</a>
+      <a href="#faq">常見問題</a>
+      <a href="#contact">聯絡</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<div class="hero">
+  <h1>海龜電能</h1>
+  <p class="tag">iE125 原廠充電器改裝・TES 快充控制板</p>
+  <p class="where">新北中和・線上接單</p>
+  <div class="btns">
+    <a class="btn primary" href="https://www.facebook.com/profile.php?id=61582382523577" target="_blank" rel="noopener">到 Facebook 粉專洽詢</a>
+    <a class="btn ghost" href="#retrofit">看服務內容</a>
+  </div>
+</div>
+
+<p>我自己也是 iE125 的車主。這裡整理了我目前提供的兩項服務、還在研究中的東西，以及各自能做到什麼、做不到什麼。</p>
+
+<div class="grid2">
+  <figure>
+    <img src="img/charger-360w-retrofit.jpg" width="736" height="1000" alt="改裝後的 iE125 原廠充電器（360 W 款），外殼上裝有 TES 快充控制板與 OLED 螢幕">
+    <figcaption>改裝後的 iE125 原廠充電器（360 W 款）</figcaption>
+  </figure>
+  <figure>
+    <img src="img/controller-boards.jpg" width="746" height="559" alt="五台裝進 3D 列印外殼的 TES 快充控制板成品">
+    <figcaption>TES 快充控制板成品</figcaption>
+  </figure>
+</div>
+
+<section id="why">
+  <h2>TES 車主的充電困境</h2>
+  <p>騎支援 TES 快充規格電動機車（eMoving iE125、ZAU ES-2000 這類）的人，大概都遇過這幾件事：</p>
+  <ul>
+    <li>原廠有快充站，但站點太少。加上電動機車的續航本來就不長，出遠門幾乎不可能，路線只能繞著快充站排。</li>
+    <li>日常能依靠的只剩原廠隨車充電器：360～600 W，充飽要 5～9 小時。</li>
+    <li>原廠充電器沒有任何參數可以設定，充到哪了也看不到。</li>
+    <li>原廠充電器的妥善率並不好。車友之間很常見的狀況是：充電器長時間運作過熱，電源板就這樣燒掉了。</li>
+    <li>汽車用的 AC 慢充樁（J1772 / Type 2）到處都是，偏偏機車沒辦法直接插。</li>
+  </ul>
+</section>
+
+<section id="retrofit">
+  <span class="pill">服務一・一般車主適用</span>
+  <h2>iE125 原廠充電器改裝</h2>
+  <p>原廠充電器由三個部分組成：主電源、控制板、充電槍。我的做法是<strong>只保留充電槍</strong>，主電源和控制板全部換成我自己的——控制板用的就是下方服務二那塊 TES 快充控制板。</p>
+  <ul>
+    <li>改裝後功率上限 <strong>1 kW / 10 A</strong>（原廠 360～600 W）</li>
+    <li>原廠 360 W 與 600 W 兩款充電器都能改</li>
+    <li>插一般 110V 插座時，1 kW 輸出離插座的容量上限（1650 W）還有餘裕</li>
+    <li>最容易過熱燒掉的電源板會被整個換掉，所以<strong>電源板已經燒掉的原廠充電器，只要充電槍完好，一樣可以改</strong></li>
+    <li>可以連 WiFi，手機開網頁就能看即時電壓、電流、目前電量</li>
+    <li>可以設定「充到幾 % 就停」（例如只充到 80% 顧電池）；排程、推播、充電紀錄、OTA 更新也都有</li>
+    <li>這些功能要先連上 WiFi、在手機上設定才用得到；用不用、用多少，看個人需求</li>
+    <li>車輛本身完全不動</li>
+  </ul>
+
+  <div class="grid2">
+    <figure>
+      <img src="img/charger-600w-retrofit.jpg" width="636" height="477" alt="改裝後的 iE125 原廠充電器（600 W 款），保留原廠白色充電槍">
+      <figcaption>改裝後的 iE125 原廠充電器（600 W 款）：只保留原廠充電槍</figcaption>
+    </figure>
+    <figure class="narrow">
+      <img src="img/web-ui-mock.png" width="750" height="930" alt="手機瀏覽器上的充電監控畫面，顯示輸出電壓、電流、功率、電量與剩餘時間">
+      <figcaption>手機監控畫面示意（模擬資料）。SOC 即目前電量</figcaption>
+    </figure>
+  </div>
+
+  <h3>為什麼上限是 1 kW，不能再高？</h3>
+  <p>因為充電槍保留的是原廠的，而 iE125 原廠充電槍的線徑太細，撐不住更大的電流。線徑撐不住就是撐不住，我不會為了數字好看去超用它，那是會出事的。</p>
+  <div class="note">這項改裝比原廠快，但做不到「30 分鐘充到 80%」那種等級的快充。</div>
+</section>
+
+<section id="board">
+  <span class="pill">服務二・具高壓直流經驗者適用</span>
+  <h2>TES 快充控制板</h2>
+  <p>這塊控制板是整套充電設備的「大腦」：它實作了車輛原本就在用的 <strong>TES-0D-02-01</strong> 快充通訊協定，透過 CAN Bus 跟車輛的電池管理系統（BMS）做正規的充電交握，再去指揮整流模組輸出。</p>
+  <figure class="narrow">
+    <img src="img/controller-board.jpg" width="684" height="856" alt="TES 快充控制板，3D 列印外殼上有 OLED 螢幕與按鍵">
+    <figcaption>TES 快充控制板</figcaption>
+  </figure>
+  <p>搭配整流模組及副廠充電槍，就能透過車上原本的 TES 快充接口充電——包括轉接使用汽車的 AC 慢充樁（J1772 / Type 2）。充電槍需要自行向中國的廠商訂做，這部分我不提供。</p>
+  <ul>
+    <li>控制器設計上限：120 V / 100 A</li>
+    <li>手機開網頁就能看：即時電壓、電流、目前電量（SOC）、預估剩餘時間</li>
+    <li>可設定充到幾 % 就停、最大電壓電流、停止條件</li>
+    <li>排程充電（離峰電價適用）、開始／完成／異常推播到手機</li>
+    <li>最近 20 次充電紀錄：時長、充了幾度、電量從幾 % 充到幾 %、停止原因</li>
+    <li>OTA 無線更新韌體；車輛本身完全不動</li>
+  </ul>
+  <div class="note">沒有高壓直流經驗的話，請不要買控制板——選服務一。</div>
+</section>
+
+<section id="lab">
+  <span class="pill lab">研究中・不對外販售</span>
+  <h2>還在研究的東西</h2>
+  <p>下面兩樣是我自己在測試的，寫出來是讓大家知道做得到什麼，但它們不是服務項目。</p>
+
+  <div class="card">
+    <h3 style="margin-top:0">1.5 kW / 15 A 全副廠充電器</h3>
+    <p>主電源、控制板、充電槍全部不用原廠零件。這組的充電槍線徑其實用到 30 A 都沒問題，15 A 是我刻意設的上限，原因在插座：</p>
+    <ul>
+      <li>一般 110V 插座的容量上限是 1650 W</li>
+      <li>電源本身有轉換損耗，輸出 1.5 kW 時，插座端吃的電已經貼近這個上限</li>
+      <li>老舊的電線和插座長時間用到這麼滿，本身就有風險</li>
+    </ul>
+    <p>副廠充電槍取得不易，目前只有這一組，自己測試使用中。</p>
+    <figure>
+      <img src="img/charger-1500w.jpg" width="1200" height="900" loading="lazy" alt="1.5 kW / 15 A 全副廠 TES 充電器與黑色充電槍">
+      <figcaption>1.5 kW / 15 A 全副廠充電器</figcaption>
+    </figure>
+    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/JB53_vpZVYo" title="1.5 kW / 15 A 充電器實測影片" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">6 kW 直流快充研究平台</h3>
+    <p>用我的控制板搭配工業整流模組以及副廠充電槍組成，iE125 實測 <strong>6 kW / 66 A，0→80% 約 30 分鐘</strong>，可以轉接汽車的 AC 慢充樁充電。</p>
+    <figure>
+      <img src="img/platform-6kw-j1772.jpg" width="1200" height="900" loading="lazy" alt="6 kW 研究平台在停車場轉接 J1772 汽車充電樁，替 iE125 充電">
+      <figcaption>6 kW 研究平台轉接汽車 AC 慢充樁充電</figcaption>
+    </figure>
+    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/vA7gSdK1YZQ" title="6 kW 研究平台實測影片" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <p>但我不販售整套直流快充系統。我不認為它目前安全到可以讓一般人買回去使用，也還沒有一個我願意交出去的成熟方案。現階段的做法是：懂的人買控制板回去，自行搭配、自行組裝、自行負責。</p>
+  </div>
+</section>
+
+<section id="no-bypass">
+  <h2>我不做「暴力改裝」</h2>
+  <p>有一種做法是繞過車輛的充電接口，直接把電打進電池。這種做法我不做，原因有三個：</p>
+  <ol>
+    <li>電池管理系統（BMS）完全沒有參與這次充電，電流、溫度、單體電壓的保護邏輯等於被關掉了。</li>
+    <li>沒有停止機制。充飽了誰來斷？</li>
+    <li>車輛端一看就知道，保固直接沒了。</li>
+  </ol>
+  <p>我的控制板走的是反方向：完整實作 TES 協定，整個充電過程要多少電壓、多少電流、什麼時候該停，都是車輛自己的 BMS 在決定，控制板只負責忠實地跟隨它的要求。</p>
+</section>
+
+<section id="notes">
+  <h2>有些話要先講清楚</h2>
+  <ul>
+    <li>原廠充電器改裝的上限是 1 kW / 10 A，受限於保留下來的原廠充電槍線徑，這是物理限制，加錢也不會變快。</li>
+    <li>家用 110V 插座的容量上限是 1650 W。老舊的電線與插座長時間接近滿載有風險，這也是我設定充電器功率上限時的考量。</li>
+    <li>控制板只適合具備高壓直流經驗的人。整流模組的選配、充電槍的訂做、線材、保護與組裝都要自己負責。</li>
+    <li>CAN Bus 接錯或短路，會造成車輛 BMS 永久性損壞。我在開發初期就燒過一台車的 CAN 埠，那是早期洞洞板時期外購 CAN 模組的瑕疵；現在的控制板已經是穩定的正式電路板，這條提醒是寫給要自己接線的人。</li>
+    <li>6 kW / 30 分鐘是我自己研究平台的實測結果，不是控制板的保證值。實際能做到多少，取決於整流模組、充電槍線徑和現場進線容量。</li>
+    <li>控制板與改裝皆未經 BSMI、UL 等安規認證，性質是個人研發的技術方案，不是通過認證的量產商品。</li>
+    <li>任何第三方補能設備都可能影響原廠保固，請自行評估。</li>
+  </ul>
+</section>
+
+<section id="proof">
+  <h2>這些東西你可以自己查證</h2>
+  <p>控制板的韌體與硬體設計是公開的，任何懂的人都可以去看：</p>
+  <ul>
+    <li><a href="https://github.com/a950523a/TES-Taiwan-Electric-Scooter-Charging-Controller" target="_blank" rel="noopener">GitHub 開源專案</a>（原始碼、PCB 設計檔、3D 機構圖、技術文件）</li>
+    <li><a href="https://a950523a.github.io/TES-Taiwan-Electric-Scooter-Charging-Controller/" target="_blank" rel="noopener">線上燒錄工具</a>（瀏覽器直接刷韌體）</li>
+    <li><a href="https://www.mobile01.com/topicdetail.php?f=753&amp;t=7302083" target="_blank" rel="noopener">Mobile01 開發成果分享文</a></li>
+  </ul>
+  <p>開源專案本身因個人規劃目前暫停更新，但已發布的版本與工具都持續可用，服務也照常。</p>
+</section>
+
+<section id="faq">
+  <h2>常見問題</h2>
+  <details><summary>我的車可以用嗎？</summary>
+    <p>原廠充電器改裝針對 iE125。控制板理論上支援 TES 標準（TES-0D-02-01）的車，例如 eMoving iE125、ZAU ES-2000。除以上這兩款車以外都沒有測試過，有興趣的可以和我聯絡幫助我測試。</p></details>
+  <details><summary>我的充電器電源板已經燒掉了，還能改嗎？</summary>
+    <p>可以，只要充電槍完好。改裝本來就只保留充電槍，主電源和控制板都會換成我自己的。</p></details>
+  <details><summary>車子要動到嗎？</summary>
+    <p>不用。兩項服務都不動車，改的是充電器，接口一樣是 TES 規格。</p></details>
+  <details><summary>改裝後可以多快？</summary>
+    <p>上限 1 kW / 10 A，比原廠的 360～600 W 快，但做不到 30 分鐘等級的快充。原因是保留下來的原廠充電槍線徑太細。</p></details>
+  <details><summary>那 1.5 kW 那組可以買嗎？</summary>
+    <p>目前不行。副廠充電槍取得不易，只有一組，還在自己測試。</p></details>
+  <details><summary>為什麼不直接賣 6 kW 的整套系統？</summary>
+    <p>因為我不認為它目前安全到可以交給一般人使用。那是我的研究平台，還沒有成熟到可以販售的方案。與其賣一個我自己都不放心的東西，不如先不賣。</p></details>
+  <details><summary>我沒有高壓經驗，可以買控制板試試看嗎？</summary>
+    <p>不建議。控制板本身不含整流模組和充電槍，要自己選配、訂做、組裝，處理的是上百伏特的直流電，接錯還可能燒掉車上的 BMS。請選原廠充電器改裝。</p></details>
+  <details><summary>會不會傷電池？</summary>
+    <p>全程經過車輛的正規充電流程，不會超過車輛允許的範圍。但充電功率越大，對電池的負擔本來就越大；兩項服務都能設定充到幾 % 就停，若要保護電池可以把充電電量設低一點（不過大部分車友的電池是租的，照常充滿也沒問題，看個人習慣）。</p></details>
+  <details><summary>外縣市可以嗎？</summary>
+    <p>工作室在新北中和，外縣市請先透過 Facebook 粉專私訊討論。</p></details>
+</section>
+
+<section id="contact">
+  <h2>聯絡</h2>
+  <p>洽詢請透過 Facebook 粉專私訊，技術問題也歡迎到社群討論。</p>
+  <div class="btns">
+    <a class="btn primary" href="https://www.facebook.com/profile.php?id=61582382523577" target="_blank" rel="noopener">海龜電能 Facebook 粉專</a>
+    <a class="btn ghost" href="https://www.facebook.com/share/g/1EPE6yvg73/" target="_blank" rel="noopener">Facebook 社群（技術交流）</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 海龜電能・新北中和・線上接單</div>
+</footer>
+
+</body>
+</html>
