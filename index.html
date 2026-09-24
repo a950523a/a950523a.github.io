@@ -66,7 +66,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"我的車可以用嗎？","acceptedAnswer":{"@type":"Answer","text":"原廠充電器改裝針對 iE125。控制板理論上支援 TES 標準（TES-0D-02-01）的車，例如 eMoving iE125、ZAU ES-2000；其他車款尚未測試。"}},
+    {"@type":"Question","name":"我的車可以用嗎？","acceptedAnswer":{"@type":"Answer","text":"改裝的對象是 iE125 的原廠充電器；改裝後換成 TES 快充控制板，理論上只要是 TES 標準（TES-0D-02-01）的車、且充電器電源電壓高於電池電壓都能用，例如 eMoving iE125、ZAU ES-2000；其他車款尚未測試。"}},
     {"@type":"Question","name":"電源板已經燒掉的原廠充電器還能改嗎？","acceptedAnswer":{"@type":"Answer","text":"可以，只要充電槍完好。改裝只保留充電槍，主電源和控制板都會換成新的。"}},
     {"@type":"Question","name":"改裝後可以多快？","acceptedAnswer":{"@type":"Answer","text":"上限 1 kW / 10 A，比原廠的 360～600 W 快，但做不到 30 分鐘等級的快充，因為保留下來的原廠充電槍線徑太細。"}},
     {"@type":"Question","name":"車子要動到嗎？","acceptedAnswer":{"@type":"Answer","text":"不用。改的是充電器，接口一樣是 TES 規格，車輛本身完全不動。"}},
@@ -212,6 +212,15 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
     </figure>
   </div>
 
+  <h3>為什麼連控制板都換掉？</h3>
+  <p>原廠控制板只負責基本充電：看不到充電狀態、不能設定充到幾 % 就停，輸出上限固定在原廠板上，而且是專車專用。換成自研的 TES 快充控制板之後：</p>
+  <ul>
+    <li>手機可以看即時電壓、電流、電量，可以設定充電上限、排程和推播</li>
+    <li>韌體可以透過 OTA 更新，之後的新功能，改裝過的充電器也拿得到</li>
+    <li>功率由控制板決定，不會被原廠板限制。目前 1 kW 的上限來自原廠充電槍的線徑；換上規格更高的充電槍，就有往上加的空間（下方 1.5 kW 那組就是這樣做出來的）</li>
+    <li>不再專車專用：控制板走的是 TES 通用規格，理論上只要是 TES 規格的車、而且充電器的電源電壓高於車的電池電壓，都可以使用（iE125 以外的車款尚未實測，見常見問題）</li>
+  </ul>
+
   <h3>為什麼上限是 1 kW，不能再高？</h3>
   <p>因為充電槍保留的是原廠的，而 iE125 原廠充電槍的線徑太細，撐不住更大的電流。線徑撐不住就是撐不住，我不會為了數字好看去超用它，那是會出事的。</p>
   <div class="note">這項改裝比原廠快，但做不到「30 分鐘充到 80%」那種等級的快充。</div>
@@ -331,7 +340,7 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
 <section id="faq">
   <h2>常見問題</h2>
   <details><summary>我的車可以用嗎？</summary>
-    <p>原廠充電器改裝針對 iE125。控制板理論上支援 TES 標準（TES-0D-02-01）的車，例如 eMoving iE125、ZAU ES-2000。除以上這兩款車以外都沒有測試過，有興趣的可以和我聯絡幫助我測試。</p></details>
+    <p>改裝的對象是 iE125 的原廠充電器。改裝後換成 TES 快充控制板，理論上只要是 TES 標準（TES-0D-02-01）的車、而且充電器的電源電壓高於車的電池電壓，都可以使用，例如 eMoving iE125、ZAU ES-2000。除以上這兩款車以外都沒有測試過，有興趣的可以和我聯絡幫助我測試。</p></details>
   <details><summary>我的充電器電源板已經燒掉了，還能改嗎？</summary>
     <p>可以，只要充電槍完好。改裝本來就只保留充電槍，主電源和控制板都會換成我自己的。</p></details>
   <details><summary>車子要動到嗎？</summary>
