@@ -70,6 +70,8 @@
     {"@type":"Question","name":"電源板已經燒掉的原廠充電器還能改嗎？","acceptedAnswer":{"@type":"Answer","text":"可以，只要充電槍完好。改裝只保留充電槍，主電源和控制板都會換成新的。"}},
     {"@type":"Question","name":"改裝後可以多快？","acceptedAnswer":{"@type":"Answer","text":"上限 1 kW / 10 A，比原廠的 360～600 W 快，但做不到 30 分鐘等級的快充，因為保留下來的原廠充電槍線徑太細。"}},
     {"@type":"Question","name":"車子要動到嗎？","acceptedAnswer":{"@type":"Answer","text":"不用。改的是充電器，接口一樣是 TES 規格，車輛本身完全不動。"}},
+    {"@type":"Question","name":"有沒有完全不用原廠零件的 iE125 充電器？","acceptedAnswer":{"@type":"Answer","text":"有，我做過一組 1.5 kW / 15 A 的：控制板與主電源自己開發、充電槍為副廠訂做，一樣經過 TES 規格的充電交握，由車輛 BMS 決定電壓、電流與停止時機。目前暫停販售。"}},
+    {"@type":"Question","name":"打開電池拉並聯線、再用外接充電器從並聯線充電，跟你的做法有什麼不同？","acceptedAnswer":{"@type":"Answer","text":"那種做法繞過充電接口直接充電池，車輛 BMS 沒有參與這次充電；若另外並聯增程電池，也不在 BMS 管理範圍內。我的充電器與控制板走車上原本的 TES 充電接口，透過 CAN Bus 與 BMS 完成充電交握，車輛本身不動。"}},
     {"@type":"Question","name":"為什麼不賣 6 kW 的整套快充系統？","acceptedAnswer":{"@type":"Answer","text":"那是研究平台，目前還不夠安全到可以交給一般人使用，也還沒有成熟的方案，所以不對外販售。"}}
   ]
 }
@@ -275,7 +277,7 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
 
   <div class="card">
     <h3 style="margin-top:0">1.5 kW / 15 A 全副廠充電器</h3>
-    <p>主電源、控制板、充電槍全部不用原廠零件。這組的充電槍線徑其實用到 30 A 都沒問題，15 A 是我刻意設的上限，原因在插座：</p>
+    <p>從控制板、主電源到充電槍，<strong>完全不使用原廠零件</strong>的 iE125 充電器：控制板與電源是我自己開發的，充電槍是副廠訂做，和原廠充電器一樣經過 TES 規格的充電交握。這組的充電槍線徑其實用到 30 A 都沒問題，15 A 是我刻意設的上限，原因在插座：</p>
     <ul>
       <li>一般 110V 插座的容量上限是 1650 W</li>
       <li>電源本身有轉換損耗，輸出 1.5 kW 時，插座端吃的電已經貼近這個上限</li>
@@ -304,13 +306,15 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
 
 <section id="no-bypass">
   <h2>我不做「暴力改裝」</h2>
-  <p>有一種做法是繞過車輛的充電接口，直接把電打進電池。這種做法我不做，原因有三個：</p>
+  <p>有一種做法是繞過車輛的充電接口，直接把電打進電池。常見的形式是打開原廠電池的外殼，從電池拉出一條並聯線，再用外接充電器從這條線直接充電；有些還會順便並聯一組增程電池。</p>
+  <p>會這樣繞，是因為要從車上的 TES 接口充電，充電器必須先透過 CAN Bus 和車輛的 BMS 完成 TES-0D-02-01 規定的充電交握，車輛才會打開充電迴路；交握做不出來，就只剩下繞過接口、直接接電池這條路。這種做法我不做，原因有四個：</p>
   <ol>
     <li>電池管理系統（BMS）完全沒有參與這次充電，電流、溫度、單體電壓的保護邏輯等於被關掉了。</li>
     <li>沒有停止機制。充飽了誰來斷？</li>
-    <li>車輛端一看就知道，保固直接沒了。</li>
+    <li>如果還並聯了增程電池，那組電池不在原車 BMS 的管理範圍內，車輛不知道它存在。</li>
+    <li>要打開電池外殼，車輛端也一看就知道，保固直接沒了；而多數車友的電池是租的。</li>
   </ol>
-  <p>我的控制板走的是反方向：完整實作 TES 協定，整個充電過程要多少電壓、多少電流、什麼時候該停，都是車輛自己的 BMS 在決定，控制板只負責忠實地跟隨它的要求。</p>
+  <p>我的控制板走的是反方向：把這套交握完整做出來，整個充電過程要多少電壓、多少電流、什麼時候該停，都是車輛自己的 BMS 在決定，控制板只負責忠實地跟隨它的要求。</p>
 </section>
 
 <section id="notes">
@@ -334,7 +338,7 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
     <li><a href="https://a950523a.github.io/TES-Taiwan-Electric-Scooter-Charging-Controller/" target="_blank" rel="noopener">線上燒錄工具</a>（瀏覽器直接刷韌體）</li>
     <li><a href="https://www.mobile01.com/topicdetail.php?f=753&amp;t=7302083" target="_blank" rel="noopener">Mobile01 開發成果分享文</a></li>
   </ul>
-  <p>開源專案持續開發中，已發布的韌體與線上燒錄工具都可以直接使用。</p>
+  <p>開源專案持續開發中，已發布的韌體與線上燒錄工具都可以直接使用。截至 2026 年 9 月，在 GitHub 上搜尋「TES-0D-02-01」，公開原始碼的 TES 充電控制器只有這一個。</p>
 </section>
 
 <section id="faq">
@@ -349,6 +353,10 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
     <p>上限 1 kW / 10 A，比原廠的 360～600 W 快，但做不到 30 分鐘等級的快充。原因是保留下來的原廠充電槍線徑太細。</p></details>
   <details><summary>那 1.5 kW 那組可以買嗎？</summary>
     <p>目前缺貨。之前有上架過，但定位尷尬、副廠充電槍又難取得，所以暫停販售。之後若能找到穩定的充電槍來源並降低成本，可能會重新上架。</p></details>
+  <details><summary>有沒有完全不用原廠零件的 iE125 充電器？</summary>
+    <p>我做過一組 1.5 kW / 15 A 的：控制板、主電源都是自己開發，充電槍是副廠訂做，一樣走 TES 規格的充電交握，由車輛的 BMS 決定電壓、電流和什麼時候停。目前暫停販售，詳見上方「研究中與暫停販售」。</p></details>
+  <details><summary>打開電池拉並聯線、再用外接充電器從並聯線充電，跟你的做法有什麼不同？</summary>
+    <p>那種做法是繞過充電接口直接充電池，車輛的 BMS 沒有參與這次充電；如果還並聯了增程電池，那組電池也不在 BMS 的管理範圍內。我的充電器與控制板都是從車上原本的 TES 充電接口，透過 CAN Bus 和 BMS 完成充電交握，車子本身完全不動。詳見上方「我不做『暴力改裝』」。</p></details>
   <details><summary>為什麼不直接賣 6 kW 的整套系統？</summary>
     <p>因為我不認為它目前安全到可以交給一般人使用。那是我的研究平台，還沒有成熟到可以販售的方案。與其賣一個我自己都不放心的東西，不如先不賣。</p></details>
   <details><summary>我沒有高壓經驗，可以買控制板試試看嗎？</summary>
