@@ -10,12 +10,12 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:site_name" content="海龜電能">
 <meta property="og:title" content="海龜電能｜iE125 原廠充電器改裝・TES 快充控制板">
-<meta property="og:description" content="iE125 原廠充電器改裝（1 kW / 10 A，手機監控）與 TES 快充控制板。新北中和，線上接單。">
+<meta property="og:description" content="海龜電能（新北中和，線上接單）：iE125 原廠充電器改裝，只保留原廠充電槍、換上自製電源與控制板，功率提升到 1 kW / 10 A，手機可監控、可設定充到幾 % 停；以及符合 TES-0D-02-01 的 TES 快充控制板。">
 <meta property="og:url" content="https://a950523a.github.io/">
 <meta property="og:image" content="https://a950523a.github.io/img/charger-360w-retrofit.jpg">
 <meta name="theme-color" content="#0f766e">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='34' rx='20' ry='16' fill='%230f766e'/%3E%3Ccircle cx='32' cy='14' r='7' fill='%230f766e'/%3E%3Cpath d='M34 22l-6 12h6l-4 12 10-15h-6l4-9z' fill='%23fde047'/%3E%3C/svg%3E">
-
+<link rel="stylesheet" href="style.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -35,6 +35,7 @@
   "makesOffer": [
     {
       "@type": "Offer",
+      "url": "https://a950523a.github.io/price.html",
       "itemOffered": {
         "@type": "Service",
         "name": "iE125 原廠充電器改裝",
@@ -62,120 +63,34 @@
   ]
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"我的車可以用嗎？","acceptedAnswer":{"@type":"Answer","text":"改裝的對象是 iE125 的原廠充電器；改裝後換成 TES 快充控制板，理論上只要是 TES 標準（TES-0D-02-01）的車、且充電器電源電壓高於電池電壓都能用，例如 eMoving iE125、ZAU ES-2000；其他車款尚未測試。"}},
-    {"@type":"Question","name":"電源板已經燒掉的原廠充電器還能改嗎？","acceptedAnswer":{"@type":"Answer","text":"可以，只要充電槍完好。改裝只保留充電槍，主電源和控制板都會換成新的。"}},
-    {"@type":"Question","name":"改裝要多少錢？","acceptedAnswer":{"@type":"Answer","text":"需自備 iE125 原廠充電器（要用它的充電槍）。原廠充電器改裝是控制盒 NT$3,200 加鑽孔費 NT$300；不想鑽孔的話，XT90 版控制盒 NT$3,300、不收施工費。主電源另計，用的是 1.5 kW 的版本，依當時匯率以實價計算，請私訊洽詢。"}},
-    {"@type":"Question","name":"改裝後可以多快？","acceptedAnswer":{"@type":"Answer","text":"上限 1 kW / 10 A，比原廠的 360～600 W 快，但做不到 30 分鐘等級的快充，因為保留下來的原廠充電槍線徑太細。"}},
-{"@type":"Question","name":"iE125 可以在家快充嗎？","acceptedAnswer":{"@type":"Answer","text":"看家裡的電。只有一般 110V 插座時，原廠充電器改裝後的 1 kW 是比較實際的上限（插座容量 1650 W，原廠充電槍線徑也太細）。如果家裡已裝汽車充電樁（J1772 / Type 2）或另外拉了專用迴路，在家快充是做得到的，例如 6 kW 研究平台轉接汽車 AC 慢充樁，iE125 實測 0→80% 約 30 分鐘。但整套快充設備目前不販售，有興趣的人可買控制板回去自行搭配整流模組與充電槍研究、組裝並自行負責；需要高壓直流經驗，配線請找合格電工。"}},
-    {"@type":"Question","name":"車子要動到嗎？","acceptedAnswer":{"@type":"Answer","text":"不用。改的是充電器，接口一樣是 TES 規格，車輛本身完全不動。"}},
-    {"@type":"Question","name":"有沒有完全不用原廠零件的 iE125 充電器？","acceptedAnswer":{"@type":"Answer","text":"有，我做過一組 1.5 kW / 15 A 的：控制板與主電源自己開發、充電槍為副廠訂做，一樣經過 TES 規格的充電交握，由車輛 BMS 決定電壓、電流與停止時機。目前暫停販售。"}},
-    {"@type":"Question","name":"打開電池拉並聯線、再用外接充電器從並聯線充電，跟你的做法有什麼不同？","acceptedAnswer":{"@type":"Answer","text":"那種做法繞過充電接口直接充電池，車輛 BMS 沒有參與這次充電；若另外並聯增程電池，也不在 BMS 管理範圍內。我的充電器與控制板走車上原本的 TES 充電接口，透過 CAN Bus 與 BMS 完成充電交握，車輛本身不動。"}},
-    {"@type":"Question","name":"為什麼不賣 6 kW 的整套快充系統？","acceptedAnswer":{"@type":"Answer","text":"那是研究平台，目前還不夠安全到可以交給一般人使用，也還沒有成熟的方案，所以不對外販售。"}}
-  ]
-}
-</script>
-
-<style>
-:root{
-  --bg:#f7faf9; --surface:#ffffff; --text:#1f2a29; --muted:#5b6b69; --line:#dfe7e5;
-  --accent:#0f766e; --accent-ink:#ffffff; --accent-soft:#e3f2ef; --warn:#9a5b00; --warn-soft:#fff4e0;
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#0f1514; --surface:#162020; --text:#e4ecea; --muted:#9db0ad; --line:#26332f;
-    --accent:#2dd4bf; --accent-ink:#06201d; --accent-soft:#12302c; --warn:#f5b454; --warn-soft:#2c2213;
-  }
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);
-  font:17px/1.75 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
-a{color:var(--accent)}
-img{max-width:100%;height:auto;display:block}
-.wrap{max-width:760px;margin:0 auto;padding:0 16px}
-header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);
-  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-header.top .wrap{display:flex;align-items:center;gap:16px;height:52px}
-.brand{font-weight:700;color:var(--text);text-decoration:none;white-space:nowrap}
-nav{display:flex;gap:14px;font-size:15px;margin-left:auto}
-@media (max-width:520px){nav{gap:12px;font-size:14px} nav .opt{display:none}}
-@media (max-width:380px){nav .opt2{display:none}}
-nav a{color:var(--muted);text-decoration:none;white-space:nowrap}
-nav a:hover{color:var(--accent)}
-.hero{padding:48px 0 28px}
-.hero h1{font-size:clamp(30px,7vw,44px);line-height:1.2;margin:0 0 8px}
-.hero .tag{font-size:clamp(18px,4.2vw,22px);font-weight:600;margin:0 0 4px}
-.hero .where{color:var(--muted);margin:0 0 22px}
-.btns{display:flex;flex-wrap:wrap;gap:10px}
-.btn{display:inline-block;padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:600}
-.btn.primary{background:var(--accent);color:var(--accent-ink)}
-.btn.ghost{border:1px solid var(--line);color:var(--text);background:var(--surface)}
-section{padding:28px 0;border-top:1px solid var(--line);scroll-margin-top:52px}
-h2{font-size:24px;line-height:1.35;margin:0 0 14px}
-h3{font-size:19px;margin:24px 0 8px}
-ul{padding-left:1.2em;margin:10px 0}
-li{margin:4px 0}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
-.note{background:var(--warn-soft);border-left:4px solid var(--warn);border-radius:8px;padding:12px 16px;margin:16px 0}
-.pill{display:inline-block;font-size:13px;font-weight:600;padding:2px 10px;border-radius:99px;
-  background:var(--accent-soft);color:var(--accent);margin-bottom:6px}
-.pill.lab{background:var(--warn-soft);color:var(--warn)}
-figure{margin:18px 0}
-figure img{border-radius:12px;border:1px solid var(--line)}
-figcaption{font-size:14px;color:var(--muted);margin-top:6px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-table.price{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
-table.price th,table.price td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top}
-table.price thead th{color:var(--accent)}
-table.price tbody th{color:var(--muted);font-weight:600;white-space:nowrap}
-table.price tr.total td{font-weight:700}
-.fine{font-size:13px;color:var(--muted)}
-form.order{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:14px;margin:16px 0}
-form.order fieldset{border:0;margin:0;padding:0;display:grid;gap:6px}
-form.order legend,form.order .lbl{font-weight:600;font-size:15px;margin-bottom:2px}
-form.order .opts{display:flex;flex-wrap:wrap;gap:8px 16px}
-form.order .opts label{display:flex;align-items:center;gap:6px;font-size:15px}
-form.order input[type=text],form.order textarea{font:inherit;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
-form.order textarea{min-height:70px;resize:vertical}
-form.order .hint{font-size:13px;color:var(--muted);font-weight:400}
-.order-out{background:var(--accent-soft);border-radius:12px;padding:16px;display:grid;gap:10px;margin:16px 0}
-.order-out .no{font-family:ui-monospace,Consolas,monospace;font-size:20px;font-weight:700;letter-spacing:.04em;color:var(--accent)}
-.order-out pre{white-space:pre-wrap;margin:0;font:inherit;font-size:14px;background:var(--surface);border-radius:8px;padding:12px}
-.order-out .msg{font-size:14px;color:var(--accent);min-height:1.4em}
-button.btn{font:inherit;cursor:pointer}
-@media (max-width:560px){.grid2{grid-template-columns:1fr}}
-.narrow{max-width:360px}
-.video{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}
-.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:10px 0}
-summary{cursor:pointer;font-weight:600}
-details p{margin:8px 0 2px}
-footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
-</style>
 </head>
 <body>
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#">海龜電能</a>
+    <a class="brand" href="index.html">海龜電能</a>
     <nav>
-      <a href="#retrofit">充電器改裝</a>
-      <a href="#price">價格</a>
-      <a class="opt" href="#order">填單</a>
-      <a class="opt" href="#board">控制板</a>
-      <a class="opt" href="#lab">研究中</a>
-      <a class="opt2" href="#faq">常見問題</a>
-      <a href="#contact">聯絡</a>
+      <a href="retrofit.html">改裝</a>
+      <a href="price.html">價格與填單</a>
+      <a class="opt" href="board.html">控制板</a>
+      <a class="opt" href="lab.html">研究中</a>
+      <a class="opt2" href="faq.html">常見問題</a>
+      <a href="index.html#contact">聯絡</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
+
+<script>
+(function () {
+  var map = {retrofit: "retrofit.html", price: "price.html", order: "price.html#order", board: "board.html",
+    parts: "board.html#parts", lab: "lab.html", "no-bypass": "lab.html#no-bypass", notes: "retrofit.html#notes", faq: "faq.html"};
+  function go() { var h = location.hash.slice(1); if (map[h]) location.replace(map[h]); }
+  go();
+  window.addEventListener("hashchange", go);
+})();
+</script>
 
 <div class="hero">
   <h1>海龜電能</h1>
@@ -184,7 +99,7 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
   <div class="btns">
     <a class="btn primary" href="https://www.facebook.com/profile.php?id=61582382523577" target="_blank" rel="noopener">到 Facebook 粉專洽詢</a>
     <a class="btn ghost" href="https://famistore.famiport.com.tw/famistore/users/4843275/malls/68ce64eb603c32b46e510c52" target="_blank" rel="noopener">線上賣場</a>
-    <a class="btn ghost" href="#retrofit">看服務內容</a>
+    <a class="btn ghost" href="#services">看服務內容</a>
   </div>
 </div>
 
@@ -201,6 +116,31 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
   </figure>
 </div>
 
+<section id="services">
+  <h2>服務</h2>
+  <div class="cards">
+    <a class="card link" href="retrofit.html">
+      <span class="pill">一般車主適用</span>
+      <h3>iE125 原廠充電器改裝</h3>
+      <p>只保留原廠充電槍，換上 1.5 kW 電源與 TES 快充控制板：最高 1 kW / 10 A，手機可監控、可設定充到幾 % 就停。</p>
+      <span class="more">NT$3,300 起＋主電源 ›</span>
+    </a>
+    <a class="card link" href="board.html">
+      <span class="pill">具高壓直流經驗者適用</span>
+      <h3>TES 快充控制板</h3>
+      <p>實作 TES-0D-02-01 快充協定的控制板，搭配整流模組與充電槍自行組裝。另有 iE125／勁炫125 用輪速感應器。</p>
+      <span class="more">看控制板與周邊零件 ›</span>
+    </a>
+    <a class="card link" href="lab.html">
+      <span class="pill lab">目前不販售</span>
+      <h3>研究中與暫停販售</h3>
+      <p>1.5 kW 全副廠充電器、6 kW 直流快充研究平台，以及我為什麼不做「暴力改裝」。</p>
+      <span class="more">看研究中的東西 ›</span>
+    </a>
+  </div>
+  <div class="btns"><a class="btn primary" href="price.html">價格與線上填單</a><a class="btn ghost" href="faq.html">常見問題</a></div>
+</section>
+
 <section id="why">
   <h2>TES 車主的充電困境</h2>
   <p>騎支援 TES 快充規格電動機車（eMoving iE125、ZAU ES-2000 這類）的人，大概都遇過這幾件事：</p>
@@ -213,240 +153,6 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
   </ul>
 </section>
 
-<section id="retrofit">
-  <span class="pill">服務一・一般車主適用</span>
-  <h2>iE125 原廠充電器改裝</h2>
-  <p>原廠充電器由三個部分組成：主電源、控制板、充電槍。我的做法是<strong>只保留充電槍</strong>，主電源和控制板全部換成我自己的——控制板用的就是下方服務二那塊 TES 快充控制板。</p>
-  <ul>
-    <li>改裝後功率上限 <strong>1 kW / 10 A</strong>（原廠 360～600 W）</li>
-    <li>原廠 360 W 與 600 W 兩款充電器都能改</li>
-    <li>插一般 110V 插座時，1 kW 輸出離插座的容量上限（1650 W）還有餘裕</li>
-    <li>最容易過熱燒掉的電源板會被整個換掉，所以<strong>電源板已經燒掉的原廠充電器，只要充電槍完好，一樣可以改</strong></li>
-    <li>可以連 WiFi，手機開網頁就能看即時電壓、電流、目前電量</li>
-    <li>可以設定「充到幾 % 就停」（例如只充到 80% 顧電池）；排程、推播、充電紀錄、OTA 更新也都有</li>
-    <li>這些功能要先連上 WiFi、在手機上設定才用得到；用不用、用多少，看個人需求</li>
-    <li>車輛本身完全不動</li>
-  </ul>
-
-  <div class="grid2">
-    <figure>
-      <img src="img/charger-600w-retrofit.jpg" width="636" height="477" alt="改裝後的 iE125 原廠充電器（600 W 款），保留原廠白色充電槍">
-      <figcaption>改裝後的 iE125 原廠充電器（600 W 款）：只保留原廠充電槍</figcaption>
-    </figure>
-    <figure class="narrow">
-      <img src="img/web-ui-mock.png" width="750" height="930" alt="手機瀏覽器上的充電監控畫面，顯示輸出電壓、電流、功率、電量與剩餘時間">
-      <figcaption>手機監控畫面示意（模擬資料）。SOC 即目前電量</figcaption>
-    </figure>
-  </div>
-
-  <h3>為什麼連控制板都換掉？</h3>
-  <p>原廠控制板只負責基本充電：看不到充電狀態、不能設定充到幾 % 就停，輸出上限固定在原廠板上，而且是專車專用。換成自研的 TES 快充控制板之後：</p>
-  <ul>
-    <li>手機可以看即時電壓、電流、電量，可以設定充電上限、排程和推播</li>
-    <li>韌體可以透過 OTA 更新，之後的新功能，改裝過的充電器也拿得到</li>
-    <li>功率由控制板決定，不會被原廠板限制。目前 1 kW 的上限來自原廠充電槍的線徑；換上規格更高的充電槍，就有往上加的空間（下方 1.5 kW 那組就是這樣做出來的）</li>
-    <li>不再專車專用：控制板走的是 TES 通用規格，理論上只要是 TES 規格的車、而且充電器的電源電壓高於車的電池電壓，都可以使用（iE125 以外的車款尚未實測，見常見問題）</li>
-  </ul>
-
-  <h3>為什麼上限是 1 kW，不能再高？</h3>
-  <p>因為充電槍保留的是原廠的，而 iE125 原廠充電槍的線徑太細，撐不住更大的電流。線徑撐不住就是撐不住，我不會為了數字好看去超用它，那是會出事的。</p>
-  <div class="note">這項改裝比原廠快，但做不到「30 分鐘充到 80%」那種等級的快充。</div>
-  <p>不想在電源外殼上鑽孔的話，也可以選 <strong>XT90 版</strong>：充電槍和控制板做在同一個控制盒裡，用 XT90 接頭接到電源，不用施工。兩種做法的差別見下方<a href="#price">價格</a>。</p>
-</section>
-
-<section id="price">
-  <h2>價格</h2>
-  <div class="note"><strong>請自備 iE125 原廠充電器。</strong>兩種做法都要用到它的充電槍；電源板已經燒掉也沒關係，只要充電槍完好。</div>
-  <p>兩種做法都沿用你原廠充電器的充電槍，充電上限都是 <strong>1 kW / 10 A</strong>，控制板的功能也完全一樣；差別只在控制盒怎麼接到電源。</p>
-  <table class="price">
-    <thead><tr><th></th><th>原廠充電器改裝</th><th>XT90 版</th></tr></thead>
-    <tbody>
-      <tr><th>做法</th><td>控制盒鎖在主電源上，需要在電源外殼鑽孔</td><td>充電槍和控制板做在同一個控制盒，用 XT90 接頭接到電源</td></tr>
-      <tr><th>控制盒</th><td>NT$3,200</td><td>NT$3,300</td></tr>
-      <tr><th>施工費</th><td>鑽孔 NT$300</td><td>免（鎖上螺絲、接上接頭就能用）</td></tr>
-      <tr><th>主電源</th><td colspan="2">1.5 kW 版本，依當時匯率以實價計算，請私訊洽詢報價</td></tr>
-      <tr><th>以後換電源</th><td>可以自己換：拆開電源外殼、換上新的電源板，再把端子接線鎖回去（不用重新鑽孔）</td><td>換一顆有 XT90 輸出的電源，插上就能用</td></tr>
-      <tr><th>自備電源</th><td>可以，但必須是我指定的那款電源（請先私訊確認型號）</td><td>可以，規格符合就能接</td></tr>
-      <tr class="total"><th>合計</th><td>NT$3,500 ＋ 主電源</td><td>NT$3,300 ＋ 主電源</td></tr>
-    </tbody>
-  </table>
-  <ul>
-    <li>主電源一律使用 <strong>1.5 kW</strong> 的版本，附 <strong>110V／220V 切換開關</strong>。改裝後最多輸出 1 kW，平常只用到電源約 2/3 的能力，電源比較不容易壞。</li>
-    <li>XT90 版控制盒比較貴一點，但不用鑽孔、不收施工費，合計反而比較便宜；控制盒也不用鎖在電源上，以後換電源只要插上 XT90，不用拆殼、鎖端子。缺點是控制盒和電源是分開的兩件，中間用 XT90 線連接，收納沒有一整台方便。</li>
-  </ul>
-  <div class="note"><strong>電源和控制盒都沒有防水。</strong>請不要放在戶外或會淋到雨的地方，也請注意環境的溫度和濕度，避免電源受潮生鏽而損壞。</div>
-  <h3>保固</h3>
-  <ul>
-    <li><strong>控制盒：</strong>交付後 <strong>3 個月內</strong>，非人為損壞免費維修或更換；進水、受潮、摔落、自行拆改不在保固範圍。過了保固期，有問題一樣可以找我，畢竟是我設計的，我會盡力協助。</li>
-    <li><strong>主電源：</strong>交付後 <strong>14 天內</strong>新品不良換新，條件同控制盒（兩種做法都一樣）；自備的電源不在保固範圍。電源會依做法加裝控制盒或 XT90 接頭，大陸原廠因此不再保固。</li>
-  </ul>
-  <p class="fine">改裝服務與 XT90 版控制盒都是用你的原廠充電槍製作的客製品，不適用七天鑑賞期。</p>
-  <p class="fine">以上價格自 2026 年 10 月起實施。隨著施工流程固定，組裝與施工費已調降，XT90 版不再收取組裝費。價格如有調整，以洽詢當下為準。</p>
-  <div class="btns"><a class="btn primary" href="#order">線上填單</a><a class="btn ghost" href="https://www.facebook.com/profile.php?id=61582382523577" target="_blank" rel="noopener">到 Facebook 粉專私訊洽詢</a></div>
-</section>
-
-<section id="order">
-  <h2>線上填單</h2>
-  <p>填完會產生一組<strong>單號</strong>和一段訂單內容，複製後到 Facebook 粉專私訊貼給我，我會回覆電源報價與交貨時間。之後保固、維修都用這組單號查詢，請自己留一份。</p>
-  <form class="order" id="orderForm" novalidate>
-    <fieldset>
-      <legend>方案</legend>
-      <div class="opts">
-        <label><input type="radio" name="plan" value="retrofit"> 原廠充電器改裝（NT$3,500 ＋ 主電源）</label>
-        <label><input type="radio" name="plan" value="xt90" checked> XT90 版（NT$3,300 ＋ 主電源）</label>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend>主電源</legend>
-      <div class="opts">
-        <label><input type="radio" name="psu" value="buy" checked> 代購 1.5 kW 電源（依匯率報價）</label>
-        <label><input type="radio" name="psu" value="own"> 自備電源</label>
-      </div>
-      <span class="hint">原廠充電器改裝：必須是我指定的那款電源；XT90 版：規格符合就能接。私訊時請附上電源的型號或照片。</span>
-    </fieldset>
-    <fieldset>
-      <legend>你的原廠充電器</legend>
-      <div class="opts">
-        <label><input type="radio" name="charger" value="360 W"> 360 W</label>
-        <label><input type="radio" name="charger" value="600 W"> 600 W</label>
-        <label><input type="radio" name="charger" value="不確定" checked> 不確定</label>
-      </div>
-      <div class="opts"><label><input type="checkbox" id="chargerBroken"> 電源板已經燒掉（充電槍完好）</label></div>
-    </fieldset>
-    <fieldset>
-      <legend>交貨方式</legend>
-      <div class="opts">
-        <label><input type="radio" name="ship" value="店到店寄送" checked> 店到店寄送</label>
-        <label><input type="radio" name="ship" value="新北中和面交"> 新北中和面交</label>
-      </div>
-    </fieldset>
-    <div>
-      <label class="lbl" for="oName">稱呼 <span class="hint">（必填，跟你 Facebook 的名字一樣最好對）</span></label>
-      <input type="text" id="oName" autocomplete="name" maxlength="40">
-    </div>
-    <div>
-      <label class="lbl" for="oNote">備註 <span class="hint">（選填）</span></label>
-      <textarea id="oNote" maxlength="500" placeholder="例如：車款、想問的問題"></textarea>
-    </div>
-    <p class="hint" id="oErr" role="alert"></p>
-    <div class="btns"><button type="submit" class="btn primary">產生單號</button></div>
-    <p class="fine">這裡填的資料只在你自己的瀏覽器裡，網站不會送出或儲存；要私訊貼給我，我才會收到。訂單要等我回覆確認才算成立。</p>
-  </form>
-  <div class="order-out" id="orderOut" hidden>
-    <div>你的單號</div>
-    <div class="no" id="orderNo"></div>
-    <pre id="orderText"></pre>
-    <div class="btns">
-      <button type="button" class="btn primary" id="copyBtn">複製訂單內容</button>
-      <a class="btn ghost" href="https://m.me/61582382523577" target="_blank" rel="noopener">開啟 Messenger 私訊粉專</a>
-    </div>
-    <div class="msg" id="copyMsg" aria-live="polite"></div>
-    <p class="fine">Messenger 打不開的話，請到 <a href="https://www.facebook.com/profile.php?id=61582382523577" target="_blank" rel="noopener">海龜電能粉專</a> 按「發送訊息」，再貼上訂單內容。</p>
-  </div>
-</section>
-
-<section id="board">
-  <span class="pill">服務二・具高壓直流經驗者適用</span>
-  <h2>TES 快充控制板</h2>
-  <p>這塊控制板是整套充電設備的「大腦」：它實作了車輛原本就在用的 <strong>TES-0D-02-01</strong> 快充通訊協定，透過 CAN Bus 跟車輛的電池管理系統（BMS）做正規的充電交握，再去指揮整流模組輸出。</p>
-  <figure class="narrow">
-    <img src="img/controller-board.jpg" width="684" height="856" alt="TES 快充控制板，3D 列印外殼上有 OLED 螢幕與按鍵">
-    <figcaption>TES 快充控制板</figcaption>
-  </figure>
-  <p>搭配整流模組及副廠充電槍，就能透過車上原本的 TES 快充接口充電——包括轉接使用汽車的 AC 慢充樁（J1772 / Type 2）。充電槍需要自行向中國的廠商訂做，這部分我不提供。</p>
-  <ul>
-    <li>控制器設計上限：120 V / 100 A</li>
-    <li>手機開網頁就能看：即時電壓、電流、目前電量（SOC）、預估剩餘時間</li>
-    <li>可設定充到幾 % 就停、最大電壓電流、停止條件</li>
-    <li>排程充電（離峰電價適用）、開始／完成／異常推播到手機</li>
-    <li>最近 20 次充電紀錄：時長、充了幾度、電量從幾 % 充到幾 %、停止原因</li>
-    <li>OTA 無線更新韌體；車輛本身完全不動</li>
-  </ul>
-  <div class="note">沒有高壓直流經驗的話，請不要買控制板——選服務一。</div>
-  <div class="btns"><a class="btn ghost" href="https://famistore.famiport.com.tw/famistore/users/4843275/merchandises/68ce68129076f966c818b81c" target="_blank" rel="noopener">到賣場購買控制板（TES電動機車充電套件）</a></div>
-</section>
-
-<section id="parts">
-  <span class="pill">周邊零件</span>
-  <h2>iE125／勁炫125 用輪速感應器</h2>
-  <ul>
-    <li>副廠替換用的輪速感應器</li>
-    <li>M12 規格，安裝時需要擴孔</li>
-    <li>不提供安裝服務</li>
-  </ul>
-  <div class="grid2">
-    <figure>
-      <img src="img/wheel-speed-sensor.jpg" width="900" height="1200" loading="lazy" alt="iE125／勁炫125 用副廠輪速感應器，M12 螺紋金屬本體附兩顆螺帽與接頭線">
-      <figcaption>輪速感應器本體（M12）</figcaption>
-    </figure>
-    <figure>
-      <img src="img/wheel-speed-sensor-installed.jpg" width="900" height="1200" loading="lazy" alt="輪速感應器安裝在 eMOVING 機車前叉上，感應器指示燈亮起">
-      <figcaption>裝上車後的樣子（亮燈處即為感應器）</figcaption>
-    </figure>
-  </div>
-  <div class="btns"><a class="btn ghost" href="https://famistore.famiport.com.tw/famistore/users/4843275/merchandises/68e9299c355df2437d5f520b" target="_blank" rel="noopener">到賣場購買</a></div>
-</section>
-
-<section id="lab">
-  <span class="pill lab">目前不販售</span>
-  <h2>研究中與暫停販售</h2>
-  <p>下面兩樣目前都沒有在賣，寫出來是讓大家知道做得到什麼。</p>
-
-  <div class="card">
-    <h3 style="margin-top:0">1.5 kW / 15 A 全副廠充電器</h3>
-    <p>從控制板、主電源到充電槍，<strong>完全不使用原廠零件</strong>的 iE125 充電器：控制板與電源是我自己開發的，充電槍是副廠訂做，和原廠充電器一樣經過 TES 規格的充電交握。這組的充電槍線徑其實用到 30 A 都沒問題，15 A 是我刻意設的上限，原因在插座：</p>
-    <ul>
-      <li>一般 110V 插座的容量上限是 1650 W</li>
-      <li>電源本身有轉換損耗，輸出 1.5 kW 時，插座端吃的電已經貼近這個上限</li>
-      <li>老舊的電線和插座長時間用到這麼滿，本身就有風險</li>
-    </ul>
-    <p>這組曾經上架販售，但定位比較尷尬：在家充電可以慢慢充，用不到這麼大的功率；帶出門或臨時有急用，又不夠快。加上副廠充電槍取得不易、成本壓不下來，目前暫停販售（賣場顯示缺貨），現在是家人在日常使用。</p>
-    <p>如果之後能找到穩定的充電槍來源，也把成本壓下來，不排除降價後重新上架。</p>
-    <figure>
-      <img src="img/charger-1500w.jpg" width="1200" height="900" loading="lazy" alt="1.5 kW / 15 A 全副廠 TES 充電器與黑色充電槍">
-      <figcaption>1.5 kW / 15 A 全副廠充電器</figcaption>
-    </figure>
-    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/JB53_vpZVYo" title="1.5 kW / 15 A 充電器實測影片" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-  </div>
-
-  <div class="card">
-    <h3 style="margin-top:0">6 kW 直流快充研究平台</h3>
-    <p>用我的控制板搭配工業整流模組以及副廠充電槍組成，iE125 實測 <strong>6 kW / 66 A，0→80% 約 30 分鐘</strong>，可以轉接汽車的 AC 慢充樁充電。</p>
-    <figure>
-      <img src="img/platform-6kw-j1772.jpg" width="1200" height="900" loading="lazy" alt="6 kW 研究平台在停車場轉接 J1772 汽車充電樁，替 iE125 充電">
-      <figcaption>6 kW 研究平台轉接汽車 AC 慢充樁充電</figcaption>
-    </figure>
-    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/vA7gSdK1YZQ" title="6 kW 研究平台實測影片" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-    <p>但我不販售整套直流快充系統。我不認為它目前安全到可以讓一般人買回去使用，也還沒有一個我願意交出去的成熟方案。現階段的做法是：懂的人買控制板回去，自行搭配、自行組裝、自行負責。</p>
-  </div>
-</section>
-
-<section id="no-bypass">
-  <h2>我不做「暴力改裝」</h2>
-  <p>有一種做法是繞過車輛的充電接口，直接把電打進電池。常見的形式是打開原廠電池的外殼，從電池拉出一條並聯線，再用外接充電器從這條線直接充電；有些還會順便並聯一組增程電池。</p>
-  <p>會這樣繞，是因為要從車上的 TES 接口充電，充電器必須先透過 CAN Bus 和車輛的 BMS 完成 TES-0D-02-01 規定的充電交握，車輛才會打開充電迴路；交握做不出來，就只剩下繞過接口、直接接電池這條路。這種做法我不做，原因有四個：</p>
-  <ol>
-    <li>電池管理系統（BMS）完全沒有參與這次充電，電流、溫度、單體電壓的保護邏輯等於被關掉了。</li>
-    <li>沒有停止機制。充飽了誰來斷？</li>
-    <li>如果還並聯了增程電池，那組電池不在原車 BMS 的管理範圍內，車輛不知道它存在。</li>
-    <li>要打開電池外殼，車輛端也一看就知道，保固直接沒了；而多數車友的電池是租的。</li>
-  </ol>
-  <p>我的控制板走的是反方向：把這套交握完整做出來，整個充電過程要多少電壓、多少電流、什麼時候該停，都是車輛自己的 BMS 在決定，控制板只負責忠實地跟隨它的要求。</p>
-</section>
-
-<section id="notes">
-  <h2>有些話要先講清楚</h2>
-  <ul>
-    <li>原廠充電器改裝的上限是 1 kW / 10 A，受限於保留下來的原廠充電槍線徑，這是物理限制，加錢也不會變快。</li>
-    <li>家用 110V 插座的容量上限是 1650 W。老舊的電線與插座長時間接近滿載有風險，這也是我設定充電器功率上限時的考量。</li>
-    <li>控制板只適合具備高壓直流經驗的人。整流模組的選配、充電槍的訂做、線材、保護與組裝都要自己負責。</li>
-    <li>CAN Bus 接錯或短路，會造成車輛 BMS 永久性損壞。我在開發初期就燒過一台車的 CAN 埠，那是早期洞洞板時期外購 CAN 模組的瑕疵；現在的控制板已經是穩定的正式電路板，這條提醒是寫給要自己接線的人。</li>
-    <li>6 kW / 30 分鐘是我自己研究平台的實測結果，不是控制板的保證值。實際能做到多少，取決於整流模組、充電槍線徑和現場進線容量。</li>
-    <li>控制板與改裝皆未經 BSMI、UL 等安規認證，性質是個人研發的技術方案，不是通過認證的量產商品。</li>
-    <li>任何第三方補能設備都可能影響原廠保固，請自行評估。</li>
-  </ul>
-</section>
-
 <section id="proof">
   <h2>這些東西你可以自己查證</h2>
   <p>控制板的韌體與硬體設計是公開的，任何懂的人都可以去看：</p>
@@ -456,36 +162,6 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
     <li><a href="https://www.mobile01.com/topicdetail.php?f=753&amp;t=7302083" target="_blank" rel="noopener">Mobile01 開發成果分享文</a></li>
   </ul>
   <p>開源專案持續開發中，已發布的韌體與線上燒錄工具都可以直接使用。截至 2026 年 9 月，在 GitHub 上搜尋「TES-0D-02-01」，公開原始碼的 TES 充電控制器只有這一個。</p>
-</section>
-
-<section id="faq">
-  <h2>常見問題</h2>
-  <details><summary>我的車可以用嗎？</summary>
-    <p>改裝的對象是 iE125 的原廠充電器。改裝後換成 TES 快充控制板，理論上只要是 TES 標準（TES-0D-02-01）的車、而且充電器的電源電壓高於車的電池電壓，都可以使用，例如 eMoving iE125、ZAU ES-2000。除以上這兩款車以外都沒有測試過，有興趣的可以和我聯絡幫助我測試。</p></details>
-  <details><summary>我的充電器電源板已經燒掉了，還能改嗎？</summary>
-    <p>可以，只要充電槍完好。改裝本來就只保留充電槍，主電源和控制板都會換成我自己的。</p></details>
-  <details><summary>車子要動到嗎？</summary>
-    <p>不用。兩項服務都不動車，改的是充電器，接口一樣是 TES 規格。</p></details>
-  <details><summary>改裝要多少錢？</summary>
-    <p>需自備 iE125 原廠充電器（要用它的充電槍）。原廠充電器改裝是控制盒 NT$3,200 加鑽孔費 NT$300；不想鑽孔的話，XT90 版控制盒 NT$3,300、不收施工費。主電源另計，用的是 1.5 kW 的版本，依當時匯率以實價計算，請私訊洽詢。詳見上方「價格」。</p></details>
-  <details><summary>改裝後可以多快？</summary>
-    <p>上限 1 kW / 10 A，比原廠的 360～600 W 快，但做不到 30 分鐘等級的快充。原因是保留下來的原廠充電槍線徑太細。</p></details>
-  <details><summary>iE125 可以在家快充嗎？</summary>
-    <p>看家裡的電。只有一般 110V 插座的話，原廠充電器改裝後的 1 kW 就是比較實際的上限：插座容量只有 1650 W，而且原廠充電槍線徑太細，做不到 30 分鐘等級的快充。<br><br>如果家裡已經裝了汽車充電樁（J1772 / Type 2），或另外拉了專用迴路，電源就不再是瓶頸，在家快充是做得到的。我的 6 kW 研究平台就是轉接汽車 AC 慢充樁充電，iE125 實測 0→80% 約 30 分鐘。<br><br>不過整套快充設備我目前不販售。有興趣的人可以買控制板回去，自行搭配整流模組與充電槍研究、組裝，並自行負責；這需要高壓直流的經驗，另外配線也請找合格電工施工。</p></details>
-  <details><summary>那 1.5 kW 那組可以買嗎？</summary>
-    <p>目前缺貨。之前有上架過，但定位尷尬、副廠充電槍又難取得，所以暫停販售。之後若能找到穩定的充電槍來源並降低成本，可能會重新上架。</p></details>
-  <details><summary>有沒有完全不用原廠零件的 iE125 充電器？</summary>
-    <p>我做過一組 1.5 kW / 15 A 的：控制板、主電源都是自己開發，充電槍是副廠訂做，一樣走 TES 規格的充電交握，由車輛的 BMS 決定電壓、電流和什麼時候停。目前暫停販售，詳見上方「研究中與暫停販售」。</p></details>
-  <details><summary>打開電池拉並聯線、再用外接充電器從並聯線充電，跟你的做法有什麼不同？</summary>
-    <p>那種做法是繞過充電接口直接充電池，車輛的 BMS 沒有參與這次充電；如果還並聯了增程電池，那組電池也不在 BMS 的管理範圍內。我的充電器與控制板都是從車上原本的 TES 充電接口，透過 CAN Bus 和 BMS 完成充電交握，車子本身完全不動。詳見上方「我不做『暴力改裝』」。</p></details>
-  <details><summary>為什麼不直接賣 6 kW 的整套系統？</summary>
-    <p>因為我不認為它目前安全到可以交給一般人使用。那是我的研究平台，還沒有成熟到可以販售的方案。與其賣一個我自己都不放心的東西，不如先不賣。</p></details>
-  <details><summary>我沒有高壓經驗，可以買控制板試試看嗎？</summary>
-    <p>不建議。控制板本身不含整流模組和充電槍，要自己選配、訂做、組裝，處理的是上百伏特的直流電，接錯還可能燒掉車上的 BMS。請選原廠充電器改裝。</p></details>
-  <details><summary>會不會傷電池？</summary>
-    <p>全程經過車輛的正規充電流程，不會超過車輛允許的範圍。但充電功率越大，對電池的負擔本來就越大；兩項服務都能設定充到幾 % 就停，若要保護電池可以把充電電量設低一點（不過大部分車友的電池是租的，照常充滿也沒問題，看個人習慣）。</p></details>
-  <details><summary>外縣市可以嗎？</summary>
-    <p>工作室在新北中和，外縣市請先透過 Facebook 粉專私訊討論。</p></details>
 </section>
 
 <section id="contact">
@@ -502,60 +178,14 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
 </main>
 
 <footer>
-  <div class="wrap">© 2026 海龜電能・新北中和・線上接單</div>
+  <div class="wrap">
+    <nav class="foot">
+      <a href="index.html">首頁</a><a href="retrofit.html">充電器改裝</a><a href="price.html">價格與填單</a><a href="board.html">控制板</a><a href="lab.html">研究中</a><a href="faq.html">常見問題</a>
+    </nav>
+    <div>© 2026 海龜電能・新北中和・線上接單</div>
+  </div>
 </footer>
 
-<script>
-(function () {
-  var form = document.getElementById("orderForm");
-  if (!form) return;
-  var PLAN = { retrofit: "原廠充電器改裝（控制盒 NT$3,200 ＋ 鑽孔費 NT$300）", xt90: "XT90 版（控制盒 NT$3,300，免施工費）" };
-  var PSU = { buy: "代購 1.5 kW 電源（請報價）", own: "自備電源" };
-  function val(name) { var el = form.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ""; }
-  // 單號：HG-年月日-4 碼。字母表拿掉 0/O/1/I/L，口頭唸、手抄都不會混
-  function orderNo() {
-    var abc = "23456789ABCDEFGHJKMNPQRSTUVWXYZ", d = new Date(), r = "", bytes = new Uint8Array(4), i;
-    if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(bytes);
-    else for (i = 0; i < 4; i++) bytes[i] = Math.floor(Math.random() * 256);
-    for (i = 0; i < 4; i++) r += abc[bytes[i] % abc.length];
-    function p(n) { return (n < 10 ? "0" : "") + n; }
-    return "HG-" + p(d.getFullYear() % 100) + p(d.getMonth() + 1) + p(d.getDate()) + "-" + r;
-  }
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var nameEl = document.getElementById("oName"), name = nameEl.value.trim(), err = document.getElementById("oErr");
-    if (!name) { err.textContent = "請填稱呼，我才知道是誰的訂單。"; nameEl.focus(); return; }
-    err.textContent = "";
-    var no = orderNo(), note = document.getElementById("oNote").value.trim();
-    var lines = [
-      "【海龜電能 填單】",
-      "單號：" + no,
-      "稱呼：" + name,
-      "方案：" + PLAN[val("plan")],
-      "主電源：" + PSU[val("psu")] + (val("psu") === "own" ? (val("plan") === "retrofit" ? "（需確認是指定型號，會附型號或照片）" : "（會附型號或照片）") : ""),
-      "原廠充電器：" + val("charger") + (document.getElementById("chargerBroken").checked ? "（電源板已燒掉，充電槍完好）" : ""),
-      "交貨方式：" + val("ship")
-    ];
-    if (note) lines.push("備註：" + note);
-    document.getElementById("orderNo").textContent = no;
-    document.getElementById("orderText").textContent = lines.join("\n");
-    document.getElementById("copyMsg").textContent = "";
-    var out = document.getElementById("orderOut");
-    out.hidden = false;
-    out.scrollIntoView({ block: "start" });
-  });
-  document.getElementById("copyBtn").addEventListener("click", function () {
-    var pre = document.getElementById("orderText"), msg = document.getElementById("copyMsg");
-    function fallback() {
-      var range = document.createRange(), sel = window.getSelection();
-      range.selectNodeContents(pre); sel.removeAllRanges(); sel.addRange(range);
-      msg.textContent = "已選取訂單內容，請按「複製」後貼到私訊。";
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(pre.textContent).then(function () { msg.textContent = "已複製，到粉專私訊貼上就好。"; }, fallback);
-    } else fallback();
-  });
-})();
-</script>
+<script src="site.js"></script>
 </body>
 </html>

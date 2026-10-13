@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TES 快充控制板與周邊零件｜海龜電能</title>
+<meta name="description" content="TES 快充控制板：實作 TES-0D-02-01 快充協定，透過 CAN Bus 與車輛 BMS 交握，設計上限 120 V / 100 A，適合具高壓直流經驗者自行組裝。另售 iE125／勁炫125 用輪速感應器。">
+<link rel="canonical" href="https://a950523a.github.io/board.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="海龜電能">
+<meta property="og:title" content="TES 快充控制板與周邊零件｜海龜電能">
+<meta property="og:description" content="TES 快充控制板：實作 TES-0D-02-01 快充協定，透過 CAN Bus 與車輛 BMS 交握，設計上限 120 V / 100 A，適合具高壓直流經驗者自行組裝。另售 iE125／勁炫125 用輪速感應器。">
+<meta property="og:url" content="https://a950523a.github.io/board.html">
+<meta property="og:image" content="https://a950523a.github.io/img/controller-board.jpg">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='34' rx='20' ry='16' fill='%230f766e'/%3E%3Ccircle cx='32' cy='14' r='7' fill='%230f766e'/%3E%3Cpath d='M34 22l-6 12h6l-4 12 10-15h-6l4-9z' fill='%23fde047'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">海龜電能</a>
+    <nav>
+      <a href="retrofit.html">改裝</a>
+      <a href="price.html">價格與填單</a>
+      <a class="opt" aria-current="page" href="board.html">控制板</a>
+      <a class="opt" href="lab.html">研究中</a>
+      <a class="opt2" href="faq.html">常見問題</a>
+      <a href="index.html#contact">聯絡</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="board">
+  <span class="pill">具高壓直流經驗者適用</span>
+  <h2>TES 快充控制板</h2>
+  <p>這塊控制板是整套充電設備的「大腦」：它實作了車輛原本就在用的 <strong>TES-0D-02-01</strong> 快充通訊協定，透過 CAN Bus 跟車輛的電池管理系統（BMS）做正規的充電交握，再去指揮整流模組輸出。</p>
+  <figure class="narrow">
+    <img src="img/controller-board.jpg" width="684" height="856" alt="TES 快充控制板，3D 列印外殼上有 OLED 螢幕與按鍵">
+    <figcaption>TES 快充控制板</figcaption>
+  </figure>
+  <p>搭配整流模組及副廠充電槍，就能透過車上原本的 TES 快充接口充電——包括轉接使用汽車的 AC 慢充樁（J1772 / Type 2）。充電槍需要自行向中國的廠商訂做，這部分我不提供。</p>
+  <ul>
+    <li>控制器設計上限：120 V / 100 A</li>
+    <li>手機開網頁就能看：即時電壓、電流、目前電量（SOC）、預估剩餘時間</li>
+    <li>可設定充到幾 % 就停、最大電壓電流、停止條件</li>
+    <li>排程充電（離峰電價適用）、開始／完成／異常推播到手機</li>
+    <li>最近 20 次充電紀錄：時長、充了幾度、電量從幾 % 充到幾 %、停止原因</li>
+    <li>OTA 無線更新韌體；車輛本身完全不動</li>
+  </ul>
+  <div class="note">沒有高壓直流經驗的話，請不要買控制板——選<a href="retrofit.html">原廠充電器改裝</a>。</div>
+  <div class="btns"><a class="btn ghost" href="https://famistore.famiport.com.tw/famistore/users/4843275/merchandises/68ce68129076f966c818b81c" target="_blank" rel="noopener">到賣場購買控制板（TES電動機車充電套件）</a></div>
+</section>
+
+<section id="parts">
+  <span class="pill">周邊零件</span>
+  <h2>iE125／勁炫125 用輪速感應器</h2>
+  <ul>
+    <li>副廠替換用的輪速感應器</li>
+    <li>M12 規格，安裝時需要擴孔</li>
+    <li>不提供安裝服務</li>
+  </ul>
+  <div class="grid2">
+    <figure>
+      <img src="img/wheel-speed-sensor.jpg" width="900" height="1200" loading="lazy" alt="iE125／勁炫125 用副廠輪速感應器，M12 螺紋金屬本體附兩顆螺帽與接頭線">
+      <figcaption>輪速感應器本體（M12）</figcaption>
+    </figure>
+    <figure>
+      <img src="img/wheel-speed-sensor-installed.jpg" width="900" height="1200" loading="lazy" alt="輪速感應器安裝在 eMOVING 機車前叉上，感應器指示燈亮起">
+      <figcaption>裝上車後的樣子（亮燈處即為感應器）</figcaption>
+    </figure>
+  </div>
+  <div class="btns"><a class="btn ghost" href="https://famistore.famiport.com.tw/famistore/users/4843275/merchandises/68e9299c355df2437d5f520b" target="_blank" rel="noopener">到賣場購買</a></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav class="foot">
+      <a href="index.html">首頁</a><a href="retrofit.html">充電器改裝</a><a href="price.html">價格與填單</a><a href="board.html">控制板</a><a href="lab.html">研究中</a><a href="faq.html">常見問題</a>
+    </nav>
+    <div>© 2026 海龜電能・新北中和・線上接單</div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

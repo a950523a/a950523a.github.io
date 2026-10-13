@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>常見問題｜海龜電能</title>
+<meta name="description" content="iE125 原廠充電器改裝與 TES 快充控制板的常見問題：哪些車能用、電源板燒掉能不能改、價格、多快、會不會傷電池、能不能在家快充。">
+<link rel="canonical" href="https://a950523a.github.io/faq.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="海龜電能">
+<meta property="og:title" content="常見問題｜海龜電能">
+<meta property="og:description" content="iE125 原廠充電器改裝與 TES 快充控制板的常見問題：哪些車能用、電源板燒掉能不能改、價格、多快、會不會傷電池、能不能在家快充。">
+<meta property="og:url" content="https://a950523a.github.io/faq.html">
+<meta property="og:image" content="https://a950523a.github.io/img/charger-360w-retrofit.jpg">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='34' rx='20' ry='16' fill='%230f766e'/%3E%3Ccircle cx='32' cy='14' r='7' fill='%230f766e'/%3E%3Cpath d='M34 22l-6 12h6l-4 12 10-15h-6l4-9z' fill='%23fde047'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"我的車可以用嗎？","acceptedAnswer":{"@type":"Answer","text":"改裝的對象是 iE125 的原廠充電器；改裝後換成 TES 快充控制板，理論上只要是 TES 標準（TES-0D-02-01）的車、且充電器電源電壓高於電池電壓都能用，例如 eMoving iE125、ZAU ES-2000；其他車款尚未測試。"}},
+    {"@type":"Question","name":"電源板已經燒掉的原廠充電器還能改嗎？","acceptedAnswer":{"@type":"Answer","text":"可以，只要充電槍完好。改裝只保留充電槍，主電源和控制板都會換成新的。"}},
+    {"@type":"Question","name":"改裝要多少錢？","acceptedAnswer":{"@type":"Answer","text":"需自備 iE125 原廠充電器（要用它的充電槍）。原廠充電器改裝是控制盒 NT$3,200 加鑽孔費 NT$300；不想鑽孔的話，XT90 版控制盒 NT$3,300、不收施工費。主電源另計，用的是 1.5 kW 的版本，依當時匯率以實價計算，請私訊洽詢。"}},
+    {"@type":"Question","name":"改裝後可以多快？","acceptedAnswer":{"@type":"Answer","text":"上限 1 kW / 10 A，比原廠的 360～600 W 快，但做不到 30 分鐘等級的快充，因為保留下來的原廠充電槍線徑太細。"}},
+{"@type":"Question","name":"iE125 可以在家快充嗎？","acceptedAnswer":{"@type":"Answer","text":"看家裡的電。只有一般 110V 插座時，原廠充電器改裝後的 1 kW 是比較實際的上限（插座容量 1650 W，原廠充電槍線徑也太細）。如果家裡已裝汽車充電樁（J1772 / Type 2）或另外拉了專用迴路，在家快充是做得到的，例如 6 kW 研究平台轉接汽車 AC 慢充樁，iE125 實測 0→80% 約 30 分鐘。但整套快充設備目前不販售，有興趣的人可買控制板回去自行搭配整流模組與充電槍研究、組裝並自行負責；需要高壓直流經驗，配線請找合格電工。"}},
+    {"@type":"Question","name":"車子要動到嗎？","acceptedAnswer":{"@type":"Answer","text":"不用。改的是充電器，接口一樣是 TES 規格，車輛本身完全不動。"}},
+    {"@type":"Question","name":"有沒有完全不用原廠零件的 iE125 充電器？","acceptedAnswer":{"@type":"Answer","text":"有，我做過一組 1.5 kW / 15 A 的：控制板與主電源自己開發、充電槍為副廠訂做，一樣經過 TES 規格的充電交握，由車輛 BMS 決定電壓、電流與停止時機。目前暫停販售。"}},
+    {"@type":"Question","name":"打開電池拉並聯線、再用外接充電器從並聯線充電，跟你的做法有什麼不同？","acceptedAnswer":{"@type":"Answer","text":"那種做法繞過充電接口直接充電池，車輛 BMS 沒有參與這次充電；若另外並聯增程電池，也不在 BMS 管理範圍內。我的充電器與控制板走車上原本的 TES 充電接口，透過 CAN Bus 與 BMS 完成充電交握，車輛本身不動。"}},
+    {"@type":"Question","name":"為什麼不賣 6 kW 的整套快充系統？","acceptedAnswer":{"@type":"Answer","text":"那是研究平台，目前還不夠安全到可以交給一般人使用，也還沒有成熟的方案，所以不對外販售。"}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">海龜電能</a>
+    <nav>
+      <a href="retrofit.html">改裝</a>
+      <a href="price.html">價格與填單</a>
+      <a class="opt" href="board.html">控制板</a>
+      <a class="opt" href="lab.html">研究中</a>
+      <a class="opt2" aria-current="page" href="faq.html">常見問題</a>
+      <a href="index.html#contact">聯絡</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="faq">
+  <h2>常見問題</h2>
+  <details><summary>我的車可以用嗎？</summary>
+    <p>改裝的對象是 iE125 的原廠充電器。改裝後換成 TES 快充控制板，理論上只要是 TES 標準（TES-0D-02-01）的車、而且充電器的電源電壓高於車的電池電壓，都可以使用，例如 eMoving iE125、ZAU ES-2000。除以上這兩款車以外都沒有測試過，有興趣的可以和我聯絡幫助我測試。</p></details>
+  <details><summary>我的充電器電源板已經燒掉了，還能改嗎？</summary>
+    <p>可以，只要充電槍完好。改裝本來就只保留充電槍，主電源和控制板都會換成我自己的。</p></details>
+  <details><summary>車子要動到嗎？</summary>
+    <p>不用。兩項服務都不動車，改的是充電器，接口一樣是 TES 規格。</p></details>
+  <details><summary>改裝要多少錢？</summary>
+    <p>需自備 iE125 原廠充電器（要用它的充電槍）。原廠充電器改裝是控制盒 NT$3,200 加鑽孔費 NT$300；不想鑽孔的話，XT90 版控制盒 NT$3,300、不收施工費。主電源另計，用的是 1.5 kW 的版本，依當時匯率以實價計算，請私訊洽詢。詳見<a href="price.html">價格與填單</a>。</p></details>
+  <details><summary>改裝後可以多快？</summary>
+    <p>上限 1 kW / 10 A，比原廠的 360～600 W 快，但做不到 30 分鐘等級的快充。原因是保留下來的原廠充電槍線徑太細。</p></details>
+  <details><summary>iE125 可以在家快充嗎？</summary>
+    <p>看家裡的電。只有一般 110V 插座的話，原廠充電器改裝後的 1 kW 就是比較實際的上限：插座容量只有 1650 W，而且原廠充電槍線徑太細，做不到 30 分鐘等級的快充。<br><br>如果家裡已經裝了汽車充電樁（J1772 / Type 2），或另外拉了專用迴路，電源就不再是瓶頸，在家快充是做得到的。我的 6 kW 研究平台就是轉接汽車 AC 慢充樁充電，iE125 實測 0→80% 約 30 分鐘。<br><br>不過整套快充設備我目前不販售。有興趣的人可以買控制板回去，自行搭配整流模組與充電槍研究、組裝，並自行負責；這需要高壓直流的經驗，另外配線也請找合格電工施工。</p></details>
+  <details><summary>那 1.5 kW 那組可以買嗎？</summary>
+    <p>目前缺貨。之前有上架過，但定位尷尬、副廠充電槍又難取得，所以暫停販售。之後若能找到穩定的充電槍來源並降低成本，可能會重新上架。</p></details>
+  <details><summary>有沒有完全不用原廠零件的 iE125 充電器？</summary>
+    <p>我做過一組 1.5 kW / 15 A 的：控制板、主電源都是自己開發，充電槍是副廠訂做，一樣走 TES 規格的充電交握，由車輛的 BMS 決定電壓、電流和什麼時候停。目前暫停販售，詳見<a href="lab.html">研究中與暫停販售</a>。</p></details>
+  <details><summary>打開電池拉並聯線、再用外接充電器從並聯線充電，跟你的做法有什麼不同？</summary>
+    <p>那種做法是繞過充電接口直接充電池，車輛的 BMS 沒有參與這次充電；如果還並聯了增程電池，那組電池也不在 BMS 的管理範圍內。我的充電器與控制板都是從車上原本的 TES 充電接口，透過 CAN Bus 和 BMS 完成充電交握，車子本身完全不動。詳見<a href="lab.html#no-bypass">我不做「暴力改裝」</a>。</p></details>
+  <details><summary>為什麼不直接賣 6 kW 的整套系統？</summary>
+    <p>因為我不認為它目前安全到可以交給一般人使用。那是我的研究平台，還沒有成熟到可以販售的方案。與其賣一個我自己都不放心的東西，不如先不賣。</p></details>
+  <details><summary>我沒有高壓經驗，可以買控制板試試看嗎？</summary>
+    <p>不建議。控制板本身不含整流模組和充電槍，要自己選配、訂做、組裝，處理的是上百伏特的直流電，接錯還可能燒掉車上的 BMS。請選<a href="retrofit.html">原廠充電器改裝</a>。</p></details>
+  <details><summary>會不會傷電池？</summary>
+    <p>全程經過車輛的正規充電流程，不會超過車輛允許的範圍。但充電功率越大，對電池的負擔本來就越大；兩項服務都能設定充到幾 % 就停，若要保護電池可以把充電電量設低一點（不過大部分車友的電池是租的，照常充滿也沒問題，看個人習慣）。</p></details>
+  <details><summary>外縣市可以嗎？</summary>
+    <p>工作室在新北中和，外縣市請先透過 Facebook 粉專私訊討論。</p></details>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav class="foot">
+      <a href="index.html">首頁</a><a href="retrofit.html">充電器改裝</a><a href="price.html">價格與填單</a><a href="board.html">控制板</a><a href="lab.html">研究中</a><a href="faq.html">常見問題</a>
+    </nav>
+    <div>© 2026 海龜電能・新北中和・線上接單</div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

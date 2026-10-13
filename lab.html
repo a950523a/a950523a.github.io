@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>研究中與暫停販售｜海龜電能</title>
+<meta name="description" content="1.5 kW / 15 A 全副廠 iE125 充電器與 6 kW 直流快充研究平台（實測 0→80% 約 30 分鐘）目前不販售；以及為什麼不做繞過 BMS 的暴力改裝。">
+<link rel="canonical" href="https://a950523a.github.io/lab.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="海龜電能">
+<meta property="og:title" content="研究中與暫停販售｜海龜電能">
+<meta property="og:description" content="1.5 kW / 15 A 全副廠 iE125 充電器與 6 kW 直流快充研究平台（實測 0→80% 約 30 分鐘）目前不販售；以及為什麼不做繞過 BMS 的暴力改裝。">
+<meta property="og:url" content="https://a950523a.github.io/lab.html">
+<meta property="og:image" content="https://a950523a.github.io/img/platform-6kw-j1772.jpg">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='34' rx='20' ry='16' fill='%230f766e'/%3E%3Ccircle cx='32' cy='14' r='7' fill='%230f766e'/%3E%3Cpath d='M34 22l-6 12h6l-4 12 10-15h-6l4-9z' fill='%23fde047'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">海龜電能</a>
+    <nav>
+      <a href="retrofit.html">改裝</a>
+      <a href="price.html">價格與填單</a>
+      <a class="opt" href="board.html">控制板</a>
+      <a class="opt" aria-current="page" href="lab.html">研究中</a>
+      <a class="opt2" href="faq.html">常見問題</a>
+      <a href="index.html#contact">聯絡</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="lab">
+  <span class="pill lab">目前不販售</span>
+  <h2>研究中與暫停販售</h2>
+  <p>下面兩樣目前都沒有在賣，寫出來是讓大家知道做得到什麼。</p>
+
+  <div class="card">
+    <h3 style="margin-top:0">1.5 kW / 15 A 全副廠充電器</h3>
+    <p>從控制板、主電源到充電槍，<strong>完全不使用原廠零件</strong>的 iE125 充電器：控制板與電源是我自己開發的，充電槍是副廠訂做，和原廠充電器一樣經過 TES 規格的充電交握。這組的充電槍線徑其實用到 30 A 都沒問題，15 A 是我刻意設的上限，原因在插座：</p>
+    <ul>
+      <li>一般 110V 插座的容量上限是 1650 W</li>
+      <li>電源本身有轉換損耗，輸出 1.5 kW 時，插座端吃的電已經貼近這個上限</li>
+      <li>老舊的電線和插座長時間用到這麼滿，本身就有風險</li>
+    </ul>
+    <p>這組曾經上架販售，但定位比較尷尬：在家充電可以慢慢充，用不到這麼大的功率；帶出門或臨時有急用，又不夠快。加上副廠充電槍取得不易、成本壓不下來，目前暫停販售（賣場顯示缺貨），現在是家人在日常使用。</p>
+    <p>如果之後能找到穩定的充電槍來源，也把成本壓下來，不排除降價後重新上架。</p>
+    <figure>
+      <img src="img/charger-1500w.jpg" width="1200" height="900" loading="lazy" alt="1.5 kW / 15 A 全副廠 TES 充電器與黑色充電槍">
+      <figcaption>1.5 kW / 15 A 全副廠充電器</figcaption>
+    </figure>
+    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/JB53_vpZVYo" title="1.5 kW / 15 A 充電器實測影片" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">6 kW 直流快充研究平台</h3>
+    <p>用我的控制板搭配工業整流模組以及副廠充電槍組成，iE125 實測 <strong>6 kW / 66 A，0→80% 約 30 分鐘</strong>，可以轉接汽車的 AC 慢充樁充電。</p>
+    <figure>
+      <img src="img/platform-6kw-j1772.jpg" width="1200" height="900" loading="lazy" alt="6 kW 研究平台在停車場轉接 J1772 汽車充電樁，替 iE125 充電">
+      <figcaption>6 kW 研究平台轉接汽車 AC 慢充樁充電</figcaption>
+    </figure>
+    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/vA7gSdK1YZQ" title="6 kW 研究平台實測影片" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <p>但我不販售整套直流快充系統。我不認為它目前安全到可以讓一般人買回去使用，也還沒有一個我願意交出去的成熟方案。現階段的做法是：懂的人買控制板回去，自行搭配、自行組裝、自行負責。</p>
+  </div>
+</section>
+
+<section id="no-bypass">
+  <h2>我不做「暴力改裝」</h2>
+  <p>有一種做法是繞過車輛的充電接口，直接把電打進電池。常見的形式是打開原廠電池的外殼，從電池拉出一條並聯線，再用外接充電器從這條線直接充電；有些還會順便並聯一組增程電池。</p>
+  <p>會這樣繞，是因為要從車上的 TES 接口充電，充電器必須先透過 CAN Bus 和車輛的 BMS 完成 TES-0D-02-01 規定的充電交握，車輛才會打開充電迴路；交握做不出來，就只剩下繞過接口、直接接電池這條路。這種做法我不做，原因有四個：</p>
+  <ol>
+    <li>電池管理系統（BMS）完全沒有參與這次充電，電流、溫度、單體電壓的保護邏輯等於被關掉了。</li>
+    <li>沒有停止機制。充飽了誰來斷？</li>
+    <li>如果還並聯了增程電池，那組電池不在原車 BMS 的管理範圍內，車輛不知道它存在。</li>
+    <li>要打開電池外殼，車輛端也一看就知道，保固直接沒了；而多數車友的電池是租的。</li>
+  </ol>
+  <p>我的控制板走的是反方向：把這套交握完整做出來，整個充電過程要多少電壓、多少電流、什麼時候該停，都是車輛自己的 BMS 在決定，控制板只負責忠實地跟隨它的要求。</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav class="foot">
+      <a href="index.html">首頁</a><a href="retrofit.html">充電器改裝</a><a href="price.html">價格與填單</a><a href="board.html">控制板</a><a href="lab.html">研究中</a><a href="faq.html">常見問題</a>
+    </nav>
+    <div>© 2026 海龜電能・新北中和・線上接單</div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

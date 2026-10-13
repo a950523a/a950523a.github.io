@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iE125 原廠充電器改裝｜海龜電能</title>
+<meta name="description" content="iE125 原廠充電器改裝：只保留原廠充電槍，換上 1.5 kW 電源與 TES 快充控制板，最高 1 kW / 10 A，手機監控、可設定充到幾 % 停。原廠 360 W、600 W 都能改，電源板燒掉也行。">
+<link rel="canonical" href="https://a950523a.github.io/retrofit.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="海龜電能">
+<meta property="og:title" content="iE125 原廠充電器改裝｜海龜電能">
+<meta property="og:description" content="iE125 原廠充電器改裝：只保留原廠充電槍，換上 1.5 kW 電源與 TES 快充控制板，最高 1 kW / 10 A，手機監控、可設定充到幾 % 停。原廠 360 W、600 W 都能改，電源板燒掉也行。">
+<meta property="og:url" content="https://a950523a.github.io/retrofit.html">
+<meta property="og:image" content="https://a950523a.github.io/img/charger-600w-retrofit.jpg">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='34' rx='20' ry='16' fill='%230f766e'/%3E%3Ccircle cx='32' cy='14' r='7' fill='%230f766e'/%3E%3Cpath d='M34 22l-6 12h6l-4 12 10-15h-6l4-9z' fill='%23fde047'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">海龜電能</a>
+    <nav>
+      <a aria-current="page" href="retrofit.html">改裝</a>
+      <a href="price.html">價格與填單</a>
+      <a class="opt" href="board.html">控制板</a>
+      <a class="opt" href="lab.html">研究中</a>
+      <a class="opt2" href="faq.html">常見問題</a>
+      <a href="index.html#contact">聯絡</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="retrofit">
+  <span class="pill">一般車主適用</span>
+  <h2>iE125 原廠充電器改裝</h2>
+  <p>原廠充電器由三個部分組成：主電源、控制板、充電槍。我的做法是<strong>只保留充電槍</strong>，主電源和控制板全部換成我自己的——控制板用的就是 <a href="board.html">TES 快充控制板</a>。</p>
+  <ul>
+    <li>改裝後功率上限 <strong>1 kW / 10 A</strong>（原廠 360～600 W）</li>
+    <li>原廠 360 W 與 600 W 兩款充電器都能改</li>
+    <li>插一般 110V 插座時，1 kW 輸出離插座的容量上限（1650 W）還有餘裕</li>
+    <li>最容易過熱燒掉的電源板會被整個換掉，所以<strong>電源板已經燒掉的原廠充電器，只要充電槍完好，一樣可以改</strong></li>
+    <li>可以連 WiFi，手機開網頁就能看即時電壓、電流、目前電量</li>
+    <li>可以設定「充到幾 % 就停」（例如只充到 80% 顧電池）；排程、推播、充電紀錄、OTA 更新也都有</li>
+    <li>這些功能要先連上 WiFi、在手機上設定才用得到；用不用、用多少，看個人需求</li>
+    <li>車輛本身完全不動</li>
+  </ul>
+
+  <div class="grid2">
+    <figure>
+      <img src="img/charger-600w-retrofit.jpg" width="636" height="477" alt="改裝後的 iE125 原廠充電器（600 W 款），保留原廠白色充電槍">
+      <figcaption>改裝後的 iE125 原廠充電器（600 W 款）：只保留原廠充電槍</figcaption>
+    </figure>
+    <figure class="narrow">
+      <img src="img/web-ui-mock.png" width="750" height="930" alt="手機瀏覽器上的充電監控畫面，顯示輸出電壓、電流、功率、電量與剩餘時間">
+      <figcaption>手機監控畫面示意（模擬資料）。SOC 即目前電量</figcaption>
+    </figure>
+  </div>
+
+  <h3>為什麼連控制板都換掉？</h3>
+  <p>原廠控制板只負責基本充電：看不到充電狀態、不能設定充到幾 % 就停，輸出上限固定在原廠板上，而且是專車專用。換成自研的 TES 快充控制板之後：</p>
+  <ul>
+    <li>手機可以看即時電壓、電流、電量，可以設定充電上限、排程和推播</li>
+    <li>韌體可以透過 OTA 更新，之後的新功能，改裝過的充電器也拿得到</li>
+    <li>功率由控制板決定，不會被原廠板限制。目前 1 kW 的上限來自原廠充電槍的線徑；換上規格更高的充電槍，就有往上加的空間（<a href="lab.html">研究中</a>那組 1.5 kW 就是這樣做出來的）</li>
+    <li>不再專車專用：控制板走的是 TES 通用規格，理論上只要是 TES 規格的車、而且充電器的電源電壓高於車的電池電壓，都可以使用（iE125 以外的車款尚未實測，見<a href="faq.html">常見問題</a>）</li>
+  </ul>
+
+  <h3>為什麼上限是 1 kW，不能再高？</h3>
+  <p>因為充電槍保留的是原廠的，而 iE125 原廠充電槍的線徑太細，撐不住更大的電流。線徑撐不住就是撐不住，我不會為了數字好看去超用它，那是會出事的。</p>
+  <div class="note">這項改裝比原廠快，但做不到「30 分鐘充到 80%」那種等級的快充。</div>
+  <p>不想在電源外殼上鑽孔的話，也可以選 <strong>XT90 版</strong>：充電槍和控制板做在同一個控制盒裡，用 XT90 接頭接到電源，不用施工。兩種做法的差別見<a href="price.html">價格與填單</a>。</p>
+</section>
+<div class="btns next"><a class="btn primary" href="price.html">看價格、線上填單</a></div>
+
+<section id="notes">
+  <h2>有些話要先講清楚</h2>
+  <ul>
+    <li>原廠充電器改裝的上限是 1 kW / 10 A，受限於保留下來的原廠充電槍線徑，這是物理限制，加錢也不會變快。</li>
+    <li>家用 110V 插座的容量上限是 1650 W。老舊的電線與插座長時間接近滿載有風險，這也是我設定充電器功率上限時的考量。</li>
+    <li>控制板只適合具備高壓直流經驗的人。整流模組的選配、充電槍的訂做、線材、保護與組裝都要自己負責。</li>
+    <li>CAN Bus 接錯或短路，會造成車輛 BMS 永久性損壞。我在開發初期就燒過一台車的 CAN 埠，那是早期洞洞板時期外購 CAN 模組的瑕疵；現在的控制板已經是穩定的正式電路板，這條提醒是寫給要自己接線的人。</li>
+    <li>6 kW / 30 分鐘是我自己研究平台的實測結果，不是控制板的保證值。實際能做到多少，取決於整流模組、充電槍線徑和現場進線容量。</li>
+    <li>控制板與改裝皆未經 BSMI、UL 等安規認證，性質是個人研發的技術方案，不是通過認證的量產商品。</li>
+    <li>任何第三方補能設備都可能影響原廠保固，請自行評估。</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav class="foot">
+      <a href="index.html">首頁</a><a href="retrofit.html">充電器改裝</a><a href="price.html">價格與填單</a><a href="board.html">控制板</a><a href="lab.html">研究中</a><a href="faq.html">常見問題</a>
+    </nav>
+    <div>© 2026 海龜電能・新北中和・線上接單</div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
