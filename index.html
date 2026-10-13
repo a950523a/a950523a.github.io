@@ -104,6 +104,7 @@ header.top .wrap{display:flex;align-items:center;gap:16px;height:52px}
 .brand{font-weight:700;color:var(--text);text-decoration:none;white-space:nowrap}
 nav{display:flex;gap:14px;font-size:15px;margin-left:auto}
 @media (max-width:520px){nav{gap:12px;font-size:14px} nav .opt{display:none}}
+@media (max-width:380px){nav .opt2{display:none}}
 nav a{color:var(--muted);text-decoration:none;white-space:nowrap}
 nav a:hover{color:var(--accent)}
 .hero{padding:48px 0 28px}
@@ -134,6 +135,20 @@ table.price thead th{color:var(--accent)}
 table.price tbody th{color:var(--muted);font-weight:600;white-space:nowrap}
 table.price tr.total td{font-weight:700}
 .fine{font-size:13px;color:var(--muted)}
+form.order{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:14px;margin:16px 0}
+form.order fieldset{border:0;margin:0;padding:0;display:grid;gap:6px}
+form.order legend,form.order .lbl{font-weight:600;font-size:15px;margin-bottom:2px}
+form.order .opts{display:flex;flex-wrap:wrap;gap:8px 16px}
+form.order .opts label{display:flex;align-items:center;gap:6px;font-size:15px}
+form.order .opts label.off{color:var(--muted)}
+form.order input[type=text],form.order textarea{font:inherit;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+form.order textarea{min-height:70px;resize:vertical}
+form.order .hint{font-size:13px;color:var(--muted);font-weight:400}
+.order-out{background:var(--accent-soft);border-radius:12px;padding:16px;display:grid;gap:10px;margin:16px 0}
+.order-out .no{font-family:ui-monospace,Consolas,monospace;font-size:20px;font-weight:700;letter-spacing:.04em;color:var(--accent)}
+.order-out pre{white-space:pre-wrap;margin:0;font:inherit;font-size:14px;background:var(--surface);border-radius:8px;padding:12px}
+.order-out .msg{font-size:14px;color:var(--accent);min-height:1.4em}
+button.btn{font:inherit;cursor:pointer}
 @media (max-width:560px){.grid2{grid-template-columns:1fr}}
 .narrow{max-width:360px}
 .video{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}
@@ -152,9 +167,10 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
     <nav>
       <a href="#retrofit">充電器改裝</a>
       <a href="#price">價格</a>
+      <a class="opt" href="#order">填單</a>
       <a class="opt" href="#board">控制板</a>
       <a class="opt" href="#lab">研究中</a>
-      <a href="#faq">常見問題</a>
+      <a class="opt2" href="#faq">常見問題</a>
       <a href="#contact">聯絡</a>
     </nav>
   </div>
@@ -267,7 +283,67 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
   </ul>
   <p class="fine">改裝服務與 XT90 版控制盒都是用你的原廠充電槍製作的客製品，不適用七天鑑賞期。</p>
   <p class="fine">以上價格自 2026 年 10 月起實施。隨著施工流程固定，組裝與施工費已調降，XT90 版不再收取組裝費。價格如有調整，以洽詢當下為準。</p>
-  <div class="btns"><a class="btn primary" href="https://www.facebook.com/profile.php?id=61582382523577" target="_blank" rel="noopener">到 Facebook 粉專私訊洽詢</a></div>
+  <div class="btns"><a class="btn primary" href="#order">線上填單</a><a class="btn ghost" href="https://www.facebook.com/profile.php?id=61582382523577" target="_blank" rel="noopener">到 Facebook 粉專私訊洽詢</a></div>
+</section>
+
+<section id="order">
+  <h2>線上填單</h2>
+  <p>填完會產生一組<strong>單號</strong>和一段訂單內容，複製後到 Facebook 粉專私訊貼給我，我會回覆電源報價與交貨時間。之後保固、維修都用這組單號查詢，請自己留一份。</p>
+  <form class="order" id="orderForm" novalidate>
+    <fieldset>
+      <legend>方案</legend>
+      <div class="opts">
+        <label><input type="radio" name="plan" value="retrofit"> 原廠充電器改裝（NT$3,500 ＋ 主電源）</label>
+        <label><input type="radio" name="plan" value="xt90" checked> XT90 版（NT$3,300 ＋ 主電源）</label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>主電源</legend>
+      <div class="opts">
+        <label><input type="radio" name="psu" value="buy" checked> 代購 1.5 kW 電源（依匯率報價）</label>
+        <label id="psuOwnLbl"><input type="radio" name="psu" value="own"> 自備電源</label>
+      </div>
+      <span class="hint">自備電源只適用 XT90 版，規格符合才能接。</span>
+    </fieldset>
+    <fieldset>
+      <legend>你的原廠充電器</legend>
+      <div class="opts">
+        <label><input type="radio" name="charger" value="360 W"> 360 W</label>
+        <label><input type="radio" name="charger" value="600 W"> 600 W</label>
+        <label><input type="radio" name="charger" value="不確定" checked> 不確定</label>
+      </div>
+      <div class="opts"><label><input type="checkbox" id="chargerBroken"> 電源板已經燒掉（充電槍完好）</label></div>
+    </fieldset>
+    <fieldset>
+      <legend>交貨方式</legend>
+      <div class="opts">
+        <label><input type="radio" name="ship" value="店到店寄送" checked> 店到店寄送</label>
+        <label><input type="radio" name="ship" value="新北中和面交"> 新北中和面交</label>
+      </div>
+    </fieldset>
+    <div>
+      <label class="lbl" for="oName">稱呼 <span class="hint">（必填，跟你 Facebook 的名字一樣最好對）</span></label>
+      <input type="text" id="oName" autocomplete="name" maxlength="40">
+    </div>
+    <div>
+      <label class="lbl" for="oNote">備註 <span class="hint">（選填）</span></label>
+      <textarea id="oNote" maxlength="500" placeholder="例如：車款、想問的問題"></textarea>
+    </div>
+    <p class="hint" id="oErr" role="alert"></p>
+    <div class="btns"><button type="submit" class="btn primary">產生單號</button></div>
+    <p class="fine">這裡填的資料只在你自己的瀏覽器裡，網站不會送出或儲存；要私訊貼給我，我才會收到。訂單要等我回覆確認才算成立。</p>
+  </form>
+  <div class="order-out" id="orderOut" hidden>
+    <div>你的單號</div>
+    <div class="no" id="orderNo"></div>
+    <pre id="orderText"></pre>
+    <div class="btns">
+      <button type="button" class="btn primary" id="copyBtn">複製訂單內容</button>
+      <a class="btn ghost" href="https://m.me/61582382523577" target="_blank" rel="noopener">開啟 Messenger 私訊粉專</a>
+    </div>
+    <div class="msg" id="copyMsg" aria-live="polite"></div>
+    <p class="fine">Messenger 打不開的話，請到 <a href="https://www.facebook.com/profile.php?id=61582382523577" target="_blank" rel="noopener">海龜電能粉專</a> 按「發送訊息」，再貼上訂單內容。</p>
+  </div>
 </section>
 
 <section id="board">
@@ -430,5 +506,67 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
   <div class="wrap">© 2026 海龜電能・新北中和・線上接單</div>
 </footer>
 
+<script>
+(function () {
+  var form = document.getElementById("orderForm");
+  if (!form) return;
+  var PLAN = { retrofit: "原廠充電器改裝（控制盒 NT$3,200 ＋ 鑽孔費 NT$300）", xt90: "XT90 版（控制盒 NT$3,300，免施工費）" };
+  var PSU = { buy: "代購 1.5 kW 電源（請報價）", own: "自備電源" };
+  function val(name) { var el = form.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ""; }
+  // 改裝版的電源一律代購（比較表：改裝版不接自備電源）
+  function syncPsu() {
+    var retro = val("plan") === "retrofit";
+    var own = form.querySelector('input[name="psu"][value="own"]');
+    own.disabled = retro;
+    document.getElementById("psuOwnLbl").className = retro ? "off" : "";
+    if (retro && own.checked) form.querySelector('input[name="psu"][value="buy"]').checked = true;
+  }
+  form.addEventListener("change", syncPsu);
+  syncPsu();
+  // 單號：HG-年月日-4 碼。字母表拿掉 0/O/1/I/L，口頭唸、手抄都不會混
+  function orderNo() {
+    var abc = "23456789ABCDEFGHJKMNPQRSTUVWXYZ", d = new Date(), r = "", bytes = new Uint8Array(4), i;
+    if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(bytes);
+    else for (i = 0; i < 4; i++) bytes[i] = Math.floor(Math.random() * 256);
+    for (i = 0; i < 4; i++) r += abc[bytes[i] % abc.length];
+    function p(n) { return (n < 10 ? "0" : "") + n; }
+    return "HG-" + p(d.getFullYear() % 100) + p(d.getMonth() + 1) + p(d.getDate()) + "-" + r;
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var nameEl = document.getElementById("oName"), name = nameEl.value.trim(), err = document.getElementById("oErr");
+    if (!name) { err.textContent = "請填稱呼，我才知道是誰的訂單。"; nameEl.focus(); return; }
+    err.textContent = "";
+    var no = orderNo(), note = document.getElementById("oNote").value.trim();
+    var lines = [
+      "【海龜電能 填單】",
+      "單號：" + no,
+      "稱呼：" + name,
+      "方案：" + PLAN[val("plan")],
+      "主電源：" + PSU[val("psu")],
+      "原廠充電器：" + val("charger") + (document.getElementById("chargerBroken").checked ? "（電源板已燒掉，充電槍完好）" : ""),
+      "交貨方式：" + val("ship")
+    ];
+    if (note) lines.push("備註：" + note);
+    document.getElementById("orderNo").textContent = no;
+    document.getElementById("orderText").textContent = lines.join("\n");
+    document.getElementById("copyMsg").textContent = "";
+    var out = document.getElementById("orderOut");
+    out.hidden = false;
+    out.scrollIntoView({ block: "start" });
+  });
+  document.getElementById("copyBtn").addEventListener("click", function () {
+    var pre = document.getElementById("orderText"), msg = document.getElementById("copyMsg");
+    function fallback() {
+      var range = document.createRange(), sel = window.getSelection();
+      range.selectNodeContents(pre); sel.removeAllRanges(); sel.addRange(range);
+      msg.textContent = "已選取訂單內容，請按「複製」後貼到私訊。";
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(pre.textContent).then(function () { msg.textContent = "已複製，到粉專私訊貼上就好。"; }, fallback);
+    } else fallback();
+  });
+})();
+</script>
 </body>
 </html>
