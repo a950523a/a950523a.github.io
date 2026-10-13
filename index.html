@@ -38,7 +38,7 @@
       "itemOffered": {
         "@type": "Service",
         "name": "iE125 原廠充電器改裝",
-        "description": "保留原廠充電槍，主電源與控制板換成自製；改裝後上限 1 kW / 10 A，可連 WiFi 以手機監控並設定充電上限。原廠 360 W 與 600 W 兩款皆可改。"
+        "description": "保留原廠充電槍，主電源與控制板換成自製；改裝後上限 1 kW / 10 A，可連 WiFi 以手機監控並設定充電上限。原廠 360 W 與 600 W 兩款皆可改。控制盒 NT$3,200＋鑽孔費 NT$300，或免施工的 XT90 版控制盒 NT$3,300；主電源（1.5 kW）依匯率實價另計；需自備原廠充電器。"
       }
     },
     {
@@ -69,6 +69,7 @@
   "mainEntity": [
     {"@type":"Question","name":"我的車可以用嗎？","acceptedAnswer":{"@type":"Answer","text":"改裝的對象是 iE125 的原廠充電器；改裝後換成 TES 快充控制板，理論上只要是 TES 標準（TES-0D-02-01）的車、且充電器電源電壓高於電池電壓都能用，例如 eMoving iE125、ZAU ES-2000；其他車款尚未測試。"}},
     {"@type":"Question","name":"電源板已經燒掉的原廠充電器還能改嗎？","acceptedAnswer":{"@type":"Answer","text":"可以，只要充電槍完好。改裝只保留充電槍，主電源和控制板都會換成新的。"}},
+    {"@type":"Question","name":"改裝要多少錢？","acceptedAnswer":{"@type":"Answer","text":"需自備 iE125 原廠充電器（要用它的充電槍）。原廠充電器改裝是控制盒 NT$3,200 加鑽孔費 NT$300；不想鑽孔的話，XT90 版控制盒 NT$3,300、不收施工費。主電源另計，用的是 1.5 kW 的版本，依當時匯率以實價計算，請私訊洽詢。"}},
     {"@type":"Question","name":"改裝後可以多快？","acceptedAnswer":{"@type":"Answer","text":"上限 1 kW / 10 A，比原廠的 360～600 W 快，但做不到 30 分鐘等級的快充，因為保留下來的原廠充電槍線徑太細。"}},
 {"@type":"Question","name":"iE125 可以在家快充嗎？","acceptedAnswer":{"@type":"Answer","text":"看家裡的電。只有一般 110V 插座時，原廠充電器改裝後的 1 kW 是比較實際的上限（插座容量 1650 W，原廠充電槍線徑也太細）。如果家裡已裝汽車充電樁（J1772 / Type 2）或另外拉了專用迴路，在家快充是做得到的，例如 6 kW 研究平台轉接汽車 AC 慢充樁，iE125 實測 0→80% 約 30 分鐘。但整套快充設備目前不販售，有興趣的人可買控制板回去自行搭配整流模組與充電槍研究、組裝並自行負責；需要高壓直流經驗，配線請找合格電工。"}},
     {"@type":"Question","name":"車子要動到嗎？","acceptedAnswer":{"@type":"Answer","text":"不用。改的是充電器，接口一樣是 TES 規格，車輛本身完全不動。"}},
@@ -127,6 +128,12 @@ figure{margin:18px 0}
 figure img{border-radius:12px;border:1px solid var(--line)}
 figcaption{font-size:14px;color:var(--muted);margin-top:6px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+table.price{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+table.price th,table.price td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top}
+table.price thead th{color:var(--accent)}
+table.price tbody th{color:var(--muted);font-weight:600;white-space:nowrap}
+table.price tr.total td{font-weight:700}
+.fine{font-size:13px;color:var(--muted)}
 @media (max-width:560px){.grid2{grid-template-columns:1fr}}
 .narrow{max-width:360px}
 .video{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}
@@ -144,6 +151,7 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
     <a class="brand" href="#">海龜電能</a>
     <nav>
       <a href="#retrofit">充電器改裝</a>
+      <a href="#price">價格</a>
       <a class="opt" href="#board">控制板</a>
       <a class="opt" href="#lab">研究中</a>
       <a href="#faq">常見問題</a>
@@ -228,6 +236,36 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
   <h3>為什麼上限是 1 kW，不能再高？</h3>
   <p>因為充電槍保留的是原廠的，而 iE125 原廠充電槍的線徑太細，撐不住更大的電流。線徑撐不住就是撐不住，我不會為了數字好看去超用它，那是會出事的。</p>
   <div class="note">這項改裝比原廠快，但做不到「30 分鐘充到 80%」那種等級的快充。</div>
+  <p>不想在電源外殼上鑽孔的話，也可以選 <strong>XT90 版</strong>：充電槍和控制板做在同一個控制盒裡，用 XT90 接頭接到電源，不用施工。兩種做法的差別見下方<a href="#price">價格</a>。</p>
+</section>
+
+<section id="price">
+  <h2>價格</h2>
+  <div class="note"><strong>請自備 iE125 原廠充電器。</strong>兩種做法都要用到它的充電槍；電源板已經燒掉也沒關係，只要充電槍完好。</div>
+  <p>兩種做法都沿用你原廠充電器的充電槍，充電上限都是 <strong>1 kW / 10 A</strong>，控制板的功能也完全一樣；差別只在控制盒怎麼接到電源。</p>
+  <table class="price">
+    <thead><tr><th></th><th>原廠充電器改裝</th><th>XT90 版</th></tr></thead>
+    <tbody>
+      <tr><th>做法</th><td>控制盒鎖在主電源上，需要在電源外殼鑽孔</td><td>充電槍和控制板做在同一個控制盒，用 XT90 接頭接到電源</td></tr>
+      <tr><th>控制盒</th><td>NT$3,200</td><td>NT$3,300</td></tr>
+      <tr><th>施工費</th><td>鑽孔 NT$300</td><td>免（鎖上螺絲、接上接頭就能用）</td></tr>
+      <tr><th>主電源</th><td colspan="2">1.5 kW 版本，依當時匯率以實價計算，請私訊洽詢報價</td></tr>
+      <tr class="total"><th>合計</th><td>NT$3,500 ＋ 主電源</td><td>NT$3,300 ＋ 主電源</td></tr>
+    </tbody>
+  </table>
+  <ul>
+    <li>主電源一律使用 <strong>1.5 kW</strong> 的版本，附 <strong>110V／220V 切換開關</strong>。改裝後最多輸出 1 kW，平常只用到電源約 2/3 的能力，電源比較不容易壞。</li>
+    <li>XT90 版控制盒比較貴一點，但不用鑽孔、不收施工費，合計反而比較便宜。</li>
+  </ul>
+  <div class="note"><strong>電源和控制盒都沒有防水。</strong>請不要放在戶外或會淋到雨的地方，也請注意環境的溫度和濕度，避免電源受潮生鏽而損壞。</div>
+  <h3>保固</h3>
+  <ul>
+    <li><strong>控制盒：</strong>交付後 <strong>3 個月內</strong>，非人為損壞免費維修或更換；進水、受潮、摔落、自行拆改不在保固範圍。過了保固期，有問題一樣可以找我，畢竟是我設計的，我會盡力協助。</li>
+    <li><strong>主電源：</strong>不提供保固。原廠充電器改裝需要在電源外殼鑽孔，原廠保固因此失效。</li>
+  </ul>
+  <p class="fine">改裝服務與 XT90 版控制盒都是用你的原廠充電槍製作的客製品，不適用七天鑑賞期。</p>
+  <p class="fine">以上價格自 2026 年 10 月起實施。隨著施工流程固定，組裝與施工費已調降，XT90 版不再收取組裝費。價格如有調整，以洽詢當下為準。</p>
+  <div class="btns"><a class="btn primary" href="https://www.facebook.com/profile.php?id=61582382523577" target="_blank" rel="noopener">到 Facebook 粉專私訊洽詢</a></div>
 </section>
 
 <section id="board">
@@ -351,6 +389,8 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
     <p>可以，只要充電槍完好。改裝本來就只保留充電槍，主電源和控制板都會換成我自己的。</p></details>
   <details><summary>車子要動到嗎？</summary>
     <p>不用。兩項服務都不動車，改的是充電器，接口一樣是 TES 規格。</p></details>
+  <details><summary>改裝要多少錢？</summary>
+    <p>需自備 iE125 原廠充電器（要用它的充電槍）。原廠充電器改裝是控制盒 NT$3,200 加鑽孔費 NT$300；不想鑽孔的話，XT90 版控制盒 NT$3,300、不收施工費。主電源另計，用的是 1.5 kW 的版本，依當時匯率以實價計算，請私訊洽詢。詳見上方「價格」。</p></details>
   <details><summary>改裝後可以多快？</summary>
     <p>上限 1 kW / 10 A，比原廠的 360～600 W 快，但做不到 30 分鐘等級的快充。原因是保留下來的原廠充電槍線徑太細。</p></details>
   <details><summary>iE125 可以在家快充嗎？</summary>
