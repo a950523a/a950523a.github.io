@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iE125／勁炫125 TES 快充座充電安全：家用快充機怎麼分辨有沒有走交握｜海龜電能</title>
+<meta name="description" content="iE125、勁炫125 插在車上 TES 快充座的家用快充機（10A、15A、30A、可接 J1772 汽車充電樁）不一定有走 TES 交握。教你 10 秒分辨：插上要等幾秒、接觸器喀一聲、儀表顯示充電中；說明在電池內跳線、拉並聯線這類繞過 BMS 的做法有什麼風險。">
+<link rel="canonical" href="https://a950523a.github.io/charge-safety.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="海龜電能">
+<meta property="og:title" content="iE125／勁炫125 TES 快充座充電安全：家用快充機怎麼分辨有沒有走交握｜海龜電能">
+<meta property="og:description" content="iE125、勁炫125 插在車上 TES 快充座的家用快充機（10A、15A、30A、可接 J1772 汽車充電樁）不一定有走 TES 交握。教你 10 秒分辨：插上要等幾秒、接觸器喀一聲、儀表顯示充電中；說明在電池內跳線、拉並聯線這類繞過 BMS 的做法有什麼風險。">
+<meta property="og:url" content="https://a950523a.github.io/charge-safety.html">
+<meta property="og:image" content="https://a950523a.github.io/img/charger-360w-retrofit.jpg">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='34' rx='20' ry='16' fill='%230f766e'/%3E%3Ccircle cx='32' cy='14' r='7' fill='%230f766e'/%3E%3Cpath d='M34 22l-6 12h6l-4 12 10-15h-6l4-9z' fill='%23fde047'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"插在 iE125 的 TES 快充座上充電，就一定是正常充電嗎？","acceptedAnswer":{"@type":"Answer","text":"不一定。正規的 TES 充電要先透過 CAN Bus 和車輛的電池管理系統（BMS）完成 TES-0D-02-01 規定的交握，車子才會接通充電座後面的接觸器。有些家用快充機是在電池內加跳線，讓充電座一直接著電池，插上一般充電器就直接充，沒有經過交握。"}},
+    {"@type":"Question","name":"怎麼分辨快充機有沒有走 TES 交握？","acceptedAnswer":{"@type":"Answer","text":"插上充電槍後要等幾秒、聽到車子接觸器「喀」一聲才開始輸出、儀表顯示充電中，就是有走交握。一插上充電器就立刻有輸出、車子儀表沒有任何反應，就是繞過交握直接接電池。"}},
+    {"@type":"Question","name":"繞過 TES 交握充電有什麼風險？","acceptedAnswer":{"@type":"Answer","text":"BMS 沒有參與，電流、溫度、電芯電壓的保護都不作用；充飽要不要停只能靠充電器自己的設定；若是用跳線讓充電座一直接著電池，充電座的金屬腳會常態帶著約 100V，碰到手指、雨水或金屬異物有觸電與短路的風險；要拆電池，保固也沒了。"}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">海龜電能</a>
+    <nav>
+      <a href="retrofit.html">改裝</a>
+      <a href="price.html">價格與填單</a>
+      <a class="opt" href="board.html">控制板</a>
+      <a class="opt" href="lab.html">研究中</a>
+      <a class="opt2" href="faq.html">常見問題</a>
+      <a href="index.html#contact">聯絡</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="safety">
+  <h2>插在 TES 快充座上，就一定安全嗎？</h2>
+  <p>iE125、勁炫125 這類支援 TES 快充的車，車上都有一個 TES 快充座。市面上有些家用快充機（10A、15A、30A，甚至標榜可以去汽車的 J1772 充電樁充）也是插在這個充電座上，看起來跟正常充電一樣。</p>
+  <p>但「插在充電座上」不代表「照 TES 規格在充電」。差別在於有沒有<strong>交握</strong>。</p>
+</section>
+
+<section id="handshake">
+  <h2>正規的 TES 充電是怎麼進行的</h2>
+  <ol>
+    <li>插上充電槍。</li>
+    <li>充電器和車子透過 CAN Bus 交換資料：電池現在幾伏、要多少電流、最多可以充到多少（這套流程定義在 TES-0D-02-01）。</li>
+    <li>確認沒問題，車子才把充電座後面的接觸器接通——會聽到「喀」一聲。</li>
+    <li>開始輸出，儀表顯示充電中。</li>
+  </ol>
+  <p>整個過程中，要多少電壓、多少電流、什麼時候該停，都是車子自己的電池管理系統（BMS）在決定，充電器只負責照它的要求輸出。<strong>充電座平常不帶電</strong>，也是因為那個接觸器要等交握完成才接通。</p>
+</section>
+
+<section id="bypass">
+  <h2>繞過交握的常見做法</h2>
+  <p>交握要寫韌體、做 CAN 通訊，並不簡單，所以也有做法乾脆繞過去：</p>
+  <ul>
+    <li><strong>在電池內加跳線：</strong>把原本要等交握才接通的充電迴路短路，讓 TES 快充座一直接著電池，再插上一般的定電壓鋰電池充電器就開始充。槍是插在充電座上沒錯，但沒有經過交握。</li>
+    <li><strong>從電池拉並聯線：</strong>打開電池外殼拉出一條線（常見的是 XT90 接頭），用外接充電器直接充；有些還順便並聯一組增程電池。</li>
+  </ul>
+  <h3>這樣做的風險</h3>
+  <ol>
+    <li><strong>BMS 沒有參與：</strong>電流、溫度、電芯電壓的保護邏輯都不作用，車子根本不知道自己正在充電。</li>
+    <li><strong>沒有人負責停止：</strong>充飽了要不要停，只能靠充電器自己的固定電壓設定。</li>
+    <li><strong>充電座常態帶電：</strong>跳線之後，充電座的金屬腳會一直帶著約 100V 的電池電壓。手指、雨水或掉進去的金屬碰到，都可能觸電或短路。</li>
+    <li><strong>保固沒了：</strong>要打開電池外殼，一看就知道；而多數車友的電池是租的。</li>
+    <li><strong>增程電池不受管理：</strong>並聯上去的那組電池不在原車 BMS 的管理範圍內。</li>
+  </ol>
+</section>
+
+<section id="check">
+  <h2>10 秒分辨法</h2>
+  <div class="cards">
+    <div class="card">
+      <h3 style="margin-top:0">✅ 有走交握</h3>
+      <p>插上槍後要等幾秒，聽到接觸器「喀」一聲才開始輸出，儀表顯示充電中。</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">❌ 繞過交握</h3>
+      <p>一插上充電器就立刻有輸出，車子儀表沒有任何反應。</p>
+    </div>
+  </div>
+  <p>買快充機或找人改裝之前，可以先問清楚這幾件事：</p>
+  <ul>
+    <li>要不要拆電池、在電池裡加跳線或拉線？</li>
+    <li>充電器有沒有 CAN 通訊、跟車子交握？</li>
+    <li>插上之後儀表會不會顯示充電中？充飽是誰決定停？</li>
+  </ul>
+</section>
+
+<section id="ours">
+  <h2>海龜電能的做法</h2>
+  <p>我的控制板就是把這套 TES-0D-02-01 交握完整做出來：插上槍、等車子交握、接觸器接通、儀表顯示充電中，要多少電壓電流、什麼時候停，全部由車子的 BMS 決定。<strong>改的是充電器，車子和電池都不動。</strong></p>
+  <div class="btns">
+    <a class="btn primary" href="retrofit.html">看原廠充電器改裝</a>
+    <a class="btn ghost" href="price.html">價格與填單</a>
+    <a class="btn ghost" href="faq.html">常見問題</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav class="foot">
+      <a href="index.html">首頁</a><a href="retrofit.html">充電器改裝</a><a href="price.html">價格與填單</a><a href="board.html">控制板</a><a href="lab.html">研究中</a><a href="charge-safety.html">充電安全</a><a href="faq.html">常見問題</a>
+    </nav>
+    <div>© 2026 海龜電能・新北中和・線上接單</div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

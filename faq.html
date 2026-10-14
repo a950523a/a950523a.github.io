@@ -70,6 +70,8 @@
     <p>目前缺貨。之前有上架過，但定位尷尬、副廠充電槍又難取得，所以暫停販售。之後若能找到穩定的充電槍來源並降低成本，可能會重新上架。</p></details>
   <details><summary>有沒有完全不用原廠零件的 iE125 充電器？</summary>
     <p>我做過一組 1.5 kW / 15 A 的：控制板、主電源都是自己開發，充電槍是副廠訂做，一樣走 TES 規格的充電交握，由車輛的 BMS 決定電壓、電流和什麼時候停。目前暫停販售，詳見<a href="lab.html">研究中與暫停販售</a>。</p></details>
+  <details><summary>有些家用快充機也是插在 TES 快充座上，跟你的有什麼不同？</summary>
+    <p>插在 TES 快充座上不代表有走 TES 交握。有些做法是在電池內加跳線，讓充電座一直接著電池，插上一般充電器就直接充，車子的 BMS 並沒有參與；充電座的金屬腳也會因此常態帶電。分辨方法很簡單：插上槍後要等幾秒、聽到接觸器「喀」一聲、儀表顯示充電中，才是有走交握。詳見<a href="charge-safety.html">TES 快充座充電安全與分辨方法</a>。</p></details>
   <details><summary>打開電池拉並聯線、再用外接充電器從並聯線充電，跟你的做法有什麼不同？</summary>
     <p>那種做法是繞過充電接口直接充電池，車輛的 BMS 沒有參與這次充電；如果還並聯了增程電池，那組電池也不在 BMS 的管理範圍內。我的充電器與控制板都是從車上原本的 TES 充電接口，透過 CAN Bus 和 BMS 完成充電交握，車子本身完全不動。詳見<a href="lab.html#no-bypass">我不做「暴力改裝」</a>。</p></details>
   <details><summary>為什麼不直接賣 6 kW 的整套系統？</summary>
@@ -87,7 +89,7 @@
 <footer>
   <div class="wrap">
     <nav class="foot">
-      <a href="index.html">首頁</a><a href="retrofit.html">充電器改裝</a><a href="price.html">價格與填單</a><a href="board.html">控制板</a><a href="lab.html">研究中</a><a href="faq.html">常見問題</a>
+      <a href="index.html">首頁</a><a href="retrofit.html">充電器改裝</a><a href="price.html">價格與填單</a><a href="board.html">控制板</a><a href="lab.html">研究中</a><a href="charge-safety.html">充電安全</a><a href="faq.html">常見問題</a>
     </nav>
     <div>© 2026 海龜電能・新北中和・線上接單</div>
   </div>
