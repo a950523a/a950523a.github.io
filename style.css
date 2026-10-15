@@ -18,7 +18,9 @@ img{max-width:100%;height:auto;display:block}
 header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);
   backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 header.top .wrap{display:flex;align-items:center;gap:16px;height:52px}
-.brand{font-weight:700;color:var(--text);text-decoration:none;white-space:nowrap}
+.brand{font-weight:700;color:var(--text);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+.brand img{height:30px;width:auto;display:block}
+footer .fine{font-size:12px;color:var(--muted);margin-top:4px}
 nav{display:flex;gap:14px;font-size:15px;margin-left:auto}
 @media (max-width:520px){nav{gap:12px;font-size:14px} nav .opt{display:none}}
 @media (max-width:380px){nav .opt2{display:none}}
