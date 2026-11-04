@@ -14,12 +14,30 @@
     function p(n) { return (n < 10 ? "0" : "") + n; }
     return "HG-" + p(d.getFullYear() % 100) + p(d.getMonth() + 1) + p(d.getDate()) + "-" + r;
   }
+  // 寄送資訊只有店到店要填；來源選「其他」才顯示文字框
+  var shipInfo = document.getElementById("shipInfo"), heardEl = document.getElementById("oHeard");
+  var heardWrap = document.getElementById("oHeardOtherWrap");
+  function isStore() { return val("ship") === "店到店寄送"; }
+  function syncOrderFields() {
+    shipInfo.hidden = !isStore();
+    heardWrap.hidden = heardEl.value !== "other";
+  }
+  form.addEventListener("change", syncOrderFields);
+  syncOrderFields();
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var nameEl = document.getElementById("oName"), name = nameEl.value.trim(), err = document.getElementById("oErr");
+    var recvEl = document.getElementById("oRecv"), phoneEl = document.getElementById("oPhone"), storeEl = document.getElementById("oStore");
+    var recv = recvEl.value.trim(), phone = phoneEl.value.replace(/[\s-]/g, ""), store = storeEl.value.trim();
+    if (isStore()) {
+      if (!recv) { err.textContent = "請填收件人姓名，取貨時要核對證件。"; recvEl.focus(); return; }
+      if (!/^09\d{8}$/.test(phone)) { err.textContent = "請填 09 開頭的 10 碼手機號碼。"; phoneEl.focus(); return; }
+      if (!store) { err.textContent = "請填取件門市。"; storeEl.focus(); return; }
+    }
     if (!name) { err.textContent = "請填稱呼，我才知道是誰的訂單。"; nameEl.focus(); return; }
     err.textContent = "";
     var no = orderNo(), note = document.getElementById("oNote").value.trim();
+    var heard = heardEl.value === "other" ? document.getElementById("oHeardOther").value.trim() : heardEl.value;
     var lines = [
       "【海龜電能 填單】",
       "單號：" + no,
@@ -29,6 +47,8 @@
       "原廠充電器：" + val("charger") + (document.getElementById("chargerBroken").checked ? "（電源板已燒掉，充電槍完好）" : ""),
       "交貨方式：" + val("ship")
     ];
+    if (isStore()) lines.push("收件人：" + recv, "收件手機：" + phone, "取件門市：" + store);
+    if (heard) lines.push("從哪裡知道我們：" + heard);
     if (note) lines.push("備註：" + note);
     document.getElementById("orderNo").textContent = no;
     document.getElementById("orderText").textContent = lines.join("\n");

@@ -113,9 +113,42 @@
         <label><input type="radio" name="ship" value="新北中和面交"> 新北中和面交</label>
       </div>
     </fieldset>
+    <fieldset id="shipInfo">
+      <legend>寄送資訊</legend>
+      <span class="hint">只用來寄送這筆訂單和保固聯絡。</span>
+      <div>
+        <label class="lbl" for="oRecv">收件人姓名 <span class="hint">（必填，取貨時要核對證件，請填本名）</span></label>
+        <input type="text" id="oRecv" autocomplete="shipping name" maxlength="40">
+      </div>
+      <div>
+        <label class="lbl" for="oPhone">收件人手機 <span class="hint">（必填）</span></label>
+        <input type="tel" id="oPhone" autocomplete="shipping tel" inputmode="tel" maxlength="20" placeholder="0912345678">
+      </div>
+      <div>
+        <label class="lbl" for="oStore">取件門市 <span class="hint">（必填，全家門市名稱或店號）</span></label>
+        <input type="text" id="oStore" maxlength="60">
+      </div>
+    </fieldset>
     <div>
       <label class="lbl" for="oName">稱呼 <span class="hint">（必填，跟你 Facebook 的名字一樣最好對）</span></label>
       <input type="text" id="oName" autocomplete="name" maxlength="40">
+    </div>
+    <div>
+      <label class="lbl" for="oHeard">從哪裡知道我們 <span class="hint">（選填）</span></label>
+      <select id="oHeard">
+        <option value="">請選擇</option>
+        <option>海龜電能粉專</option>
+        <option>Facebook 其他貼文或社團</option>
+        <option>Mobile01</option>
+        <option>Google 搜尋</option>
+        <option>YouTube</option>
+        <option>朋友介紹</option>
+        <option value="other">其他</option>
+      </select>
+    </div>
+    <div id="oHeardOtherWrap" hidden>
+      <label class="lbl" for="oHeardOther">其他管道</label>
+      <input type="text" id="oHeardOther" maxlength="60">
     </div>
     <div>
       <label class="lbl" for="oNote">備註 <span class="hint">（選填）</span></label>

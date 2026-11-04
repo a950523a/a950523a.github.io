@@ -56,10 +56,11 @@ table.price tr.total td{font-weight:700}
 .fine{font-size:13px;color:var(--muted)}
 form.order{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:14px;margin:16px 0}
 form.order fieldset{border:0;margin:0;padding:0;display:grid;gap:6px}
+form.order fieldset[hidden]{display:none}
 form.order legend,form.order .lbl{font-weight:600;font-size:15px;margin-bottom:2px}
 form.order .opts{display:flex;flex-wrap:wrap;gap:8px 16px}
 form.order .opts label{display:flex;align-items:center;gap:6px;font-size:15px}
-form.order input[type=text],form.order textarea{font:inherit;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+form.order input[type=text],form.order input[type=tel],form.order select,form.order textarea{font:inherit;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
 form.order textarea{min-height:70px;resize:vertical}
 form.order .hint{font-size:13px;color:var(--muted);font-weight:400}
 .order-out{background:var(--accent-soft);border-radius:12px;padding:16px;display:grid;gap:10px;margin:16px 0}
