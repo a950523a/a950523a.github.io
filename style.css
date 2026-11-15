@@ -60,6 +60,7 @@ form.order fieldset[hidden]{display:none}
 form.order legend,form.order .lbl{font-weight:600;font-size:15px;margin-bottom:2px}
 form.order .opts{display:flex;flex-wrap:wrap;gap:8px 16px}
 form.order .opts label{display:flex;align-items:center;gap:6px;font-size:15px}
+form.order .opts label[hidden]{display:none}
 form.order input[type=text],form.order input[type=tel],form.order select,form.order textarea{font:inherit;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
 form.order textarea{min-height:70px;resize:vertical}
 form.order .hint{font-size:13px;color:var(--muted);font-weight:400}

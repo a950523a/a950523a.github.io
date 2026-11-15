@@ -67,6 +67,12 @@
     <li><strong>主電源：</strong>交付後 <strong>14 天內</strong>新品不良換新，條件同控制盒（兩種做法都一樣）；自備的電源不在保固範圍。電源會依做法加裝控制盒或 XT90 接頭，大陸原廠因此不再保固。</li>
     <li><strong>自行把電流調到 10 A 以上：</strong>超過原廠充電槍線材的標示額定，風險自行承擔；因此造成的充電槍、插座、室內線路損壞不在保固範圍。</li>
   </ul>
+  <h3>付款與運費</h3>
+  <ul>
+    <li><strong>轉帳：</strong>改好寄回的店到店運費由我負擔。</li>
+    <li><strong>好賣+下單：</strong>寄回運費 NT$60，在好賣+一起結帳。</li>
+    <li>原廠充電器寄來給我的運費由你負擔。選新北中和面交的話，也可以當面付現。</li>
+  </ul>
   <p class="fine">改裝服務與 XT90 版控制盒都是用你的原廠充電槍製作的客製品，不適用七天鑑賞期。</p>
   <p class="fine">以上價格自 2026 年 10 月起實施。隨著施工流程固定，組裝與施工費已調降，XT90 版不再收取組裝費。價格如有調整，以洽詢當下為準。</p>
   <div class="btns"><a class="btn primary" href="#order">線上填單</a><a class="btn ghost" href="https://www.facebook.com/profile.php?id=61582382523577" target="_blank" rel="noopener">到 Facebook 粉專私訊洽詢</a></div>
@@ -112,6 +118,15 @@
         <label><input type="radio" name="ship" value="店到店寄送" checked> 店到店寄送</label>
         <label><input type="radio" name="ship" value="新北中和面交"> 新北中和面交</label>
       </div>
+    </fieldset>
+    <fieldset>
+      <legend>付款方式</legend>
+      <div class="opts">
+        <label><input type="radio" name="pay" value="transfer" checked> 轉帳（寄回免運）</label>
+        <label id="payFamiOpt"><input type="radio" name="pay" value="famistore"> 好賣+下單（寄回運費 NT$60）</label>
+        <label id="payCashOpt" hidden><input type="radio" name="pay" value="cash"> 面交付現</label>
+      </div>
+      <span class="hint" id="payHint"></span>
     </fieldset>
     <fieldset id="shipInfo">
       <legend>寄送資訊</legend>

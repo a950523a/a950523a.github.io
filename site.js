@@ -4,6 +4,12 @@
   if (!form) return;
   var PLAN = { retrofit: "原廠充電器改裝（控制盒 NT$3,200 ＋ 鑽孔費 NT$300）", xt90: "XT90 版（控制盒 NT$3,300，免施工費）" };
   var PSU = { buy: "代購 1.5 kW 電源（請報價）", own: "自備電源" };
+  var PAY = { transfer: "轉帳（寄回免運）", famistore: "好賣+下單（寄回運費 NT$60）", cash: "面交付現" };
+  var PAY_HINT = {
+    transfer: "確認訂單後，我會私訊轉帳帳號和金額。",
+    famistore: "確認訂單後，我會告訴你怎麼在好賣+賣場下單、一起結帳。",
+    cash: "面交時當面付清。"
+  };
   function val(name) { var el = form.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ""; }
   // 單號：HG-年月日-4 碼。字母表拿掉 0/O/1/I/L，口頭唸、手抄都不會混
   function orderNo() {
@@ -18,9 +24,15 @@
   var shipInfo = document.getElementById("shipInfo"), heardEl = document.getElementById("oHeard");
   var heardWrap = document.getElementById("oHeardOtherWrap");
   function isStore() { return val("ship") === "店到店寄送"; }
+  // 付款方式：店到店可選轉帳或好賣+；面交可選轉帳或付現
+  var payFami = document.getElementById("payFamiOpt"), payCash = document.getElementById("payCashOpt");
   function syncOrderFields() {
     shipInfo.hidden = !isStore();
     heardWrap.hidden = heardEl.value !== "other";
+    payFami.hidden = !isStore(); payCash.hidden = isStore();
+    var hiddenPick = form.querySelector('input[name="pay"]:checked');
+    if (!hiddenPick || hiddenPick.closest("label").hidden) form.querySelector('input[name="pay"][value="transfer"]').checked = true;
+    document.getElementById("payHint").textContent = PAY_HINT[val("pay")] || "";
   }
   form.addEventListener("change", syncOrderFields);
   syncOrderFields();
@@ -45,7 +57,8 @@
       "方案：" + PLAN[val("plan")],
       "主電源：" + PSU[val("psu")] + (val("psu") === "own" ? (val("plan") === "retrofit" ? "（需確認是指定型號，會附型號或照片）" : "（會附型號或照片）") : ""),
       "原廠充電器：" + val("charger") + (document.getElementById("chargerBroken").checked ? "（電源板已燒掉，充電槍完好）" : ""),
-      "交貨方式：" + val("ship")
+      "交貨方式：" + val("ship"),
+      "付款方式：" + PAY[val("pay")]
     ];
     if (isStore()) lines.push("收件人：" + recv, "收件手機：" + phone, "取件門市：" + store);
     if (heard) lines.push("從哪裡知道我們：" + heard);
