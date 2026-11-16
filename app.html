@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>手機 App 與遠端監控｜海龜電能</title>
+<meta name="description" content="海龜電能 TES 快充控制盒的 Android App 下載，以及給 iPhone 或不想裝 App 的人用的遠端監控網頁：在家連 WiFi 直接開控制盒網頁，出門在外用遠端監控網頁看充電狀態。">
+<link rel="canonical" href="https://a950523a.github.io/app.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="海龜電能">
+<meta property="og:title" content="手機 App 與遠端監控｜海龜電能">
+<meta property="og:description" content="海龜電能 TES 快充控制盒的 Android App 下載，以及給 iPhone 或不想裝 App 的人用的遠端監控網頁。">
+<meta property="og:url" content="https://a950523a.github.io/app.html">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><picture><source srcset="img/logo-icon-dark.png" media="(prefers-color-scheme: dark)"><img src="img/logo-icon.png" width="36" height="32" alt=""></picture>海龜電能</a>
+    <nav>
+      <a href="retrofit.html">改裝</a>
+      <a href="price.html">價格與填單</a>
+      <a class="opt" href="board.html">控制板</a>
+      <a class="opt" href="lab.html">研究中</a>
+      <a class="opt2" href="faq.html">常見問題</a>
+      <a href="index.html#contact">聯絡</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="android">
+  <span class="pill">已購買控制盒的用戶</span>
+  <h2>Android App</h2>
+  <p>TurtlePower App 可以看充電狀態、改設定、收開始／完成／異常通知，充電中通知列會顯示進度。目前<strong>只有 Android 版</strong>，iPhone 請看下面的<a href="#web">網頁版</a>。</p>
+  <div class="btns"><a class="btn primary" href="https://github.com/a950523a/a950523a.github.io/releases/latest/download/TurtlePower.apk">下載 Android App（APK）</a><a class="btn ghost" href="https://github.com/a950523a/a950523a.github.io/releases" target="_blank" rel="noopener">版本紀錄</a></div>
+  <h3>安裝方式</h3>
+  <ol>
+    <li>用手機的 Chrome 按上面的下載按鈕。</li>
+    <li>下載完點開檔案。第一次會問要不要允許 Chrome「安裝不明的應用程式」，允許後再按安裝。</li>
+    <li>手機跟控制盒連同一個 WiFi，打開 App 按「＋」，App 會掃描網路找到控制盒。</li>
+  </ol>
+  <p>App 沒有上架 Google Play，所以安裝時手機會提醒「來源不明」，這是正常的。之後有新版，一樣從這頁下載、直接覆蓋安裝，設定不會不見。</p>
+</section>
+
+<section id="web">
+  <span class="pill">iPhone、或不想裝 App</span>
+  <h2>用網頁看</h2>
+  <h3>在家（跟控制盒同一個 WiFi）</h3>
+  <p>直接用瀏覽器開 <code>http://tes-charger.local</code>。打不開的話（有些 Android 手機不支援這種網址），改輸入控制盒螢幕「網路」頁顯示的 IP。網頁上一樣能看狀態、改設定。</p>
+  <h3>出門在外：遠端監控網頁</h3>
+  <p>不在同一個 WiFi 時，用遠端監控網頁看充電狀態：</p>
+  <div class="btns"><a class="btn primary" href="https://a950523a.github.io/TES-Taiwan-Electric-Scooter-Charging-Controller/monitor.html" target="_blank" rel="noopener">開啟遠端監控網頁</a></div>
+  <ol>
+    <li>先在家裡開控制盒網頁，到設定裡填好 MQTT broker（說明書有寫步驟）。</li>
+    <li>在控制盒網頁按「🔗 開啟監控」，會自動帶好連線資料打開遠端監控網頁。</li>
+    <li>iPhone 用 Safari 按「分享 → 加入主畫面」，之後從主畫面點開就好。</li>
+  </ol>
+  <div class="note">帳號密碼只存在你自己的瀏覽器裡，不會放進分享連結，也不會傳給海龜電能。</div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav class="foot">
+      <a href="index.html">首頁</a><a href="retrofit.html">充電器改裝</a><a href="price.html">價格與填單</a><a href="board.html">控制板</a><a href="app.html" aria-current="page">App 與遠端監控</a><a href="lab.html">研究中</a><a href="charge-safety.html">充電安全</a><a href="faq.html">常見問題</a>
+    </nav>
+    <div>© 2026 海龜電能・新北中和・線上接單</div>
+    <div class="fine">「海龜電能」名稱與烏龜標誌為本工作室所有，請勿未經同意使用。</div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
