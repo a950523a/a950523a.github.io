@@ -1,0 +1,1107 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高階款控制盒 說明書</title>
+<meta name="description" content="海龜電能 高階款 TES 充電控制盒基本使用說明">
+<style>
+:root{
+  --bg:#f7faf9;--surface:#fff;--text:#1f2a29;--muted:#5b6b69;--line:#dfe7e5;
+  --accent:#0f766e;--accent-soft:#e3f2ef;--warn:#9a5b00;--warn-soft:#fff4e0;
+  --danger:#b42318;--danger-soft:#fdecea;--tbc:#7c3aed;--tbc-soft:#f1eafe;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1514;--surface:#162020;--text:#e4ecea;--muted:#9db0ad;--line:#26332f;
+    --accent:#2dd4bf;--accent-soft:#12302c;--warn:#f5b454;--warn-soft:#2c2213;
+    --danger:#ff8a80;--danger-soft:#3a1714;--tbc:#c4a7ff;--tbc-soft:#261d3a;
+  }
+  :root:not([data-theme="light"]) figure.light{background:#f4f7f6;border-radius:10px}
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif;line-height:1.75;font-size:16px}
+main{max-width:860px;margin:0 auto;padding:0 16px 64px}
+header.cover{max-width:860px;margin:0 auto;padding:40px 16px 8px}
+.brand{color:var(--accent);font-weight:700;letter-spacing:.08em}
+h1{font-size:1.9rem;line-height:1.3;margin:.3em 0 .2em}
+.sub{color:var(--muted);margin:0}
+h2{font-size:1.35rem;margin:2.4em 0 .6em;padding-top:.6em;border-top:2px solid var(--line)}
+h2 .n{color:var(--accent);margin-right:.4em}
+h3{font-size:1.08rem;margin:1.6em 0 .4em}
+h4{font-size:1rem;margin:1.2em 0 .3em}
+p,li{margin:.4em 0}
+figure{margin:1.2em 0;text-align:center}
+figure img{max-width:100%;height:auto}
+figcaption{color:var(--muted);font-size:.9rem;margin-top:.3em}
+table{border-collapse:collapse;width:100%;margin:.8em 0;font-size:.95rem;background:var(--surface)}
+th,td{border:1px solid var(--line);padding:.45em .6em;text-align:left;vertical-align:top}
+th{background:var(--accent-soft)}
+.tablewrap{overflow-x:auto}
+code,.k{font-family:Consolas,"Noto Sans Mono",monospace;background:var(--accent-soft);padding:0 .3em;border-radius:4px}
+.box{border-radius:10px;padding:.8em 1em;margin:1em 0;border-left:5px solid}
+.box.warn{background:var(--warn-soft);border-color:var(--warn)}
+.box.danger{background:var(--danger-soft);border-color:var(--danger)}
+.box.note{background:var(--accent-soft);border-color:var(--accent)}
+.box b.t{display:block;margin-bottom:.2em}
+.tbc{display:inline-block;background:var(--tbc-soft);color:var(--tbc);border:1px dashed var(--tbc);
+  border-radius:4px;padding:0 .35em;font-size:.85em;font-weight:700}
+.v12{display:inline-block;background:var(--warn-soft);color:var(--warn);border-radius:4px;padding:0 .35em;font-size:.85em;font-weight:700}
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.6em 1.2em;margin:1.4em 0}
+.toc ol{columns:2;column-gap:2em;margin:.3em 0;padding-left:1.4em}
+@media (max-width:600px){.toc ol{columns:1}h1{font-size:1.5rem}}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:1em 0;align-items:start}
+.shots figure{margin:0}
+.shots img,figure.shot img{width:100%;max-width:380px;border-radius:10px;border:1px solid var(--line)}
+figure.shot{max-width:380px;margin:1em auto}
+/* 每項功能的三種操作方式：OLED／網頁／App 各一塊 */
+.ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:.8em 0 1.2em}
+.ops>div{border:1px solid var(--line);border-radius:10px;padding:.5em .9em;background:var(--surface)}
+.ops>div>b:first-child{display:block;color:var(--accent);margin-bottom:.2em}
+.ops ol,.ops ul{margin:.2em 0;padding-left:1.3em}
+.ops p{margin:.2em 0}
+.no{color:var(--muted)}
+table.matrix td:not(:first-child),table.matrix th:not(:first-child){text-align:center;white-space:nowrap}
+dl.opts{margin:.4em 0 .8em}
+dl.opts dt{font-weight:700;margin-top:.4em}
+dl.opts dd{margin:0 0 0 1.2em}
+/* 逐步示意圖：OLED／網頁／App 三欄，狀態對照表 */
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:.4em 0 1.6em;align-items:start}
+.gcol b:first-child{display:block;color:var(--accent);margin-bottom:.3em}
+.gal figure{margin:0 0 12px}
+.gal img{width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
+img.oled{image-rendering:pixelated;border:3px solid #222!important}
+.gal figcaption{font-size:.85em;color:var(--muted);margin-top:.2em}
+table.stview td{vertical-align:top;width:30%}
+table.stview td:first-child{width:10%}
+table.stview img{width:100%;height:auto;border-radius:6px}
+table.stview figure{margin:0}
+table.stview figcaption{display:none}
+td.ledimg img{height:210px;width:auto;max-width:none;border-radius:6px}
+td.ledimg{white-space:nowrap}
+@media (max-width:600px){td.ledimg img{height:78px}}
+.oleds{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:1em 0}
+.oleds figure{margin:0}
+.oleds img{width:100%;image-rendering:pixelated;border-radius:6px;border:4px solid #222}
+.dot{display:inline-block;width:.9em;height:.9em;border-radius:50%;vertical-align:-.1em;margin-right:.3em;border:1px solid #0003}
+.y{background:#facc15}.g{background:#22c55e}.r{background:#ef4444}
+ol.steps>li{margin:.6em 0}
+footer{max-width:860px;margin:0 auto;padding:24px 16px 48px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+a{color:var(--accent)}
+
+/* ── 列印（A4）── */
+@page{size:A4;margin:16mm 15mm 16mm}
+@media print{
+  :root{--bg:#fff;--surface:#fff}
+  body{font-size:10pt;line-height:1.5}
+  header.cover{padding-top:0}
+  h2{break-before:page;border-top:none;margin-top:0}
+  h2.keep{break-before:auto;border-top:2px solid var(--line);margin-top:1.6em}
+  figure,table,.box,.oleds figure{break-inside:avoid}
+  .ops>div{break-inside:avoid}
+  .gal{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  /* 分頁：標題不留在頁底；很長的表格可以跨頁，但一列不拆 */
+  h2,h3,h4,.gcol b,dl.opts dt{break-after:avoid}
+  .ghead{break-inside:avoid}
+  p.legend{break-after:avoid}
+  table.matrix,table.stview,table.ledtable{break-inside:auto}
+  tr{break-inside:avoid}
+  .gal figure{break-inside:avoid}
+  .gal img{width:auto;max-width:100%;max-height:62mm}
+  .gal figcaption{font-size:.8em}
+  table.stview img{width:auto;max-width:100%;max-height:55mm}
+  .ops{grid-template-columns:repeat(3,minmax(0,1fr));font-size:.92em}
+  h3{break-after:avoid}
+  .toc{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+  .noprint{display:none}
+  .oleds{grid-template-columns:repeat(3,1fr)}
+  figure img{max-height:118mm;width:auto}
+  figure.shot img{width:auto;max-height:78mm}
+  /* 三欄：每張圖寬度剛好是欄寬（依高度縮放的話，高的圖會比欄寬還寬，把旁邊的擠出頁面） */
+  .shots{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .shots img{width:100%;max-width:100%;height:auto;max-height:none}
+  header.cover figure img{max-height:92mm}
+  header.cover h1{font-size:20pt}
+  .toc{margin:.6em 0}
+  figure{margin:.6em 0}
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="brand">海龜電能 · TURTLE POWER</div>
+  <h1>高階款 TES 充電控制盒<br>使用說明書</h1>
+  <p class="sub">2026 年 11 月版</p>
+  <figure>
+    <img src="img/hero.webp" alt="高階款控制盒外觀：黑色外殼，上蓋有 OLED 螢幕、四顆按鍵、三顆指示燈、電感窗，前方是接頭排" width="1350" height="1012">
+    <figcaption>產品外觀（3D 渲染圖，實際顏色依出貨為準）</figcaption>
+  </figure>
+</header>
+
+<main>
+
+<div class="box note">
+  <b class="t">韌體版本</b>
+  本說明書照最新版韌體寫。舊版韌體少了一些功能，畫面也可能是英文；請先照 <a href="#fw">5.5</a> 看版本、線上更新到最新版。
+</div>
+
+<div class="box danger">
+  <b class="t">使用前請先讀「安全注意事項」</b>
+  這台控制盒處理的是上百伏特的直流電。沒有防水、未經安規認證；電流調高超過充電槍或線材的額定，風險由你自行承擔。詳見 <a href="#safety">第 9 章</a>。
+</div>
+
+<nav class="toc" aria-label="目錄">
+  <b>目錄</b>
+  <ol>
+    <li><a href="#about">這是什麼</a></li>
+    <li><a href="#box">包裝內容</a></li>
+    <li><a href="#parts">外觀與各部位</a></li>
+    <li><a href="#wiring">接線示意</a></li>
+    <li><a href="#first">第一次開機與連 WiFi</a></li>
+    <li><a href="#web">手機網頁怎麼用</a></li>
+    <li><a href="#oled">OLED 畫面、按鍵與選單</a></li>
+    <li><a href="#led">指示燈與故障訊息</a></li>
+    <li><a href="#safety">安全注意事項</a></li>
+    <li><a href="#spec">規格</a></li>
+    <li><a href="#warranty">保固與聯絡</a></li>
+  </ol>
+</nav>
+
+<h2 id="about" class="keep"><span class="n">1</span>這是什麼</h2>
+<p>這是一台 <b>TES 規格（TES-0D-02-01）的充電控制器</b>。它接在直流電源和充電槍之間，插上車後會先跟車上的電池管理系統（BMS）透過 CAN Bus 完成充電交握，<b>由車子決定要多少電壓、多少電流、什麼時候停</b>，控制盒負責開關輸出、監看、保護，並把狀態顯示在螢幕與手機上。</p>
+<ul>
+  <li>已實測的車款：eMoving iE125、ZAU ES-2000。其他 TES 規格的車理論上可用，但沒有測試過。</li>
+  <li>電源要是<b>直流 60–120 V</b>，而且電壓要高於車的電池電壓。</li>
+  <li>可以連 WiFi，用手機瀏覽器或 Android App 看即時電壓、電流、電量，設定充到幾 % 停、排程、推播，也能線上更新韌體（OTA）。出門在外可以用遠端監控（<a href="#mqtt">6.16</a>）。</li>
+  <li>可以搭配聯明可程式電源，由控制盒直接設定電源的電壓、電流（<a href="#psu">6.17</a>）；用一般旋鈕電源也可以。</li>
+</ul>
+
+<h2 id="box" class="keep"><span class="n">2</span>包裝內容</h2>
+<table>
+  <tr><th>品項</th><th>數量</th></tr>
+  <tr><td>高階款控制盒（上蓋、底座已組好）</td><td>1</td></tr>
+  <tr><td>底部雙面膠、接線用配件 <span class="tbc">待確認：實際附哪些</span></td><td>—</td></tr>
+  <tr><td>說明書（本文件，線上提供）</td><td>—</td></tr>
+</table>
+<p>收到後請先看外殼有沒有破裂、按鍵能不能正常按下回彈。有問題請在使用前聯絡我（<a href="#warranty">第 11 章</a>）。</p>
+
+<h2 id="parts"><span class="n">3</span>外觀與各部位</h2>
+<figure class="light">
+  <img src="img/parts_top.svg" alt="上蓋各部位：左側三顆指示燈，中間 OLED 螢幕，右側 START、SETTING、STOP、EMERGENCY 四顆按鍵，下方電感窗" width="1170" height="1156">
+  <figcaption>上蓋（接頭排朝下擺放）</figcaption>
+</figure>
+<div class="tablewrap"><table>
+  <tr><th>編號</th><th>名稱</th><th>作用</th></tr>
+  <tr><td>①</td><td><span class="dot y"></span>電源燈（黃）</td><td>通電就亮</td></tr>
+  <tr><td>②</td><td><span class="dot g"></span>充電燈（綠）</td><td>充電中閃爍、充電完成恆亮</td></tr>
+  <tr><td>③</td><td><span class="dot r"></span>故障燈（紅）</td><td>故障或緊急停止時恆亮</td></tr>
+  <tr><td>④</td><td>OLED 螢幕</td><td>狀態、電壓、電流、電量、故障原因、設定選單</td></tr>
+  <tr><td>⑤</td><td>START</td><td>開始充電；選單中往上、數值加</td></tr>
+  <tr><td>⑥</td><td>SETTING</td><td>短按切換「充到幾 %」；長按進入設定選單；選單中確認</td></tr>
+  <tr><td>⑦</td><td>STOP</td><td>停止充電；選單中往下、數值減</td></tr>
+  <tr><td>⑧</td><td>EMERGENCY</td><td>緊急停止，任何時候按都有效</td></tr>
+  <tr><td>⑨</td><td>電感窗</td><td>內部降壓模組的電感，運作時會溫熱，<b>不要遮住或塞東西</b></td></tr>
+</table></div>
+<h3>維修用的 EN／BOOT 鍵</h3>
+<p>上蓋右上角、兩條細縫圍出來的兩片小舌片（⑩⑪），底下是兩顆維修用的鍵，用指尖按舌片就按得到。<b>平常用不到，充電中不要按。</b></p>
+<div class="tablewrap"><table>
+  <tr><th>鍵</th><th>作用</th><th>什麼時候用</th></tr>
+  <tr><td>⑩ EN</td><td>重新啟動控制盒，效果跟關掉電源再打開一樣</td><td>畫面卡住、按鍵沒反應、網頁連不上時，先按一下 EN 看看</td></tr>
+  <tr><td>⑪ BOOT</td><td>按住 BOOT 再按一下 EN，控制盒會進入「燒錄模式」：螢幕不亮、不能充電，等電腦從 USB-C 寫入韌體</td><td>只有線上更新失敗、需要用電腦重新燒錄時才用；請先私訊我</td></tr>
+</table></div>
+<p class="sub">不小心進入燒錄模式（螢幕全黑、只有黃燈亮）時，只要單獨按一下 EN，就會恢復正常開機。</p>
+
+<h3>底部接頭排</h3>
+<figure class="light">
+  <img src="img/parts_front.svg" alt="正面接頭排，由左到右 CN1、CN2、U10、CN6、CN5、CN3" width="1120" height="560">
+  <figcaption>正面（接頭排）</figcaption>
+</figure>
+<div class="tablewrap"><table>
+  <tr><th>接頭</th><th>腳位（由左到右）</th><th>接到哪裡</th></tr>
+  <tr><td><b>CN1</b></td><td>GND、VP</td><td>充電槍的 VP（輔助電源 12 V，喚醒車輛）</td></tr>
+  <tr><td><b>CN2</b></td><td>CANL、CANH、GND、CP</td><td>充電槍的訊號線：CAN Bus 與 CP（連接確認）</td></tr>
+  <tr><td><b>U10</b></td><td>＋（120V）、－</td><td>主電源的直流輸出：控制盒從這裡取電，同時量電壓。<b>DC 60–120 V</b></td></tr>
+  <tr><td><b>CN6</b></td><td>＋12V、－</td><td>充電槍的槍鎖（電子鎖線圈）</td></tr>
+  <tr><td><b>CN5</b>、<b>CN3</b></td><td>＋12V、－</td><td>直流接觸器（繼電器）的線圈，兩組同步動作</td></tr>
+</table></div>
+<p class="sub">腳位順序照板上的絲印，左右以「接頭排朝向自己」為準。</p>
+
+<h3>側面 USB-C</h3>
+<figure class="light">
+  <img src="img/parts_side.svg" alt="右側面的 USB-C 接口" width="1120" height="530">
+  <figcaption>右側面</figcaption>
+</figure>
+<p>USB-C 是維修、燒錄用的接口，<b>平常不用接</b>；韌體更新請用手機網頁的線上更新（<a href="#ota">6.15</a>）。</p>
+
+<h2 id="wiring"><span class="n">4</span>接線示意</h2>
+<div class="box warn">
+  <b class="t">出廠已接好的請不要自行拆改</b>
+  這一章是讓你了解每條線的用途。要自己接線的人，必須具備高壓直流的經驗；<b>CAN Bus 接錯或短路，可能讓車輛 BMS 永久損壞</b>。動手前請先私訊我確認。
+</div>
+<figure class="light">
+  <img src="img/wiring.svg" alt="接線示意：主電源直流輸出經直流接觸器接到充電槍 DC 正負；主電源輸出同時接到控制盒 U10；CN3 和 CN5 驅動接觸器線圈；CN6 驅動槍鎖；CN1 接 VP；CN2 接 CAN 與 CP" width="900" height="600">
+  <figcaption>接線示意圖（示意，不是施工圖；接觸器的實際數量與位置依你的組裝方式而定）</figcaption>
+</figure>
+<ul>
+  <li><b>電源：</b>主電源的直流輸出接到 U10，控制盒靠它供電，並用它量電壓。主電源沒開，控制盒就不會亮。</li>
+  <li><b>充電槍大電流：</b>主電源 → 直流接觸器 → 槍的 DC＋／DC－。接觸器由控制盒的 CN3／CN5 控制，交握完成才會閉合，所以平常槍頭不帶電。</li>
+  <li><b>充電槍訊號：</b>CN2 接 CAN-H、CAN-L、CP 和訊號地；CN1 送 VP 給車；CN6 控制槍鎖。</li>
+  <li><b>電壓感測：</b>就是 U10 那兩條線，不另外接。</li>
+</ul>
+
+<h2 id="first"><span class="n">5</span>第一次開機與連 WiFi</h2>
+<h3>5.1 開機</h3>
+<ol class="steps">
+  <li>確認充電槍<b>還沒插到車上</b>，打開主電源。</li>
+  <li>黃燈亮起，螢幕顯示開機畫面。開著「自動電壓」時會先顯示偵測電壓的畫面，幾秒後進入待機畫面「待機中」。</li>
+  <li>螢幕的待機畫面會顯示目前電源電壓與「SOC:0/80%」（後面的 80% 是充到幾 % 停）。</li>
+</ol>
+<div class="oleds">
+  <figure><img class="oled" src="img/oled/boot_on.png" alt="開機偵測電壓：烏龜標誌、海龜電能、偵測電壓…，閃電亮" width="512" height="256"><figcaption>開著自動電壓時，開機先偵測電壓（最多 10 秒）</figcaption></figure>
+  <figure><img class="oled" src="img/oled/boot_off.png" alt="開機偵測電壓：閃電暗的那一格" width="512" height="256"><figcaption>偵測中閃電會閃、後面的點會跑</figcaption></figure>
+  <figure><img class="oled" src="img/oled/st_standby.png" alt="OLED 待機畫面" width="512" height="256"><figcaption>待機畫面（示意數值）</figcaption></figure>
+</div>
+
+<h3>5.2 充電（不用手機也能充）</h3>
+<ol class="steps">
+  <li>把充電槍插進車的 TES 充電座，確認槍有插到底、卡好。</li>
+  <li>按 <b>START</b>。控制盒會開始跟車交握，螢幕依序顯示準備充電等狀態，聽到車上接觸器「喀」一聲後開始充電，綠燈閃爍。</li>
+  <li>達到設定的條件（預設充到 80%）、車子自己喊停、或你按 <b>STOP</b>，都會結束充電。螢幕顯示「充電完成」與這次充了多少，綠燈恆亮。</li>
+  <li>結束後再拔槍。</li>
+</ol>
+
+<h3 id="wifi">5.3 第一次連 WiFi</h3>
+<figure class="light">
+  <picture><source media="(max-width: 600px)" srcset="img/wifi_flow_v.svg"><img src="img/wifi_flow.svg" alt="連 WiFi 四個步驟：1 手機連控制盒熱點 TES-Charger-xxxxxx；2 瀏覽器開 192.168.4.1，掃描、選家裡的 WiFi、輸入密碼、加入；3 控制盒自動連上家裡的 WiFi 分享器；4 手機回到家裡的 WiFi，用 tes-charger.local 打開" width="900" height="660"></picture>
+  <figcaption>第一次連 WiFi 的四個步驟</figcaption>
+</figure>
+<ol class="steps">
+  <li>控制盒還沒存過任何 WiFi 時，會自己開一個熱點，名稱是 <code>TES-Charger-xxxxxx</code>（xxxxxx 是每台不同的編號），<b>沒有密碼</b>。手機的 WiFi 連上它；手機若提示「這個網路沒有網際網路」，選「保持連線」。</li>
+  <li>手機瀏覽器打開 <code>http://192.168.4.1</code>（或 <code>http://tes-charger.local</code>），會看到控制盒的網頁，上方顯示「未連線 · 熱點開著」。</li>
+  <li>往下捲到「⚙ 設定」裡的 WiFi：按「🔍 掃描」，選家裡的 WiFi、輸入密碼，按「＋ 加入這組 WiFi」。舊版韌體是直接填 WiFi 名稱與密碼、儲存後重新啟動（見 <a href="#fw">5.5</a>）。只支援 2.4 GHz 的 WiFi（ESP32-S3 的規格），5 GHz 的網路連不上。</li>
+  <li>控制盒會自己連上家裡的 WiFi。手機切回家裡的 WiFi，打開 <b><code>http://tes-charger.local</code></b> 就回到控制盒的網頁。</li>
+  <li>建議把網頁「加到主畫面」，之後一點就開。</li>
+</ol>
+<ul class="sub">
+  <li>網頁「網路狀態」區塊的「📶 切換手機 WiFi」會直接打開手機的 WiFi 設定，方便在熱點和家裡的 WiFi 之間切換。Android 可用；iPhone 的 Safari 會顯示網址無效，請自己到「設定 › Wi-Fi」切換。</li>
+  <li>WiFi 名稱是中文時，請從掃描清單點選，不要自己打字：有些舊分享器的中文名稱編碼不同，打字會對不上。</li>
+</ul>
+<div class="shots">
+  <figure><img src="img/web_ap_status.png" alt="熱點模式的網頁：WiFi 狀態未連線、熱點開著，IP 192.168.4.1，主機名稱 tes-charger.local" width="734" height="432"><figcaption>步驟 2：連著熱點時，IP 是 192.168.4.1</figcaption></figure>
+  <figure><img src="img/web_wifi_add.png" alt="網頁的 WiFi 設定：掃描、WiFi 名稱、密碼、加入這組 WiFi 按鈕，下方是自動熱點的說明與熱點密碼" width="674" height="796"><figcaption>步驟 3：掃描、選 WiFi、輸入密碼、加入</figcaption></figure>
+  <figure><img src="img/web_home_status.png" alt="連上家裡 WiFi 後的網頁：已連線，IP 192.168.1.23，主機名稱 tes-charger.local" width="734" height="432"><figcaption>步驟 4：已連線，主機名稱就是固定網址</figcaption></figure>
+</div>
+
+<div class="box note">
+  <b class="t">固定網址：tes-charger.local</b>
+  連家裡的 WiFi 時，控制盒的 IP 是分享器（DHCP）分配的，<b>可能會變</b>；所以平常請用固定網址 <code>http://tes-charger.local</code>，IP 變了也連得到，連著熱點時也能用。
+  <ul>
+    <li>打開 <code>tes-charger.local</code> 會先找同一個網路裡的控制盒：<b>只有一台時自動跳進它的控制頁</b>；<b>有兩台以上時會列出所有控制盒</b>（名稱、狀態、電壓、電流），點要看的那一台即可。連不到的那台會顯示「離線」，不影響其他台；「↻ 重新搜尋」重找一次，「本機控制介面 →」直接進你打開的那一台。控制頁左上角的「‹」可以回到這個清單。也可以直接開每台自己的 <code>http://tes-xxxxxx.local</code>（xxxxxx 在螢幕選單「網路」頁的最後一行）。</li>
+    <li>部分 Android 手機打不開 <code>.local</code> 網址，這時改用螢幕選單「網路」頁顯示的 IP，例如 <code>http://192.168.1.23</code>。</li>
+  </ul>
+</div>
+<figure class="shot"><img src="img/web_devices.png" alt="tes-charger.local 的裝置清單：找到 3 台，a1b2c3 與 d4e5f6 待機，e7f8a9 連不到顯示離線" width="726" height="816"><figcaption>家裡有兩台以上時，<code>tes-charger.local</code> 會先列出清單，點一台就進它的控制頁；連不到的那台顯示「離線」（只有一台時直接跳過這頁）</figcaption></figure>
+<!--steps:wifi-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/m_net_ap.png" alt="「網路」：只有熱點時 AP 位址" width="512" height="256"><figcaption>1. 「網路」：只有熱點時 AP 位址</figcaption></figure></div></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_devices.png" alt="裝置清單：點一台進入；連不到的那台顯示「離線」；「↻ 重新搜尋」" width="742" height="832"><figcaption>1. 裝置清單：點一台進入；連不到的那台顯示「離線」；「↻ 重新搜尋」</figcaption></figure></div></div><div class="gcol"><div class="ghead"><b>用手機 App</b><p class="no">見 6.2</p></div></div></div>
+<!--/steps:wifi-->
+<div class="oleds">
+  <figure><img src="img/oled/m_net_sta.png" alt="OLED 選單「設定 > 網路」：IP 192.168.1.23、熱點密碼、tes-a1b2c3" width="512" height="256"><figcaption>長按 SETTING →「網路」：連著 WiFi 時顯示 IP、熱點密碼、本機編號</figcaption></figure>
+  <figure><img src="img/oled/m_net_ap.png" alt="OLED 選單「設定 > 網路」：只有熱點時顯示 AP: 192.168.4.1" width="512" height="256"><figcaption>沒連上 WiFi、只有熱點時顯示 <code>AP: 192.168.4.1</code></figcaption></figure>
+</div>
+<h3>5.4 帶出門、換地方用</h3>
+<ul>
+  <li>控制盒最多記住 <b>5 組 WiFi</b>，開機時自動連訊號最強的那組。到了新地方，用下面的熱點加入當地的 WiFi，下次就會自己連上。</li>
+  <li>開機 30 秒內連不上任何記住的 WiFi，控制盒會自己開熱點 <code>TES-Charger-xxxxxx</code>，<b>這時有密碼</b>，密碼在 OLED 選單「網路 › 熱點密碼」。家裡的 WiFi 回來後，熱點會在沒人連線 30 秒後自己關掉。</li>
+  <li>熱點密碼可以在網頁上改成自己的（8–63 個英數字元，按「修改熱點密碼」）。正開著的熱點會用舊密碼到它下次打開為止。</li>
+  <li>不再用的 WiFi，在「記住的 WiFi」清單裡按那一組旁邊的移除即可，馬上生效；移除目前連著的那組會立刻斷線。加入、移除都不用按「儲存」。</li>
+  <li><b>「連線至 WiFi 路由器」開關：</b>關掉後，控制盒<b>下次開機</b>就只開熱點、不連任何 WiFi（例如帶到沒有 WiFi 的地方長期使用）。記住的 WiFi 不會刪掉，打開開關、重新開機就連回去。關之前網頁會先跳確認；關掉的當下不會斷線。</li>
+</ul>
+<p class="sub">舊版韌體只記得一組 WiFi，連不上時不會自己開熱點。</p>
+<div class="box note">連手機自己的熱點也可以，但手機帶走控制盒就斷線，推播也收不到。固定使用的地方，建議加入當地的 WiFi。</div>
+
+<h3 id="fw">5.5 看韌體版本、線上更新韌體</h3>
+<p>出貨時燒的韌體可能比這份說明書舊。照下面做，就能自己更新到最新版，原本的設定會保留。</p>
+<p><b>看目前的版本（兩種都可以）：</b></p>
+<ul>
+  <li>手機網頁的「🔄 韌體更新」區塊，寫著「目前版本：v3.x.x」。</li>
+  <li>控制盒長按 SETTING 進入選單：新版在「裝置資訊」頁；舊版（英文選單）往下捲到最後的 <code>About</code> 那一行。</li>
+</ul>
+<p><b>舊版韌體連 WiFi：</b>熱點一樣是 <code>TES-Charger-xxxxxx</code>、沒有密碼。手機連上後打開 <code>http://192.168.4.1</code>，在設定裡填入家裡 WiFi 的名稱（SSID）與密碼，儲存後按「🔁 重新啟動控制器」，重新開機後就會連上家裡的 WiFi。</p>
+<p><b>更新：</b></p>
+<ol class="steps">
+  <li>確認<b>沒有在充電</b>，控制盒連著能上網的 WiFi，手機也在同一個 WiFi。</li>
+  <li>打開手機網頁，到「🔄 韌體更新」按「⬆ 更新至最新韌體」，確認。</li>
+  <li>等一兩分鐘，控制盒會自己重新啟動。<b>更新中不要關電源、不要拔線。</b></li>
+  <li>重新整理網頁，看「目前版本」是不是已經變成新版。</li>
+</ol>
+<figure class="shot"><img src="img/web_ota.png" alt="網頁的韌體更新區塊：更新至最新韌體、回到上一版、手動上傳韌體" width="734" height="912"><figcaption>「🔄 韌體更新」區塊</figcaption></figure>
+<p class="sub">更新失敗、或更新後有問題，請拍下畫面私訊我。也可以按「回到上一版」退回原本的版本（見 <a href="#ota">6.15</a>）。</p>
+
+<h2 id="web" class="keep"><span class="n">6</span>功能與設定：用 OLED、網頁、App 操作</h2>
+<p>這一章一項一項說明控制盒的功能和設定：它是做什麼的、有哪些選項、預設值與範圍、改了會怎樣，以及<b>用控制盒螢幕（OLED）、手機網頁、手機 App</b> 各自怎麼操作。有標 <b>Beta</b> 的是還在測試的功能。</p>
+
+<h3 id="how">6.1 三種操作方式與設定怎麼同步</h3>
+<dl class="opts">
+  <dt>控制盒螢幕（OLED）與按鍵</dt>
+  <dd>不用手機也能操作。在待機或充電畫面<b>按住 SETTING 約半秒</b>放開，進入設定選單。START＝往上、STOP＝往下、SETTING＝進入／確認。改完一定要回到最上層選「<b>儲存並離開</b>」才會存；選「取消」全部不存。選單怎麼操作見 <a href="#oled">第 7 章</a>。</dd>
+  <dt>手機網頁</dt>
+  <dd>手機和控制盒在同一個 WiFi，用瀏覽器打開 <code>http://tes-charger.local</code>（見 <a href="#wifi">5.3</a>）。設定都在「<b>⚙ 設定</b>」區塊，螢幕相關的在「<b>🖥 螢幕（OLED）</b>」區塊。</dd>
+  <dt>手機 App（目前只有 Android）</dt>
+  <dd>首頁「充電樁」分頁點控制盒，進入控制盒頁；設定在下面「<b>更多</b>」裡（⚙ 設定、📋 充電紀錄、🖥 螢幕、🔌 CAN 診斷、🔄 韌體與重新啟動、🔧 硬體狀態、📡 遠端監控）。下載與加入控制盒見 <a href="#app">6.2</a>。</dd>
+</dl>
+<p><b>網頁和 App 怎麼存：</b></p>
+<ul>
+  <li><b>開關</b>（例如自動電壓、LuxBeacon、定時充電、自動充電、連線至 WiFi 路由器、允許遠端啟停）<b>一切換就存好</b>。後果不明顯的開關會先跳確認，存失敗會自己切回去。</li>
+  <li><b>要打字或選的值</b>（電壓、電流、停止條件、時間、網址、螢幕設定等）改了之後，網頁底部會出現「x 項設定未儲存」，按「<b>💾 儲存</b>」才會寫進控制盒，按「<b>捨棄</b>」回到控制盒目前的值。App 是設定頁底部的「<b>儲存（x）</b>」與「<b>捨棄</b>」，螢幕頁是「💾 儲存 x 項」。</li>
+  <li>WiFi 的加入、移除和修改熱點密碼，按下去就生效，不用儲存。</li>
+</ul>
+<p><b>三邊會同步：</b>OLED、網頁、App 改的都是<b>控制盒裡的同一份設定</b>，存好之後另外兩邊都看得到。但要注意：</p>
+<ul>
+  <li>網頁只在打開時讀一次設定：別處改過，<b>網頁要重新整理</b>才會顯示新的值。App 重新進入那一頁就會重新讀。</li>
+  <li>OLED 選單在<b>打開的那一刻</b>記下所有設定；選「儲存並離開」時，會把選單裡<b>每一項</b>都寫回去。所以選單開著的時候，別人用網頁或 App 改了充電、自動化、螢幕這幾類的設定，會被選單的「儲存並離開」蓋回去。用 OLED 改設定時，請不要同時用手機改。</li>
+  <li>短按 SETTING 切換 SOC 目標（80→95→100%）是<b>馬上存</b>的，不用進選單。</li>
+</ul>
+
+<h4 id="matrix">功能 × 操作方式總表</h4>
+<p class="sub legend">✓＝可以操作或設定；看＝只能看；—＝不行。</p>
+<div class="tablewrap"><table class="matrix">
+  <tr><th>功能／設定</th><th>OLED</th><th>網頁</th><th>App</th><th>說明</th></tr>
+  <tr><td>開始／停止充電</td><td>✓</td><td>✓</td><td>✓</td><td><a href="#live">6.3</a></td></tr>
+  <tr><td>即時電壓、電流、SOC、剩餘時間</td><td>看</td><td>看</td><td>看</td><td><a href="#live">6.3</a></td></tr>
+  <tr><td>停止條件與目標值</td><td>✓</td><td>✓</td><td>✓</td><td><a href="#stop">6.4</a></td></tr>
+  <tr><td>SOC 目標快速切換（80／95／100%）</td><td>✓</td><td>—</td><td>—</td><td><a href="#stop">6.4</a></td></tr>
+  <tr><td>最大電壓、自動電壓</td><td>✓</td><td>✓</td><td>✓</td><td><a href="#volt">6.5</a></td></tr>
+  <tr><td>最大電流</td><td>✓</td><td>✓</td><td>✓</td><td><a href="#amp">6.6</a></td></tr>
+  <tr><td>定時充電：開關</td><td>✓</td><td>✓</td><td>✓</td><td rowspan="2"><a href="#sched">6.7</a></td></tr>
+  <tr><td>定時充電：時間、到時自動停止</td><td>—</td><td>✓</td><td>✓</td></tr>
+  <tr><td>自動充電</td><td>✓</td><td>✓</td><td>✓</td><td><a href="#auto">6.8</a></td></tr>
+  <tr><td>推播（ntfy／Webhook）</td><td>—</td><td>✓</td><td>✓</td><td rowspan="2"><a href="#push">6.9</a></td></tr>
+  <tr><td>推播到 App 這支手機</td><td>—</td><td>—</td><td>✓</td></tr>
+  <tr><td>記住的 WiFi、熱點密碼、連線至 WiFi 路由器</td><td>看</td><td>✓</td><td>✓</td><td><a href="#wifiset">6.10</a></td></tr>
+  <tr><td>裝置名稱</td><td>—</td><td>✓</td><td>✓</td><td><a href="#name">6.11</a></td></tr>
+  <tr><td>螢幕語言、充電動畫、螢幕保護</td><td>✓</td><td>✓</td><td>✓</td><td><a href="#screen">6.12</a></td></tr>
+  <tr><td>LuxBeacon（綠燈報電量）</td><td>✓</td><td>✓</td><td>✓</td><td><a href="#beacon">6.13</a></td></tr>
+  <tr><td>充電紀錄、曲線、月充電量</td><td>—</td><td>✓</td><td>✓</td><td rowspan="2"><a href="#hist">6.14</a></td></tr>
+  <tr><td>電源效率、電價（電費換算）</td><td>—</td><td>✓</td><td>✓</td></tr>
+  <tr><td>韌體更新、回到上一版、上傳 .bin</td><td>看進度</td><td>✓</td><td>✓</td><td rowspan="2"><a href="#ota">6.15</a></td></tr>
+  <tr><td>重新啟動控制器</td><td>✓</td><td>✓</td><td>✓</td></tr>
+  <tr><td>遠端監控（MQTT）</td><td>—</td><td>✓</td><td>✓</td><td><a href="#mqtt">6.16</a></td></tr>
+  <tr><td>聯明：連線方式</td><td>—</td><td>✓</td><td>✓</td><td rowspan="3"><a href="#psu">6.17</a></td></tr>
+  <tr><td>聯明：無線配對（比對 6 位數）</td><td>確認／取消</td><td>✓</td><td>✓</td></tr>
+  <tr><td>周邊裝置、更新聯明韌體</td><td>看</td><td>✓</td><td>✓</td></tr>
+  <tr><td>復歸故障</td><td>✓</td><td>—</td><td>—</td><td><a href="#led">8.2</a></td></tr>
+  <tr><td>韌體版本、硬體版本、IP、本機編號</td><td>看</td><td>看</td><td>看</td><td><a href="#diag">6.18</a></td></tr>
+  <tr><td>CAN 診斷、硬體狀態</td><td>—</td><td>看</td><td>看</td><td><a href="#diag">6.18</a></td></tr>
+  <tr><td>網頁／App 的介面語言</td><td>—</td><td>✓</td><td>✓</td><td><a href="#lang">6.19</a></td></tr>
+</table></div>
+
+<h3 id="app">6.2 手機 App：下載、加入控制盒</h3>
+<p>海龜電能的手機 App 有網頁的全部功能，另外多了：<b>直接收推播</b>（不用另裝 ntfy，充電中通知列會顯示進度）、<b>自動找控制盒</b>（IP 變了也會自己找回來）、一個 App 管好幾台控制盒、開始充電前多一步確認。</p>
+<p><b>下載：</b>Android 版在海龜電能網站（<a href="https://a950523a.github.io/">a950523a.github.io</a>）。目前沒有 iPhone 版：iPhone 在家用網頁，在外面用網站上的「遠端監控網頁」（<a href="#mqtt">6.16</a>）。</p>
+<ol class="steps">
+  <li>先照 <a href="#wifi">5.3</a> 讓控制盒連上家裡的 WiFi，手機也連同一個 WiFi。</li>
+  <li>打開 App，在「充電樁」分頁按右上角的「＋」或「新增裝置」。App 會自動搜尋同一個 WiFi 裡的控制盒，找到了點一下就加入。</li>
+  <li>搜尋不到時，在「手動輸入位址」填 <code>tes-xxxxxx.local</code> 或螢幕選單「網路」頁的 IP，按「連線」。</li>
+  <li>首頁會列出每台控制盒的狀態；點一台進入控制盒頁。</li>
+</ol>
+<!--steps:app-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><p class="no">—</p></div></div><div class="gcol"><div class="ghead"><b>用網頁</b><p class="no">—</p></div></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_home_add.png" alt="首頁「充電樁」分頁：右上角「＋」新增裝置" width="750" height="1080"><figcaption>1. 首頁「充電樁」分頁：右上角「＋」新增裝置</figcaption></figure></div><figure><img src="img/app/a_add_manual.png" alt="「新增裝置」：搜尋不到時在「手動輸入位址」填位址，按「連線」" width="750" height="929"><figcaption>2. 「新增裝置」：搜尋不到時在「手動輸入位址」填位址，按「連線」</figcaption></figure><figure><img src="img/app/a_more_cfg.png" alt="「更多」→「⚙ 設定」" width="750" height="1208"><figcaption>3. 「更多」→「⚙ 設定」</figcaption></figure></div></div>
+<!--/steps:app-->
+<ul>
+  <li>手機連不到控制盒時，控制盒頁會直接告訴你它的熱點名稱與密碼；手機連上那個熱點，App 會自己找回控制盒。</li>
+</ul>
+<div class="shots">
+  <figure><img src="img/app_add.png" alt="App 的新增裝置頁：附近的裝置、重新搜尋、手動輸入 IP 或主機名稱、連線" width="750" height="967"><figcaption>新增裝置：自動搜尋，或手動輸入位址</figcaption></figure>
+  <figure><img src="img/app_home.png" alt="App 首頁：充電樁清單，顯示控制盒名稱、充電中、電壓、電流、SOC" width="750" height="501"><figcaption>首頁：每台控制盒的狀態</figcaption></figure>
+  <figure><img src="img/app_more.png" alt="App 控制盒頁的「更多」：設定、充電紀錄、螢幕、CAN 診斷、韌體與重新啟動、硬體狀態、遠端監控" width="750" height="1048"><figcaption>控制盒頁的「更多」：各項設定都從這裡進去</figcaption></figure>
+</div>
+
+<h3 id="live">6.3 開始與停止充電、即時數值</h3>
+<p>控制盒會顯示目前狀態、輸出電壓與電流、即時功率、車子回報的電量（SOC）與目標、預估剩餘時間、這次充入的電量（kWh；網頁與 App 下面小字是 Ah）。開始充電前<b>槍要先插好</b>；達到停止條件、車子自己喊停、或你按停止，都會結束。</p>
+<ul>
+  <li>控制盒本身<b>不量電流</b>：接一般旋鈕電源時，顯示的電流就是「最大電流」的設定值，充入電量也是用它估算的（見 <a href="#current">第 9 章</a>）。接聯明時顯示實際電流（<a href="#psu">6.17</a>）。</li>
+  <li>交握中（「連線中」「準備充電」）按停止會直接取消。</li>
+  <li>韌體更新中不能開始充電。</li>
+  <li>開著「自動電壓」時，量到電源電壓超過控制盒能量的範圍，網頁狀態下方會出現橘色提示、OLED 底行顯示「!電源過高」，請把電源調低（<a href="#led">8.2</a>）。</li>
+  <li>故障時，網頁與 App 會用文字說明發生什麼事、為什麼、該怎麼辦；車子充完送出的「車輛緊急停止」用琥珀色顯示，代表不一定是壞事。</li>
+</ul>
+<div class="ops">
+  <div><b>用 OLED</b><ol><li>待機畫面按 <b>START</b> 開始充電。</li><li>充電中按 <b>STOP</b> 停止。</li><li>故障畫面按 START 重試。</li></ol><p class="sub">選單開著時 START／STOP 是上下移動，不會開始或停止充電；先離開選單。</p></div>
+  <div><b>用網頁</b><ol><li>網頁最上面看即時數值。</li><li>按「<b>▶ 開始充電</b>」或「<b>◼ 停止充電</b>」。</li></ol></div>
+  <div><b>用手機 App</b><ol><li>控制盒頁最上面看即時數值。</li><li>按「<b>▶ 開始充電</b>」，再按確認（App 多一步確認，避免誤按）。</li><li>按「<b>◼ 停止充電</b>」直接停止。</li></ol><p class="sub">在外面用遠端監控時是「▶ 遠端開始」「◼ 遠端停止」（<a href="#mqtt">6.16</a>）。</p></div>
+</div>
+<!--steps:live-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/st_standby.png" alt="待機中（停止條件 SOC，目標 80%）" width="512" height="256"><figcaption>1. 待機中（停止條件 SOC，目標 80%）</figcaption></figure></div><figure><img class="oled" src="img/oled/st_connecting.png" alt="連線中（跟車子交握）" width="512" height="256"><figcaption>2. 連線中（跟車子交握）</figcaption></figure><figure><img class="oled" src="img/oled/st_precharge.png" alt="準備充電" width="512" height="256"><figcaption>3. 準備充電</figcaption></figure><figure><img class="oled" src="img/oled/st_charging_soc.png" alt="充電中：停止條件 SOC" width="512" height="256"><figcaption>4. 充電中：停止條件 SOC</figcaption></figure><figure><img class="oled" src="img/oled/st_ending.png" alt="結束中" width="512" height="256"><figcaption>5. 結束中</figcaption></figure><figure><img class="oled" src="img/oled/st_finalize.png" alt="收尾中" width="512" height="256"><figcaption>6. 收尾中</figcaption></figure><figure><img class="oled" src="img/oled/st_done.png" alt="充電完成（一分鐘或按任意鍵返回）" width="512" height="256"><figcaption>7. 充電完成（一分鐘或按任意鍵返回）</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_start.png" alt="「▶ 開始充電」" width="750" height="886"><figcaption>1. 「▶ 開始充電」</figcaption></figure></div><figure><img src="img/web/w_stop.png" alt="「◼ 停止充電」" width="750" height="886"><figcaption>2. 「◼ 停止充電」</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_start.png" alt="控制盒頁：「▶ 開始充電」（會再問一次確認）" width="750" height="803"><figcaption>1. 控制盒頁：「▶ 開始充電」（會再問一次確認）</figcaption></figure></div><figure><img src="img/app/a_stop.png" alt="「◼ 停止充電」" width="750" height="803"><figcaption>2. 「◼ 停止充電」</figcaption></figure><p class="no">缺圖：開始充電的確認視窗（App 網頁版不會跳出 Alert，截不到）</p></div></div>
+<!--/steps:live-->
+<div class="shots">
+  <figure><img src="img/web_live.png" alt="網頁最上面：充電中、輸出電壓 84.3 V、輸出電流 10.0 A、即時功率、累積電量、SOC、剩餘時間，以及開始充電、停止充電按鈕" width="734" height="870"><figcaption>網頁：即時數值與開始／停止（示意數值）</figcaption></figure>
+  <figure><img src="img/app_device.png" alt="App 的控制盒頁：充電中、輸出電壓、輸出電流、功率、累積電量、SOC、剩餘時間、開始與停止充電" width="750" height="849"><figcaption>App：控制盒頁</figcaption></figure>
+</div>
+
+<h3 id="stop">6.4 充到哪裡停（停止條件）</h3>
+<p>決定這次充電什麼時候自動結束。不管選哪一種，車子的 BMS 認為充飽了一樣會停，不會超過車輛允許的範圍。四種只能選一種：</p>
+<div class="tablewrap"><table>
+  <tr><th>停止條件</th><th>什麼時候停</th><th>目標值的範圍</th><th>預設</th><th>OLED 每按一下（短按／長按）</th></tr>
+  <tr><td><b>SOC</b>（預設）</td><td>車子回報的電量到目標就停，例如只充到 80% 顧電池</td><td>20–100%</td><td>80%</td><td>±1%／±5%</td></tr>
+  <tr><td><b>電壓</b></td><td>輸出電壓到停止電壓就停</td><td>40–120 V（上限依板子而定）</td><td>100.0 V</td><td>±0.1 V／±1 V</td></tr>
+  <tr><td><b>時間</b></td><td>充滿設定的分鐘數就停</td><td>1–600 分鐘</td><td>120 分鐘</td><td>±10 分／±30 分</td></tr>
+  <tr><td><b>電量</b></td><td>這次充入的電量到目標就停</td><td>0.1–20 kWh</td><td>1.0 kWh</td><td>±0.1 kWh／±1 kWh</td></tr>
+</table></div>
+<ul>
+  <li><b>電量</b>：接旋鈕電源時是用「最大電流」設定估算的，電池快滿時車子降電流、估算偏高，所以<b>可能提早停、不會延後</b>。螢幕上數字前的 <code>~</code> 就是表示估算。</li>
+  <li><b>電壓</b>：「停止電壓」是充到幾伏停；它跟「最大電壓」（<a href="#volt">6.5</a>）是兩回事。</li>
+  <li>四種目標值是分開存的：換停止條件不會改掉其他種的目標值。</li>
+  <li><b>SOC 快速切換</b>（只有 OLED）：待機或充電畫面短按 SETTING，SOC 目標依 80% → 95% → 100% → 80% 輪流切換，<b>馬上存</b>；目前的目標不是這三個數字時，會先跳到 80%。停止條件選其他種時不影響。</li>
+  <li>選的停止條件不同，螢幕顯示的重點也不同：</li>
+</ul>
+<div class="tablewrap"><table>
+  <tr><th>停止條件</th><th>OLED 第二行</th><th>OLED 第三行</th></tr>
+  <tr><td>SOC</td><td><code>84.3V  10.0A</code></td><td><code>SOC:72/95%</code>（現在／目標）＋剩餘時間</td></tr>
+  <tr><td>電壓</td><td><code>84.3V/100.0V</code>（現在／停止電壓）</td><td><code>SOC:72%</code>（參考）＋剩餘時間</td></tr>
+  <tr><td>時間</td><td><code>84.3V  10.0A</code></td><td><code>SOC:72%</code>＋<code>83m/120m</code>（已充／設定）</td></tr>
+  <tr><td>電量</td><td><code>84.3V  10.0A</code></td><td><code>0.85/1.5kWh</code>（已充入／目標）＋剩餘時間</td></tr>
+</table></div>
+<div class="ops">
+  <div><b>用 OLED</b><ol>
+    <li>按住 SETTING 約半秒，進入「設定」。</li>
+    <li>選「充電 &gt;」（START／STOP 移動，SETTING 進入）。</li>
+    <li>移到「停止條件: SOC」，按 SETTING 進入調整（標題變成「&lt; 調整數值 &gt;」）。</li>
+    <li>按 START 或 STOP 換下一種：SOC → 電壓 → 時間 → 電量 → SOC。按 SETTING 確認。</li>
+    <li>按 STOP 移到下一行的目標值（「目標SOC」「停止電壓」「充電時長」或「目標電量」，只會出現選的那一種），按 SETTING 進入，START 加、STOP 減（按住會連續快速加減），再按 SETTING 確認。</li>
+    <li>按住 SETTING 回到最上層，移到「儲存並離開」按 SETTING。</li>
+  </ol></div>
+  <div><b>用網頁</b><ol>
+    <li>「⚙ 設定」→「充電停止條件」選「依 SOC 停止」「依電壓停止」「依時間停止」或「依充入電量停止」。</li>
+    <li>下面出現對應的欄位：「目標 SOC (%)」「充電停止電壓 (V)」「充電時長上限（分鐘…）」或「充入電量目標（kWh，0.1–20）」，填數字。</li>
+    <li>按底部的「💾 儲存」。</li>
+  </ol></div>
+  <div><b>用手機 App</b><ol>
+    <li>控制盒頁 →「更多」→「⚙ 設定」→「充電」。</li>
+    <li>「充電停止條件」點「依 SOC」「依電壓」「依時間」或「依電量」。</li>
+    <li>填下面出現的「目標 SOC」「充電停止電壓」「充電時長上限」或「充入電量目標」。</li>
+    <li>按底部的「儲存」。</li>
+  </ol></div>
+</div>
+<!--steps:stop-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/m_top_0.png" alt="長按 SETTING：設定最上層，游標在「充電 &gt;」" width="512" height="256"><figcaption>1. 長按 SETTING：設定最上層，游標在「充電 &gt;」</figcaption></figure></div><figure><img class="oled" src="img/oled/m_charge_1.png" alt="按 SETTING 進「充電」：游標在第一個設定" width="512" height="256"><figcaption>2. 按 SETTING 進「充電」：游標在第一個設定</figcaption></figure><figure><img class="oled" src="img/oled/m_stop_sel.png" alt="選到「停止條件: SOC」，下一行是「目標SOC」" width="512" height="256"><figcaption>3. 選到「停止條件: SOC」，下一行是「目標SOC」</figcaption></figure><figure><img class="oled" src="img/oled/m_stop_edit.png" alt="按 SETTING：調整數值" width="512" height="256"><figcaption>4. 按 SETTING：調整數值</figcaption></figure><figure><img class="oled" src="img/oled/m_stop_volt.png" alt="按 START：換成「電壓」" width="512" height="256"><figcaption>5. 按 START：換成「電壓」</figcaption></figure><figure><img class="oled" src="img/oled/m_stop_timer.png" alt="再按 START：「時間」" width="512" height="256"><figcaption>6. 再按 START：「時間」</figcaption></figure><figure><img class="oled" src="img/oled/m_stop_kwh.png" alt="再按 START：「電量」" width="512" height="256"><figcaption>7. 再按 START：「電量」</figcaption></figure><figure><img class="oled" src="img/oled/m_stop_soc.png" alt="再按 START：回到「SOC」" width="512" height="256"><figcaption>8. 再按 START：回到「SOC」</figcaption></figure><figure><img class="oled" src="img/oled/m_stop_done.png" alt="按 SETTING 確認" width="512" height="256"><figcaption>9. 按 SETTING 確認</figcaption></figure><figure><img class="oled" src="img/oled/m_soc_sel.png" alt="按 STOP 移到「目標SOC: 80%」" width="512" height="256"><figcaption>10. 按 STOP 移到「目標SOC: 80%」</figcaption></figure><figure><img class="oled" src="img/oled/m_soc_up1.png" alt="SETTING 進入後短按 START：+1%" width="512" height="256"><figcaption>11. SETTING 進入後短按 START：+1%</figcaption></figure><figure><img class="oled" src="img/oled/m_soc_up5.png" alt="按住 START：每 0.1 秒 +5%" width="512" height="256"><figcaption>12. 按住 START：每 0.1 秒 +5%</figcaption></figure><figure><img class="oled" src="img/oled/m_soc_done.png" alt="按 SETTING 確認" width="512" height="256"><figcaption>13. 按 SETTING 確認</figcaption></figure><figure><img class="oled" src="img/oled/m_stopv_sel.png" alt="停止條件＝電壓時：「停止電壓: 100.0V」" width="512" height="256"><figcaption>14. 停止條件＝電壓時：「停止電壓: 100.0V」</figcaption></figure><figure><img class="oled" src="img/oled/m_stopv_edit.png" alt="SETTING 進入後按住 STOP：每 0.1 秒 -1 V" width="512" height="256"><figcaption>15. SETTING 進入後按住 STOP：每 0.1 秒 -1 V</figcaption></figure><figure><img class="oled" src="img/oled/m_timer_sel.png" alt="停止條件＝時間時：「充電時長: 120分」" width="512" height="256"><figcaption>16. 停止條件＝時間時：「充電時長: 120分」</figcaption></figure><figure><img class="oled" src="img/oled/m_timer_edit.png" alt="SETTING 進入後短按 START：+10 分（按住 +30 分）" width="512" height="256"><figcaption>17. SETTING 進入後短按 START：+10 分（按住 +30 分）</figcaption></figure><figure><img class="oled" src="img/oled/m_kwh_sel.png" alt="停止條件＝電量時：「目標電量: 1.0kWh」" width="512" height="256"><figcaption>18. 停止條件＝電量時：「目標電量: 1.0kWh」</figcaption></figure><figure><img class="oled" src="img/oled/m_kwh_edit.png" alt="SETTING 進入後短按 START：+0.1 kWh（按住 +1 kWh）" width="512" height="256"><figcaption>19. SETTING 進入後短按 START：+0.1 kWh（按住 +1 kWh）</figcaption></figure><figure><img class="oled" src="img/oled/m_save_before.png" alt="例：把「目標SOC」改成 85%（還沒存）" width="512" height="256"><figcaption>20. 例：把「目標SOC」改成 85%（還沒存）</figcaption></figure><figure><img class="oled" src="img/oled/m_save_sel.png" alt="長按 SETTING 回最上層，移到「儲存並離開」" width="512" height="256"><figcaption>21. 長按 SETTING 回最上層，移到「儲存並離開」</figcaption></figure><figure><img class="oled" src="img/oled/m_saved.png" alt="按 SETTING：存好，回到待機畫面（SOC 目標變成 85%）" width="512" height="256"><figcaption>22. 按 SETTING：存好，回到待機畫面（SOC 目標變成 85%）</figcaption></figure><figure><img class="oled" src="img/oled/q_soc_95.png" alt="待機畫面短按 SETTING：目標 SOC 80% → 95%（馬上存）" width="512" height="256"><figcaption>23. 待機畫面短按 SETTING：目標 SOC 80% → 95%（馬上存）</figcaption></figure><figure><img class="oled" src="img/oled/q_soc_100.png" alt="再按：95% → 100%" width="512" height="256"><figcaption>24. 再按：95% → 100%</figcaption></figure><figure><img class="oled" src="img/oled/q_soc_80.png" alt="再按：100% → 80%" width="512" height="256"><figcaption>25. 再按：100% → 80%</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_stop_mode.png" alt="「充電停止條件」選一種" width="690" height="684"><figcaption>1. 「充電停止條件」選一種</figcaption></figure></div><figure><img src="img/web/w_stop_soc.png" alt="依 SOC：填「目標 SOC (%)」" width="690" height="684"><figcaption>2. 依 SOC：填「目標 SOC (%)」</figcaption></figure><figure><img src="img/web/w_stop_volt.png" alt="點「依電壓停止」：填「充電停止電壓 (V)」" width="690" height="348"><figcaption>3. 點「依電壓停止」：填「充電停止電壓 (V)」</figcaption></figure><figure><img src="img/web/w_stop_timer.png" alt="點「依時間停止」：填「充電時長上限（分鐘）」" width="690" height="348"><figcaption>4. 點「依時間停止」：填「充電時長上限（分鐘）」</figcaption></figure><figure><img src="img/web/w_stop_kwh.png" alt="點「依充入電量停止」：填「充入電量目標（kWh）」" width="690" height="464"><figcaption>5. 點「依充入電量停止」：填「充入電量目標（kWh）」</figcaption></figure><figure><img src="img/web/w_save_bar.png" alt="改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）" width="750" height="154"><figcaption>6. 改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_more_cfg.png" alt="「更多」→「⚙ 設定」" width="750" height="1208"><figcaption>1. 「更多」→「⚙ 設定」</figcaption></figure></div><figure><img src="img/app/a_stop_mode.png" alt="「充電停止條件」點一種" width="750" height="1178"><figcaption>2. 「充電停止條件」點一種</figcaption></figure><figure><img src="img/app/a_stop_soc.png" alt="依 SOC：「目標 SOC」" width="750" height="1178"><figcaption>3. 依 SOC：「目標 SOC」</figcaption></figure><figure><img src="img/app/a_stop_volt.png" alt="點「依電壓」：「充電停止電壓」" width="750" height="1178"><figcaption>4. 點「依電壓」：「充電停止電壓」</figcaption></figure><figure><img src="img/app/a_stop_timer.png" alt="點「依時間」：「充電時長上限」" width="750" height="1178"><figcaption>5. 點「依時間」：「充電時長上限」</figcaption></figure><figure><img src="img/app/a_stop_kwh.png" alt="點「依電量」：「充入電量目標」" width="750" height="1246"><figcaption>6. 點「依電量」：「充入電量目標」</figcaption></figure><figure><img src="img/app/a_save.png" alt="改了數值後，右上角「儲存（n）」；左邊「捨棄」放棄" width="750" height="280"><figcaption>7. 改了數值後，右上角「儲存（n）」；左邊「捨棄」放棄</figcaption></figure></div></div>
+<!--/steps:stop-->
+<div class="oleds">
+  <figure><img src="img/oled/m_stop_sel.png" alt="OLED 選單「設定 > 充電」：停止條件: SOC 反白，下一行目標SOC: 80%" width="512" height="256"><figcaption>OLED：「充電」頁的停止條件與目標值</figcaption></figure>
+</div>
+<div class="shots">
+  <figure><img src="img/app_cfg_charge.png" alt="App 設定頁的充電區塊：裝置名稱、自動設定電壓上限、電壓安全上限、最大電流、充電停止條件、目標 SOC" width="750" height="1470"><figcaption>App：「⚙ 設定」的「充電」（也是 6.5、6.6、6.11 的設定）</figcaption></figure>
+</div>
+
+<h3 id="volt">6.5 最大電壓與自動電壓</h3>
+<p><b>最大電壓</b>是告訴車子「電源最高會到幾伏」。車子拿它當自己的<b>過壓保護門檻</b>，而且車子要求的電壓比它高時會停止充電（「電源電壓不夠高」）。所以它要<b>跟電源實際輸出的電壓一致</b>；它不是「充到幾伏停」（那是 <a href="#stop">6.4</a> 的停止電壓）。</p>
+<dl class="opts">
+  <dt>最大電壓</dt><dd>預設 100.0 V，範圍 40–120 V（上限依板子而定，到了就停，網頁與 App 填超過會自動改成上限）。OLED 短按 ±0.1 V、長按 ±1 V。</dd>
+  <dt>自動設定電壓上限（自動電壓）</dt><dd>預設<b>關</b>。打開後，控制盒每次開機會花幾秒（最多 10 秒）量電源電壓，等它穩定後拿量到的值當最大電壓；待機時電源調高，它也會跟著往上（不會往下）；<b>充電中不會變</b>。開著時，最大電壓這一格的名稱會變成「電壓上限」（OLED）／「電壓安全上限」（網頁、App），顯示的是目前在用的值；你填的值只有在開機量不到可用的電壓時（例如電源電壓超過控制盒能量的範圍）才會用。開機時螢幕會顯示「偵測電壓」的動畫。</dd>
+</dl>
+<div class="box warn">不清楚電源輸出幾伏時，不要亂改最大電壓。設太高會讓車子的過壓保護變鬆；設太低，車子要的電壓比它高就會充不了。</div>
+<div class="ops">
+  <div><b>用 OLED</b><ol>
+    <li>按住 SETTING 約半秒 → 選「充電 &gt;」。</li>
+    <li>自動電壓：移到「自動電壓: 關」，按 SETTING 進入，按 START 或 STOP 切換開／關，再按 SETTING 確認。</li>
+    <li>最大電壓：移到「最大電壓: 100.0V」（自動電壓開著時叫「電壓上限」），按 SETTING，START 加、STOP 減，再按 SETTING。</li>
+    <li>按住 SETTING 回最上層 →「儲存並離開」。</li>
+  </ol></div>
+  <div><b>用網頁</b><ol>
+    <li>「⚙ 設定」→「自動設定電壓上限（依開機 ADC 量測）」開關：一切換就存。</li>
+    <li>「最大電壓 (V)」（自動電壓開著時叫「電壓安全上限 (V)」）填數字。</li>
+    <li>按底部「💾 儲存」。</li>
+  </ol></div>
+  <div><b>用手機 App</b><ol>
+    <li>「更多」→「⚙ 設定」→「充電」。</li>
+    <li>「自動設定電壓上限」開關：一切換就存。</li>
+    <li>「最大電壓」（或「電壓安全上限」）填數字，按「儲存」。</li>
+  </ol></div>
+</div>
+<!--steps:volt-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/m_autov_sel.png" alt="選到「自動電壓: 關」" width="512" height="256"><figcaption>1. 選到「自動電壓: 關」</figcaption></figure></div><figure><img class="oled" src="img/oled/m_autov_edit.png" alt="按 SETTING：調整數值" width="512" height="256"><figcaption>2. 按 SETTING：調整數值</figcaption></figure><figure><img class="oled" src="img/oled/m_autov_on.png" alt="按 START：切成「開」（最大電壓改叫「電壓上限」）" width="512" height="256"><figcaption>3. 按 START：切成「開」（最大電壓改叫「電壓上限」）</figcaption></figure><figure><img class="oled" src="img/oled/m_autov_done.png" alt="按 SETTING 確認，回到移動模式" width="512" height="256"><figcaption>4. 按 SETTING 確認，回到移動模式</figcaption></figure><figure><img class="oled" src="img/oled/m_maxv_sel.png" alt="選到「最大電壓: 100.0V」" width="512" height="256"><figcaption>5. 選到「最大電壓: 100.0V」</figcaption></figure><figure><img class="oled" src="img/oled/m_maxv_edit.png" alt="按 SETTING：調整數值" width="512" height="256"><figcaption>6. 按 SETTING：調整數值</figcaption></figure><figure><img class="oled" src="img/oled/m_maxv_up1.png" alt="短按 START：+0.1 V" width="512" height="256"><figcaption>7. 短按 START：+0.1 V</figcaption></figure><figure><img class="oled" src="img/oled/m_maxv_up10.png" alt="按住 START：每 0.1 秒 +1 V" width="512" height="256"><figcaption>8. 按住 START：每 0.1 秒 +1 V</figcaption></figure><figure><img class="oled" src="img/oled/m_maxv_down1.png" alt="短按 STOP：-0.1 V" width="512" height="256"><figcaption>9. 短按 STOP：-0.1 V</figcaption></figure><figure><img class="oled" src="img/oled/m_maxv_done.png" alt="按 SETTING 確認" width="512" height="256"><figcaption>10. 按 SETTING 確認</figcaption></figure><figure><img class="oled" src="img/oled/m_save_sel.png" alt="長按 SETTING 回最上層，移到「儲存並離開」" width="512" height="256"><figcaption>11. 長按 SETTING 回最上層，移到「儲存並離開」</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_autov.png" alt="「⚙ 設定」→「自動設定電壓上限」開關（一切換就存）" width="690" height="684"><figcaption>1. 「⚙ 設定」→「自動設定電壓上限」開關（一切換就存）</figcaption></figure></div><figure><img src="img/web/w_maxv.png" alt="「最大電壓 (V)」（自動電壓開著時叫「電壓安全上限 (V)」）" width="690" height="684"><figcaption>2. 「最大電壓 (V)」（自動電壓開著時叫「電壓安全上限 (V)」）</figcaption></figure><figure><img src="img/web/w_save_bar.png" alt="改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）" width="750" height="154"><figcaption>3. 改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_autov.png" alt="「充電」→「自動設定電壓上限」開關（一切換就存）" width="750" height="1178"><figcaption>1. 「充電」→「自動設定電壓上限」開關（一切換就存）</figcaption></figure></div><figure><img src="img/app/a_maxv.png" alt="「電壓安全上限」（自動電壓關著時叫「最大電壓」）" width="750" height="1178"><figcaption>2. 「電壓安全上限」（自動電壓關著時叫「最大電壓」）</figcaption></figure><figure><img src="img/app/a_save.png" alt="改了數值後，右上角「儲存（n）」；左邊「捨棄」放棄" width="750" height="280"><figcaption>3. 改了數值後，右上角「儲存（n）」；左邊「捨棄」放棄</figcaption></figure></div></div>
+<!--/steps:volt-->
+<figure class="shot"><img src="img/web_current.png" alt="網頁「⚙ 設定」：自動設定電壓上限開關、電壓安全上限、最大電流 (A)" width="674" height="348"><figcaption>網頁：自動電壓、最大電壓與最大電流</figcaption></figure>
+
+<h3 id="amp">6.6 最大電流</h3>
+<p>告訴車子「電源最多能給幾安培」。控制盒會把它送給車子，接旋鈕電源時也拿它當顯示的電流和估算電量的依據。</p>
+<dl class="opts">
+  <dt>範圍與預設</dt><dd>預設（出廠）10.0 A，範圍 1.0–100.0 A；接聯明時最多到電源的額定電流（填超過會自動改成上限）。OLED 短按 ±0.1 A、長按 ±1 A。</dd>
+  <dt>一定要知道</dt><dd>接一般旋鈕電源時，改這個設定<b>不會</b>改變實際電流，實際電流是電源上的旋鈕決定的。設定要<b>跟旋鈕實際調的電流一樣</b>，要改就兩邊一起改（詳見 <a href="#current">第 9 章</a>）。超過 15 A 時不能用自動充電（<a href="#auto">6.8</a>）。</dd>
+</dl>
+<div class="ops">
+  <div><b>用 OLED</b><ol>
+    <li>按住 SETTING 約半秒 → 選「充電 &gt;」→ 移到「最大電流: 10.0A」。</li>
+    <li>按 SETTING 進入，START 加、STOP 減（按住連續加減），按 SETTING 確認。</li>
+    <li>按住 SETTING 回最上層 →「儲存並離開」。</li>
+  </ol></div>
+  <div><b>用網頁</b><ol><li>「⚙ 設定」→「最大電流 (A)」填數字。</li><li>按底部「💾 儲存」。</li></ol></div>
+  <div><b>用手機 App</b><ol><li>「更多」→「⚙ 設定」→「充電」→「最大電流」。</li><li>按「儲存」。</li></ol></div>
+</div>
+<!--steps:amp-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/m_maxa_sel.png" alt="選到「最大電流: 10.0A」" width="512" height="256"><figcaption>1. 選到「最大電流: 10.0A」</figcaption></figure></div><figure><img class="oled" src="img/oled/m_maxa_edit.png" alt="按 SETTING：調整數值" width="512" height="256"><figcaption>2. 按 SETTING：調整數值</figcaption></figure><figure><img class="oled" src="img/oled/m_maxa_up.png" alt="按住 START：每 0.1 秒 +1 A（這裡到 12.0 A）" width="512" height="256"><figcaption>3. 按住 START：每 0.1 秒 +1 A（這裡到 12.0 A）</figcaption></figure><figure><img class="oled" src="img/oled/m_maxa_done.png" alt="按 SETTING 確認" width="512" height="256"><figcaption>4. 按 SETTING 確認</figcaption></figure><figure><img class="oled" src="img/oled/m_save_sel.png" alt="長按 SETTING 回最上層，移到「儲存並離開」" width="512" height="256"><figcaption>5. 長按 SETTING 回最上層，移到「儲存並離開」</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_maxa.png" alt="「最大電流 (A)」" width="690" height="684"><figcaption>1. 「最大電流 (A)」</figcaption></figure></div><figure><img src="img/web/w_save_bar.png" alt="改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）" width="750" height="154"><figcaption>2. 改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_maxa.png" alt="「最大電流」" width="750" height="1178"><figcaption>1. 「最大電流」</figcaption></figure></div><figure><img src="img/app/a_save.png" alt="改了數值後，右上角「儲存（n）」；左邊「捨棄」放棄" width="750" height="280"><figcaption>2. 改了數值後，右上角「儲存（n）」；左邊「捨棄」放棄</figcaption></figure></div></div>
+<!--/steps:amp-->
+<div class="oleds">
+  <figure><img src="img/oled/m_maxa_sel.png" alt="OLED 選單「設定 > 充電」：< 返回、自動電壓: 關、最大電壓: 100.0V、最大電流: 10.0A 反白" width="512" height="256"><figcaption>OLED：選到「最大電流」</figcaption></figure>
+  <figure><img src="img/oled/m_maxa_up.png" alt="OLED 調整數值畫面：標題 < 調整數值 >，最大電流: 12.0A 反白" width="512" height="256"><figcaption>按 SETTING 進入調整：標題變成「&lt; 調整數值 &gt;」</figcaption></figure>
+</div>
+
+<h3 id="sched">6.7 定時充電（Beta）</h3>
+<p>每天在設定的時間自動開始、（可選）自動結束，例如離峰時段 23:00–06:00（可以跨夜）。還在測試中，使用時請留意有沒有照時間開始與結束。</p>
+<dl class="opts">
+  <dt>啟用定時充電</dt><dd>預設關。</dd>
+  <dt>開始充電時間／結束充電時間</dt><dd>預設 00:00／06:00，時區固定台灣時間（UTC+8）。<b>只能用網頁或 App 設定</b>，OLED 只有開關。</dd>
+  <dt>到時自動停止充電</dt><dd>預設關。沒勾時，結束時間不會停，就照停止條件充完。</dd>
+  <dt>注意</dt><dd>時間靠網路校時，控制盒要<b>連著能上網的 WiFi</b>；網頁設定區的「NTP」那行顯示「已同步」並附上時間才算好，「等待同步」時排程不會動作。槍要先插好。控制盒開機後第一次對到時，如果當下已在時段內，會馬上開始充電。</dd>
+</dl>
+<div class="ops">
+  <div><b>用 OLED</b><ol>
+    <li>按住 SETTING 約半秒 → 選「自動化 &gt;」→「[Beta]定時充電: 關」。</li>
+    <li>按 SETTING，START 或 STOP 切換開／關，按 SETTING。</li>
+    <li>回最上層「儲存並離開」。</li>
+  </ol><p class="sub">時間只能在網頁或 App 設。</p></div>
+  <div><b>用網頁</b><ol>
+    <li>「⚙ 設定」→「⏰ 定時充電」。</li>
+    <li>「啟用定時充電」「到時自動停止充電」是開關，一切換就存。</li>
+    <li>「開始充電時間」「結束充電時間」選好後按底部「💾 儲存」。</li>
+  </ol></div>
+  <div><b>用手機 App</b><ol>
+    <li>「更多」→「⚙ 設定」→「定時充電（Beta）」。</li>
+    <li>「啟用定時充電」「到時自動停止充電」開關一切換就存。</li>
+    <li>填「開始充電時間」「結束充電時間」，按「儲存」。</li>
+  </ol></div>
+</div>
+<!--steps:sched-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/m_top_1.png" alt="按 STOP 往下：「自動化 &gt;」" width="512" height="256"><figcaption>1. 按 STOP 往下：「自動化 &gt;」</figcaption></figure></div><figure><img class="oled" src="img/oled/m_sched_sel.png" alt="「自動化」：選到「[Beta]定時充電: 關」" width="512" height="256"><figcaption>2. 「自動化」：選到「[Beta]定時充電: 關」</figcaption></figure><figure><img class="oled" src="img/oled/m_sched_on.png" alt="SETTING 進入、START 切成「開」" width="512" height="256"><figcaption>3. SETTING 進入、START 切成「開」</figcaption></figure><figure><img class="oled" src="img/oled/m_save_sel.png" alt="長按 SETTING 回最上層，移到「儲存並離開」" width="512" height="256"><figcaption>4. 長按 SETTING 回最上層，移到「儲存並離開」</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_sched_en.png" alt="「⏰ 定時充電」→「啟用定時充電」（一切換就存）" width="690" height="636"><figcaption>1. 「⏰ 定時充電」→「啟用定時充電」（一切換就存）</figcaption></figure></div><figure><img src="img/web/w_sched_times.png" alt="「開始充電時間」「結束充電時間」，改完按「💾 儲存」" width="690" height="636"><figcaption>2. 「開始充電時間」「結束充電時間」，改完按「💾 儲存」</figcaption></figure><figure><img src="img/web/w_sched_stop.png" alt="「到時自動停止充電」（一切換就存）" width="690" height="636"><figcaption>3. 「到時自動停止充電」（一切換就存）</figcaption></figure><figure><img src="img/web/w_ntp.png" alt="「NTP：已同步」才會照時間動作" width="690" height="636"><figcaption>4. 「NTP：已同步」才會照時間動作</figcaption></figure><figure><img src="img/web/w_save_bar.png" alt="改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）" width="750" height="154"><figcaption>5. 改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_sched_en.png" alt="「定時充電（Beta）」→「啟用定時充電」" width="750" height="884"><figcaption>1. 「定時充電（Beta）」→「啟用定時充電」</figcaption></figure></div><figure><img src="img/app/a_sched_times.png" alt="「開始充電時間」「結束充電時間」" width="750" height="884"><figcaption>2. 「開始充電時間」「結束充電時間」</figcaption></figure><figure><img src="img/app/a_sched_stop.png" alt="「到時自動停止充電」" width="750" height="884"><figcaption>3. 「到時自動停止充電」</figcaption></figure><figure><img src="img/app/a_save.png" alt="改了數值後，右上角「儲存（n）」；左邊「捨棄」放棄" width="750" height="280"><figcaption>4. 改了數值後，右上角「儲存（n）」；左邊「捨棄」放棄</figcaption></figure></div></div>
+<!--/steps:sched-->
+<div class="oleds">
+  <figure><img src="img/oled/m_sched_sel.png" alt="OLED 選單「設定 > 自動化」：[Beta]定時充電: 關、[Beta]自動充電: 關" width="512" height="256"><figcaption>OLED：「自動化」頁</figcaption></figure>
+</div>
+<div class="shots">
+  <figure><img src="img/web_sched.png" alt="網頁的定時充電設定：啟用、開始時間、結束時間、到時自動停止、NTP 狀態" width="674" height="620"><figcaption>網頁：⏰ 定時充電</figcaption></figure>
+  <figure><img src="img/app_cfg_sched.png" alt="App 設定頁的定時充電：啟用定時充電、開始充電時間、結束充電時間、到時自動停止充電、NTP 狀態" width="750" height="730"><figcaption>App：定時充電（Beta）</figcaption></figure>
+</div>
+
+<h3 id="auto">6.8 自動充電（Beta）</h3>
+<p>插上槍就自動開始，不用按 START。還在測試中，使用時請留意狀態。</p>
+<dl class="opts">
+  <dt>插槍或 CAN 信號自動啟動充電</dt><dd>預設關。開著時，送給車子的 VP（輔助電源）一直通著，車子插上槍或送出充電許可就會開始。</dd>
+  <dt>限制</dt><dd>「最大電流」<b>超過 15 A 時不能用</b>：網頁會顯示警告，自動充電不會啟動；請把最大電流降到 15 A 以內（電源旋鈕一起調）。充完一次後，要<b>拔槍再插</b>才會再次自動開始。一般故障 10 秒後會自動復歸；按過 EMERGENCY 仍要手動復歸。</dd>
+</dl>
+<div class="box warn">開著自動充電時，按過 EMERGENCY 並復歸後，如果槍還插著，車子可能會自己重新開始充電。要確實停下來，請拔槍或先關閉自動充電。</div>
+<div class="ops">
+  <div><b>用 OLED</b><ol>
+    <li>按住 SETTING 約半秒 → 選「自動化 &gt;」→「[Beta]自動充電: 關」。</li>
+    <li>按 SETTING，START 或 STOP 切換，按 SETTING。</li>
+    <li>回最上層「儲存並離開」。</li>
+  </ol></div>
+  <div><b>用網頁</b><ol><li>「⚙ 設定」→「⚡ 自動充電」→「插槍或 CAN 信號自動啟動充電」開關。</li><li>打開時會先跳確認，確認後就存好。</li></ol></div>
+  <div><b>用手機 App</b><ol><li>「更多」→「⚙ 設定」→「自動充電（Beta）」→「插槍或 CAN 信號自動啟動充電」。</li><li>一切換就存（打開時先確認）。</li></ol></div>
+</div>
+<!--steps:auto-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/m_auto_sel.png" alt="SETTING 確認後按 STOP：「[Beta]自動充電: 關」" width="512" height="256"><figcaption>1. SETTING 確認後按 STOP：「[Beta]自動充電: 關」</figcaption></figure></div><figure><img class="oled" src="img/oled/m_auto_on.png" alt="SETTING 進入、START 切成「開」" width="512" height="256"><figcaption>2. SETTING 進入、START 切成「開」</figcaption></figure><figure><img class="oled" src="img/oled/m_save_sel.png" alt="長按 SETTING 回最上層，移到「儲存並離開」" width="512" height="256"><figcaption>3. 長按 SETTING 回最上層，移到「儲存並離開」</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_auto.png" alt="「⚡ 自動充電」→「插槍或 CAN 信號自動啟動充電」（打開時先確認）" width="690" height="363"><figcaption>1. 「⚡ 自動充電」→「插槍或 CAN 信號自動啟動充電」（打開時先確認）</figcaption></figure></div><figure><img src="img/web/w_auto_warn.png" alt="最大電流超過 15 A：顯示警告、不能用" width="690" height="461"><figcaption>2. 最大電流超過 15 A：顯示警告、不能用</figcaption></figure><p class="no">缺圖：打開開關時的確認視窗（瀏覽器的確認框，截圖工具截不到）</p></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_auto.png" alt="「自動充電（Beta）」→「插槍或 CAN 信號自動啟動充電」（最大電流超過 15 A 時顯示警告、開關不能用，如圖）" width="750" height="500"><figcaption>1. 「自動充電（Beta）」→「插槍或 CAN 信號自動啟動充電」（最大電流超過 15 A 時顯示警告、開關不能用，如圖）</figcaption></figure></div><p class="no">缺圖：打開開關時的確認視窗（App 網頁版不會跳出 Alert）</p></div></div>
+<!--/steps:auto-->
+
+<h3 id="push">6.9 推播通知（Beta）</h3>
+<p>開始充電、充電完成、故障、緊急停止，以及控制盒在充電中意外重新啟動時，通知你的手機。推播要控制盒<b>連著能上網的 WiFi</b> 才送得出去。有兩種收法，可以同時用：</p>
+<dl class="opts">
+  <dt>ntfy／Webhook（任何手機）</dt><dd>預設停用。選「ntfy.sh（推薦）」會產生一個專屬頻道，用免費的 ntfy App 訂閱。「自定義 Webhook」給會寫程式的人填自己的網址，控制盒會把通知 POST 過去。「停用」就不送這種通知。通知一律是中文。頻道網址等於通知的鑰匙，不要公開分享；「🎲 重新產生」換新頻道後，舊頻道就收不到，訂閱的手機要重新訂閱。</dd>
+  <dt>App 推播（Android）</dt><dd>在 App 打開「推播到這支手機」即可，不用裝 ntfy；一台控制盒最多登記 <b>4 支</b>手機，通知照那支手機 App 的語言。充電中通知列會顯示進度。</dd>
+</dl>
+<div class="ops">
+  <div><b>用 OLED</b><p class="no">這項只能用網頁或 App 設定。</p></div>
+  <div><b>用網頁</b><ol>
+    <li>手機先安裝 ntfy App（Android／iOS）。</li>
+    <li>「⚙ 設定」→「🔔 推播通知」選「ntfy.sh（推薦）」，按底部「💾 儲存」。</li>
+    <li>按「📲 訂閱」自動帶入頻道（或「📋 複製」網址，到 ntfy App 手動新增）。</li>
+    <li>按「📨 測試」確認收得到。</li>
+  </ol><p class="sub">用 Webhook：選「自定義 Webhook」，填網址後儲存。</p></div>
+  <div><b>用手機 App</b><ol>
+    <li>App 推播：控制盒頁往下到「通知」，打開「推播到這支手機」，按「📨 傳送測試通知」試一次。清單裡可以移除不用的手機。</li>
+    <li>ntfy／Webhook：「更多」→「⚙ 設定」→「推播通知」，選「ntfy.sh」「自定義 Webhook」或「停用」，按「儲存」；有「📋 複製」「🎲 重新產生」「📲 訂閱」「📨 傳送測試通知」。</li>
+  </ol></div>
+</div>
+<!--steps:push-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><p class="no">這項只能用網頁或 App 設定</p></div></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_push_ntfy.png" alt="「🔔 推播通知」選「ntfy.sh（推薦）」，按「💾 儲存」" width="690" height="663"><figcaption>1. 「🔔 推播通知」選「ntfy.sh（推薦）」，按「💾 儲存」</figcaption></figure></div><figure><img src="img/web/w_push_sub.png" alt="按「📲 訂閱」（手機要先裝 ntfy App）" width="690" height="663"><figcaption>2. 按「📲 訂閱」（手機要先裝 ntfy App）</figcaption></figure><figure><img src="img/web/w_push_copy.png" alt="「📋 複製」頻道網址；「🎲 重新產生」換新頻道" width="690" height="663"><figcaption>3. 「📋 複製」頻道網址；「🎲 重新產生」換新頻道</figcaption></figure><figure><img src="img/web/w_push_test.png" alt="按「📨 測試」" width="690" height="663"><figcaption>4. 按「📨 測試」</figcaption></figure><figure><img src="img/web/w_push_custom.png" alt="選「自定義 Webhook」：填網址" width="690" height="320"><figcaption>5. 選「自定義 Webhook」：填網址</figcaption></figure><figure><img src="img/web/w_push_off.png" alt="選「停用」" width="690" height="258"><figcaption>6. 選「停用」</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_push.png" alt="「通知」：打開「推播到這支手機」" width="750" height="560"><figcaption>1. 「通知」：打開「推播到這支手機」</figcaption></figure></div><figure><img src="img/app/a_push_ntfy.png" alt="「推播通知」點「ntfy.sh」，按「儲存」" width="750" height="1184"><figcaption>2. 「推播通知」點「ntfy.sh」，按「儲存」</figcaption></figure><figure><img src="img/app/a_push_btns.png" alt="「📋 複製」「🎲 重新產生」「📲 訂閱」" width="750" height="1184"><figcaption>3. 「📋 複製」「🎲 重新產生」「📲 訂閱」</figcaption></figure><figure><img src="img/app/a_push_test.png" alt="「📨 傳送測試通知」" width="750" height="1184"><figcaption>4. 「📨 傳送測試通知」</figcaption></figure><figure><img src="img/app/a_push_custom.png" alt="點「自定義 Webhook」：填「Webhook 網址」" width="750" height="824"><figcaption>5. 點「自定義 Webhook」：填「Webhook 網址」</figcaption></figure><figure><img src="img/notif/notif_events.png" alt="手機收到的通知：開始、完成、故障、緊急停止（示意；文字照控制盒實際送出的）" width="750" height="900"><figcaption>6. 手機收到的通知：開始、完成、故障、緊急停止（示意；文字照控制盒實際送出的）</figcaption></figure><figure><img src="img/notif/notif_reboot.png" alt="充電中斷電、或控制盒當機重開後的通知（示意）" width="750" height="532"><figcaption>7. 充電中斷電、或控制盒當機重開後的通知（示意）</figcaption></figure><figure><img src="img/notif/notif_live.png" alt="充電中通知列的進度（示意；格式照 App）" width="750" height="344"><figcaption>8. 充電中通知列的進度（示意；格式照 App）</figcaption></figure><p class="no">缺圖：「推播到這支手機」打開後的開關與手機清單（App 網頁版不能開推播）</p></div></div>
+<!--/steps:push-->
+<div class="shots">
+  <figure><img src="img/web_push.png" alt="網頁的推播通知設定：ntfy.sh、自定義 Webhook、停用" width="674" height="242"><figcaption>網頁：🔔 推播通知</figcaption></figure>
+  <figure><img src="img/app_notify.png" alt="App 的通知：推播到這支手機的開關、會收到通知的手機清單" width="750" height="508"><figcaption>App：「通知」→ 推播到這支手機</figcaption></figure>
+  <figure><img src="img/app_cfg_notify.png" alt="App 設定頁的推播通知：ntfy.sh、自定義 Webhook、停用、傳送測試通知" width="750" height="608"><figcaption>App：設定頁的 ntfy／Webhook</figcaption></figure>
+</div>
+
+<h3 id="wifiset">6.10 WiFi、熱點與「連線至 WiFi 路由器」</h3>
+<p>第一次連 WiFi 的步驟見 <a href="#wifi">5.3</a>，帶出門的用法見 <a href="#first">5.4</a>。這裡是每個設定的說明。只支援 2.4 GHz。</p>
+<dl class="opts">
+  <dt>記住的 WiFi</dt><dd>最多 <b>5 組</b>，開機時連訊號最強的那組。加入、移除都<b>馬上生效</b>，不用儲存；移除目前連著的那組會立刻斷線、改找其他組（都沒有就開熱點）。WiFi 名稱是中文時請從掃描清單點選。</dd>
+  <dt>熱點密碼</dt><dd>連不上任何記住的 WiFi 時（開機 30 秒、斷線 60 秒後）自動開的熱點 <code>TES-Charger-xxxxxx</code> 的密碼。出廠是每台不同的 10 碼，可改成自己的 8–63 個英數字元；正開著的熱點用舊密碼到它下次打開為止。第一次設定（還沒存過 WiFi）的熱點沒有密碼。</dd>
+  <dt>連線至 WiFi 路由器</dt><dd>預設開。關掉後，控制盒<b>下次開機</b>只開熱點、不連任何 WiFi；記住的 WiFi 不會刪，打開開關、重新開機就連回去。關掉的當下不會斷線。</dd>
+</dl>
+<div class="ops">
+  <div><b>用 OLED</b><ol>
+    <li>按住 SETTING 約半秒 → 選「網路 &gt;」。</li>
+    <li>可以<b>看</b>：「IP:」（連著 WiFi）或「AP:」（只有熱點）、「熱點密碼」、本機編號 <code>tes-xxxxxx</code>。</li>
+  </ol><p class="no">WiFi 的加入、移除、改密碼只能用網頁或 App。</p></div>
+  <div><b>用網頁</b><ol>
+    <li>「⚙ 設定」→「記住的 WiFi」清單：按「移除」移除一組（會先確認）。</li>
+    <li>加入：按「🔍 掃描」點選 WiFi（或在「WiFi 名稱」打字），輸入「WiFi 密碼」（開放網路留空），按「＋ 加入這組 WiFi」。</li>
+    <li>熱點密碼：在「新的熱點密碼（8–63 字）」填好，按「修改熱點密碼」。</li>
+    <li>「連線至 WiFi 路由器」開關：關掉時會先確認，一切換就存。</li>
+    <li>「網路狀態」區塊的「📶 切換手機 WiFi」打開手機的 WiFi 設定（Android 可用；iPhone Safari 不行）。</li>
+  </ol></div>
+  <div><b>用手機 App</b><ol>
+    <li>「更多」→「⚙ 設定」→「WiFi」。</li>
+    <li>清單每組右邊的「移除」；下面「WiFi 名稱」「🔍 掃描附近的 WiFi」「WiFi 密碼」「＋ 加入這組 WiFi」。</li>
+    <li>「修改熱點密碼」欄位與按鈕。</li>
+    <li>「連線至 WiFi 路由器」開關（重新啟動後生效）。</li>
+    <li>控制盒頁的「連線」區塊有「📶 切換手機 WiFi」。</li>
+  </ol></div>
+</div>
+<!--steps:wifiset-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/m_top_3.png" alt="按 STOP 往下：「網路 &gt;」" width="512" height="256"><figcaption>1. 按 STOP 往下：「網路 &gt;」</figcaption></figure></div><figure><img class="oled" src="img/oled/m_net_sta.png" alt="「網路」：連著 WiFi" width="512" height="256"><figcaption>2. 「網路」：連著 WiFi</figcaption></figure><figure><img class="oled" src="img/oled/m_net_ap.png" alt="「網路」：只有熱點時 AP 位址" width="512" height="256"><figcaption>3. 「網路」：只有熱點時 AP 位址</figcaption></figure><figure><img class="oled" src="img/oled/m_net_none.png" alt="「網路」：都沒連上" width="512" height="256"><figcaption>4. 「網路」：都沒連上</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_sta.png" alt="「連線至 WiFi 路由器」開關（關掉時先確認，下次開機生效）" width="690" height="822"><figcaption>1. 「連線至 WiFi 路由器」開關（關掉時先確認，下次開機生效）</figcaption></figure></div><figure><img src="img/web/w_wifi_remove.png" alt="記住的 WiFi：按「移除」" width="690" height="822"><figcaption>2. 記住的 WiFi：按「移除」</figcaption></figure><figure><img src="img/web/w_wifi_scan.png" alt="按「🔍 掃描」" width="690" height="822"><figcaption>3. 按「🔍 掃描」</figcaption></figure><figure><img src="img/web/w_wifi_pick.png" alt="點選掃描到的 WiFi（名稱會填進去）" width="690" height="376"><figcaption>4. 點選掃描到的 WiFi（名稱會填進去）</figcaption></figure><figure><img src="img/web/w_wifi_add.png" alt="輸入「WiFi 密碼」，按「＋ 加入這組 WiFi」" width="690" height="1066"><figcaption>5. 輸入「WiFi 密碼」，按「＋ 加入這組 WiFi」</figcaption></figure><figure><img src="img/web/w_ap_pass.png" alt="填「新的熱點密碼（8–63 字）」，按「修改熱點密碼」" width="690" height="360"><figcaption>6. 填「新的熱點密碼（8–63 字）」，按「修改熱點密碼」</figcaption></figure><figure><img src="img/web/w_phone_wifi.png" alt="網路狀態區塊的「📶 切換手機 WiFi」" width="750" height="448"><figcaption>7. 網路狀態區塊的「📶 切換手機 WiFi」</figcaption></figure><p class="no">缺圖：移除與關閉開關時的確認框</p></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_sta.png" alt="「WiFi」→「連線至 WiFi 路由器」（重新啟動後生效）" width="750" height="1800"><figcaption>1. 「WiFi」→「連線至 WiFi 路由器」（重新啟動後生效）</figcaption></figure></div><figure><img src="img/app/a_wifi_remove.png" alt="記住的 WiFi：右邊的「移除」" width="750" height="1800"><figcaption>2. 記住的 WiFi：右邊的「移除」</figcaption></figure><figure><img src="img/app/a_wifi_scan.png" alt="「🔍 掃描附近的 WiFi」，點一個填進名稱" width="750" height="1800"><figcaption>3. 「🔍 掃描附近的 WiFi」，點一個填進名稱</figcaption></figure><figure><img src="img/app/a_wifi_add.png" alt="「WiFi 密碼」→「＋ 加入這組 WiFi」" width="750" height="1800"><figcaption>4. 「WiFi 密碼」→「＋ 加入這組 WiFi」</figcaption></figure><figure><img src="img/app/a_ap_pass.png" alt="「修改熱點密碼」：填新密碼，按「修改熱點密碼」" width="750" height="1800"><figcaption>5. 「修改熱點密碼」：填新密碼，按「修改熱點密碼」</figcaption></figure><figure><img src="img/app/a_phone_wifi.png" alt="「連線」：「📶 切換手機 WiFi」" width="750" height="712"><figcaption>6. 「連線」：「📶 切換手機 WiFi」</figcaption></figure><p class="no">缺圖：移除與關閉開關時的確認視窗、掃描結果清單</p></div></div>
+<!--/steps:wifiset-->
+<div class="oleds">
+  <figure><img src="img/oled/m_net_sta.png" alt="OLED 選單「設定 > 網路」：IP 192.168.1.23、熱點密碼、tes-a1b2c3" width="512" height="256"><figcaption>OLED：「網路」頁（連著 WiFi）</figcaption></figure>
+</div>
+<div class="shots">
+  <figure><img src="img/web_wifi_add.png" alt="網頁的 WiFi 設定：連線至 WiFi 路由器、記住的 WiFi、掃描、WiFi 名稱、密碼、加入、自動熱點說明與熱點密碼" width="674" height="796"><figcaption>網頁：WiFi 與熱點設定</figcaption></figure>
+  <figure><img src="img/app_cfg_wifi.png" alt="App 設定頁的 WiFi：連線至 WiFi 路由器、記住的 WiFi、掃描、加入、修改熱點密碼" width="750" height="1646"><figcaption>App：WiFi 與熱點設定</figcaption></figure>
+</div>
+
+<h3 id="name">6.11 裝置名稱</h3>
+<p>給控制盒取個名字，例如「車庫充電樁」，家裡有好幾台時用來分辨。名稱會顯示在網頁標題、裝置清單、App 與遠端監控。預設空白（顯示成 <code>TES Charger xxxxxx</code>），最多 24 個字元。<b>改名不會改網址</b>（<code>tes-xxxxxx.local</code> 固定不變），書籤照樣能用。</p>
+<div class="ops">
+  <div><b>用 OLED</b><p class="no">這項只能用網頁或 App 設定。OLED「網路」頁最後一行的 <code>tes-xxxxxx</code> 可以對照是哪一台。</p></div>
+  <div><b>用網頁</b><ol><li>「⚙ 設定」最上面的「裝置名稱」填名字。</li><li>按底部「💾 儲存」。</li></ol></div>
+  <div><b>用手機 App</b><ol><li>「更多」→「⚙ 設定」→「裝置」→「裝置名稱」。</li><li>按「儲存」。</li></ol></div>
+</div>
+<!--steps:name-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><p class="no">這項只能用網頁或 App 設定</p></div></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_name.png" alt="「⚙ 設定」最上面的「裝置名稱」" width="690" height="232"><figcaption>1. 「⚙ 設定」最上面的「裝置名稱」</figcaption></figure></div><figure><img src="img/web/w_save_bar.png" alt="改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）" width="750" height="154"><figcaption>2. 改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_name.png" alt="「裝置」→「裝置名稱」" width="750" height="446"><figcaption>1. 「裝置」→「裝置名稱」</figcaption></figure></div><figure><img src="img/app/a_save.png" alt="改了數值後，右上角「儲存（n）」；左邊「捨棄」放棄" width="750" height="280"><figcaption>2. 改了數值後，右上角「儲存（n）」；左邊「捨棄」放棄</figcaption></figure></div></div>
+<!--/steps:name-->
+
+<h3 id="screen">6.12 螢幕：語言、充電動畫、螢幕保護</h3>
+<dl class="opts">
+  <dt>語言</dt><dd>控制盒螢幕的語言：中文（預設）或 English。只影響 OLED，網頁與 App 的語言另外設（<a href="#lang">6.19</a>）。OLED 上的選項用各自的語言寫，選錯了也認得出要切回哪一個。</dd>
+  <dt>充電中動畫</dt><dd>充電中右上角的電池圖示（從目前電量往上一格格填）與電壓下面往前流的箭頭。選項：全部（預設，網頁叫「電池＋箭頭」）、只要電池、只要箭頭、關閉。</dd>
+  <dt>螢幕保護</dt><dd>待機（含充電完成、故障說明畫面）多久沒人碰就進入：5 分鐘（預設）、15 分鐘、30 分鐘、關閉。進入後只剩一小塊狀態、時間、電源電壓，每分鐘換角落；按任一鍵喚醒（喚醒的那一下不做其他事），插槍、遠端開始、故障也會喚醒。</dd>
+  <dt>螢幕保護樣式</dt><dd>游泳的烏龜（預設）或全黑。螢幕保護關閉時 OLED 不顯示這一項。</dd>
+  <dt>一律開著的</dt><dd>待機時整個畫面每分鐘偏移 1 個像素防烙印，不能關，也不是故障。</dd>
+</dl>
+<div class="ops">
+  <div><b>用 OLED</b><ol>
+    <li>按住 SETTING 約半秒 → 選「螢幕與燈 &gt;」。</li>
+    <li>移到「語言: 中文」「充電動畫: 全部」「螢幕保護: 5分鐘」或「保護樣式: 烏龜」，按 SETTING。</li>
+    <li>按 START 換下一個選項、STOP 換上一個，按 SETTING 確認。</li>
+    <li>回最上層「儲存並離開」。</li>
+  </ol></div>
+  <div><b>用網頁</b><ol>
+    <li>「🖥 螢幕（OLED）」區塊：「顯示語言」「充電中動畫」「螢幕保護（待機多久沒人碰）」「螢幕保護樣式」各點一個選項。</li>
+    <li>按底部「💾 儲存」。</li>
+  </ol></div>
+  <div><b>用手機 App</b><ol>
+    <li>「更多」→「🖥 螢幕」。</li>
+    <li>「顯示語言」「充電中動畫」「螢幕保護」與樣式各點一個。</li>
+    <li>按「💾 儲存 x 項」（「捨棄」放棄修改）。</li>
+  </ol></div>
+</div>
+<!--steps:screen-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/m_top_2.png" alt="按 STOP 往下：「螢幕與燈 &gt;」" width="512" height="256"><figcaption>1. 按 STOP 往下：「螢幕與燈 &gt;」</figcaption></figure></div><figure><img class="oled" src="img/oled/m_lang_sel.png" alt="「螢幕與燈」：選到「語言: 中文」" width="512" height="256"><figcaption>2. 「螢幕與燈」：選到「語言: 中文」</figcaption></figure><figure><img class="oled" src="img/oled/m_lang_en.png" alt="SETTING 進入、START 切成 English（選單此時還是中文，儲存後才換）" width="512" height="256"><figcaption>3. SETTING 進入、START 切成 English（選單此時還是中文，儲存後才換）</figcaption></figure><figure><img class="oled" src="img/oled/m_anim_sel.png" alt="「充電動畫: 全部」" width="512" height="256"><figcaption>4. 「充電動畫: 全部」</figcaption></figure><figure><img class="oled" src="img/oled/m_anim_battery.png" alt="SETTING 進入，START：電池" width="512" height="256"><figcaption>5. SETTING 進入，START：電池</figcaption></figure><figure><img class="oled" src="img/oled/m_anim_arrows.png" alt="START：箭頭" width="512" height="256"><figcaption>6. START：箭頭</figcaption></figure><figure><img class="oled" src="img/oled/m_anim_off.png" alt="START：關" width="512" height="256"><figcaption>7. START：關</figcaption></figure><figure><img class="oled" src="img/oled/m_saver_sel.png" alt="「螢幕保護: 5分鐘」" width="512" height="256"><figcaption>8. 「螢幕保護: 5分鐘」</figcaption></figure><figure><img class="oled" src="img/oled/m_saver_15.png" alt="SETTING 進入，START：15 分鐘" width="512" height="256"><figcaption>9. SETTING 進入，START：15 分鐘</figcaption></figure><figure><img class="oled" src="img/oled/m_saver_30.png" alt="START：30 分鐘" width="512" height="256"><figcaption>10. START：30 分鐘</figcaption></figure><figure><img class="oled" src="img/oled/m_saver_off.png" alt="START：關（「保護樣式」那一行會消失）" width="512" height="256"><figcaption>11. START：關（「保護樣式」那一行會消失）</figcaption></figure><figure><img class="oled" src="img/oled/m_style_sel.png" alt="「保護樣式: 烏龜」" width="512" height="256"><figcaption>12. 「保護樣式: 烏龜」</figcaption></figure><figure><img class="oled" src="img/oled/m_style_dark.png" alt="SETTING 進入，START：全黑" width="512" height="256"><figcaption>13. SETTING 進入，START：全黑</figcaption></figure><figure><img class="oled" src="img/oled/m_save_sel.png" alt="長按 SETTING 回最上層，移到「儲存並離開」" width="512" height="256"><figcaption>14. 長按 SETTING 回最上層，移到「儲存並離開」</figcaption></figure><figure><img class="oled" src="img/oled/ss_turtle.png" alt="螢幕保護：烏龜" width="512" height="256"><figcaption>15. 螢幕保護：烏龜</figcaption></figure><figure><img class="oled" src="img/oled/ss_dark.png" alt="螢幕保護：全黑" width="512" height="256"><figcaption>16. 螢幕保護：全黑</figcaption></figure><figure><img class="oled" src="img/oled/st_charging_soc.png" alt="充電中：停止條件 SOC" width="512" height="256"><figcaption>17. 充電中：停止條件 SOC</figcaption></figure><figure><img class="oled" src="img/oled/st_charging_noanim.png" alt="充電中：充電動畫關閉" width="512" height="256"><figcaption>18. 充電中：充電動畫關閉</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_scr_lang.png" alt="「🖥 螢幕（OLED）」→「顯示語言」" width="750" height="844"><figcaption>1. 「🖥 螢幕（OLED）」→「顯示語言」</figcaption></figure></div><figure><img src="img/web/w_scr_anim.png" alt="「充電中動畫」" width="750" height="844"><figcaption>2. 「充電中動畫」</figcaption></figure><figure><img src="img/web/w_scr_saver.png" alt="「螢幕保護（待機多久沒人碰）」" width="750" height="844"><figcaption>3. 「螢幕保護（待機多久沒人碰）」</figcaption></figure><figure><img src="img/web/w_scr_style.png" alt="「螢幕保護樣式」；改完按底部「💾 儲存」" width="750" height="844"><figcaption>4. 「螢幕保護樣式」；改完按底部「💾 儲存」</figcaption></figure><figure><img src="img/web/w_save_bar.png" alt="改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）" width="750" height="154"><figcaption>5. 改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_more_screen.png" alt="「更多」→「🖥 螢幕」" width="750" height="1208"><figcaption>1. 「更多」→「🖥 螢幕」</figcaption></figure></div><figure><img src="img/app/a_scr_lang.png" alt="「🖥 螢幕」→「顯示語言」" width="750" height="1550"><figcaption>2. 「🖥 螢幕」→「顯示語言」</figcaption></figure><figure><img src="img/app/a_scr_anim.png" alt="「充電中動畫」" width="750" height="1550"><figcaption>3. 「充電中動畫」</figcaption></figure><figure><img src="img/app/a_scr_saver.png" alt="「螢幕保護」" width="750" height="1550"><figcaption>4. 「螢幕保護」</figcaption></figure><figure><img src="img/app/a_scr_style.png" alt="「樣式」（螢幕保護不是「關」時才有）" width="750" height="1550"><figcaption>5. 「樣式」（螢幕保護不是「關」時才有）</figcaption></figure><figure><img src="img/app/a_scr_save.png" alt="改了之後按「💾 儲存 n 項」" width="750" height="1550"><figcaption>6. 改了之後按「💾 儲存 n 項」</figcaption></figure></div></div>
+<!--/steps:screen-->
+<div class="oleds">
+  <figure><img src="img/oled/m_lang_sel.png" alt="OLED 選單「設定 > 螢幕與燈」：語言: 中文 反白、充電動畫: 全部、螢幕保護: 5分鐘" width="512" height="256"><figcaption>OLED：「螢幕與燈」頁</figcaption></figure>
+</div>
+<div class="shots">
+  <figure><img src="img/web_screen.png" alt="網頁的螢幕（OLED）區塊：顯示語言、充電中動畫、螢幕保護、螢幕保護樣式" width="734" height="828"><figcaption>網頁：🖥 螢幕（OLED）</figcaption></figure>
+  <figure><img src="img/app_display.png" alt="App 的螢幕頁：顯示語言、充電中動畫、螢幕保護與樣式、儲存" width="750" height="1534"><figcaption>App：🖥 螢幕</figcaption></figure>
+</div>
+
+<h3 id="beacon">6.13 LuxBeacon（用綠燈報電量）</h3>
+<p>打開後，充電中的綠燈改成用<b>閃的次數報電量</b>，不用看螢幕也知道充到哪。例如 72% 是閃 7 下、停一下、閃 2 下；數字 0 閃 10 下；每組之間停約 1 秒。預設關（關著時充電中綠燈是慢閃）。</p>
+<div class="ops">
+  <div><b>用 OLED</b><ol><li>按住 SETTING 約半秒 → 選「螢幕與燈 &gt;」→「LuxBeacon: 關」。</li><li>按 SETTING，START 或 STOP 切換，按 SETTING。</li><li>回最上層「儲存並離開」。</li></ol></div>
+  <div><b>用網頁</b><ol><li>「⚙ 設定」→「LuxBeacon SOC 燈號」開關，一切換就存。</li></ol></div>
+  <div><b>用手機 App</b><ol><li>「更多」→「⚙ 設定」→「WiFi」下面的「LuxBeacon SOC 燈號」開關，一切換就存。</li></ol></div>
+</div>
+<!--steps:beacon-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/m_beacon_sel.png" alt="「LuxBeacon: 關」" width="512" height="256"><figcaption>1. 「LuxBeacon: 關」</figcaption></figure></div><figure><img class="oled" src="img/oled/m_beacon_on.png" alt="SETTING 進入，START：開" width="512" height="256"><figcaption>2. SETTING 進入，START：開</figcaption></figure><figure><img class="oled" src="img/oled/m_save_sel.png" alt="長按 SETTING 回最上層，移到「儲存並離開」" width="512" height="256"><figcaption>3. 長按 SETTING 回最上層，移到「儲存並離開」</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_beacon.png" alt="「LuxBeacon SOC 燈號」開關（一切換就存）" width="690" height="428"><figcaption>1. 「LuxBeacon SOC 燈號」開關（一切換就存）</figcaption></figure></div></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_beacon.png" alt="「LuxBeacon SOC 燈號」開關（一切換就存）" width="750" height="1800"><figcaption>1. 「LuxBeacon SOC 燈號」開關（一切換就存）</figcaption></figure></div></div></div>
+<!--/steps:beacon-->
+
+<h3 id="hist">6.14 充電紀錄與月充電量</h3>
+<p>控制盒保存<b>最近 20 次</b>充電的摘要，斷電也不會消失。每一筆有：日期（有對到時才有）、充電時間、充入電量（kWh 與 Ah）、開始→結束的 SOC、停止原因（故障時直接寫故障說明，例如「充電槍鬆脫」）。</p>
+<ul>
+  <li>電量標「（預估）」：那次沒有接會回報電流的電源，是用「最大電流」設定估的。</li>
+  <li>「未完成」：按了開始，但還沒進入充電就失敗（例如交握逾時），最值得看詳細紀錄。</li>
+  <li>前面有 <b>▸</b> 的可以點開，看這次的<b>充電曲線</b>（電壓、電流與車子要求的電流、SOC）和<b>詳細紀錄</b>（每個數值什麼時候變了）。詳細紀錄可以過濾關鍵字、存成檔案傳給我。曲線與詳細紀錄放在記憶體，<b>只保留最近 8 次、一斷電就清除</b>；之前的只剩摘要（前面是一個淡色的點）。</li>
+  <li><b>月充電量</b>：最近 12 個月的長條圖與「本月充入 x kWh（x Ah，x 次）」；顏色較淡的部分是估算的。這是<b>充進電池的直流電</b>，不是電費單的度數。</li>
+</ul>
+<dl class="opts">
+  <dt>電源效率（月充電量換算）</dt><dd>預設 90%，範圍 50–100%。用來把充進電池的電量換算成插座用掉的電。</dd>
+  <dt>每度電價</dt><dd>預設 0（不換算電費），範圍 0–20 元。填了之後圖上會多顯示約幾度電、約多少錢（僅供參考）。</dd>
+</dl>
+<div class="ops">
+  <div><b>用 OLED</b><p class="no">充電紀錄只能用網頁或 App 看。充電完成畫面會顯示這一次的 SOC、時間與電量（一分鐘或按任意鍵返回）。</p></div>
+  <div><b>用網頁</b><ol>
+    <li>「📋 充電紀錄」區塊：上面是月充電量（滑鼠停在長條上看那個月），下面是紀錄表格，「↻ 重新整理」重新讀取。</li>
+    <li>點有 ▸ 的列展開曲線與詳細紀錄；在「過濾關鍵字…」打字過濾，按「⬇ 下載」存檔。</li>
+    <li>電費換算：「⚙ 設定」→「月充電量換算：電源效率（%，50–100）」「每度電價（元，0 = 不換算電費）」，按「💾 儲存」。</li>
+  </ol></div>
+  <div><b>用手機 App</b><ol>
+    <li>「更多」→「📋 充電紀錄」：月充電量圖點長條看各月份；下面每一筆是一張卡片，「↻ 重新整理」重新讀取。</li>
+    <li>點有 ▸ 的卡片看「📈 充電曲線」與「📝 詳細 Log」，「過濾」欄位打字，「⬇ 匯出 Log」分享出去。</li>
+    <li>電費換算：「⚙ 設定」→「月充電量換算」→「電源效率」「每度電價」，按「儲存」。</li>
+  </ol></div>
+</div>
+<!--steps:hist-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/st_done.png" alt="充電完成（一分鐘或按任意鍵返回）" width="512" height="256"><figcaption>1. 充電完成（一分鐘或按任意鍵返回）</figcaption></figure></div></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_hist.png" alt="「📋 充電紀錄」：「↻ 重新整理」" width="750" height="1449"><figcaption>1. 「📋 充電紀錄」：「↻ 重新整理」</figcaption></figure></div><figure><img src="img/web/w_month.png" alt="月充電量：滑鼠停在長條上看那個月" width="690" height="483"><figcaption>2. 月充電量：滑鼠停在長條上看那個月</figcaption></figure><figure><img src="img/web/w_hist_row.png" alt="點有 ▸ 的列展開" width="750" height="1449"><figcaption>3. 點有 ▸ 的列展開</figcaption></figure><figure><img src="img/web/w_hist_detail.png" alt="展開後：充電曲線與詳細 Log；「過濾關鍵字…」、「⬇ 下載」" width="750" height="2209"><figcaption>4. 展開後：充電曲線與詳細 Log；「過濾關鍵字…」、「⬇ 下載」</figcaption></figure><figure><img src="img/web/w_cost.png" alt="「月充電量換算」：電源效率、每度電價" width="690" height="300"><figcaption>5. 「月充電量換算」：電源效率、每度電價</figcaption></figure><figure><img src="img/web/w_save_bar.png" alt="改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）" width="750" height="154"><figcaption>6. 改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_more_hist.png" alt="「更多」→「📋 充電紀錄」" width="750" height="1208"><figcaption>1. 「更多」→「📋 充電紀錄」</figcaption></figure></div><figure><img src="img/app/a_hist.png" alt="「📋 充電紀錄」：月充電量（點長條看月份）、「↻ 重新整理」" width="750" height="1810"><figcaption>2. 「📋 充電紀錄」：月充電量（點長條看月份）、「↻ 重新整理」</figcaption></figure><figure><img src="img/app/a_hist_card.png" alt="點有 ▸ 的那一筆" width="750" height="1080"><figcaption>3. 點有 ▸ 的那一筆</figcaption></figure><figure><img src="img/app/a_hist_detail.png" alt="「📈 充電曲線」「📝 詳細 Log」：「過濾」打字、「⬇ 匯出 Log」分享" width="750" height="841"><figcaption>4. 「📈 充電曲線」「📝 詳細 Log」：「過濾」打字、「⬇ 匯出 Log」分享</figcaption></figure><figure><img src="img/app/a_cost.png" alt="「月充電量換算」：電源效率、每度電價" width="750" height="648"><figcaption>5. 「月充電量換算」：電源效率、每度電價</figcaption></figure><figure><img src="img/app/a_save.png" alt="改了數值後，右上角「儲存（n）」；左邊「捨棄」放棄" width="750" height="280"><figcaption>6. 改了數值後，右上角「儲存（n）」；左邊「捨棄」放棄</figcaption></figure><p class="no">缺圖：「⬇ 匯出 Log」的分享選單（手機系統畫面）</p></div></div>
+<!--/steps:hist-->
+<div class="shots">
+  <figure><img src="img/web_history.png" alt="網頁的充電紀錄：本月充入電量、最近 12 個月長條圖、紀錄表格有日期、充電時間、充入、SOC、停止原因" width="734" height="1433"><figcaption>網頁：📋 充電紀錄（示意數值）</figcaption></figure>
+  <figure><img src="img/app_history.png" alt="App 的充電紀錄：每一筆的時間、電量、SOC，未完成的嘗試" width="750" height="909"><figcaption>App：📋 充電紀錄</figcaption></figure>
+</div>
+
+<h3 id="ota">6.15 韌體更新、回到上一版、重新啟動</h3>
+<p>看版本與第一次更新的步驟見 <a href="#fw">5.5</a>。這裡是每個功能的說明。</p>
+<dl class="opts">
+  <dt>更新至最新韌體（線上更新）</dt><dd>控制盒要連著能上網的 WiFi。約一兩分鐘，完成後自動重新啟動，設定保留。<b>更新中不要關電源</b>；充電中不能更新，更新中也不能開始充電。螢幕會顯示「線上更新韌體」、進度與「請勿斷電」，完成時「完成，重新啟動中」；網頁、App 不管是誰按的都看到同一個進度。失敗時螢幕顯示原因約 15 秒並寫「原本的韌體照常運作」，可以照常用、再重試。</dd>
+  <dt>手動上傳韌體 (.bin)</dt><dd>我另外給你韌體檔時用（例如控制盒連不上網際網路）。不是這台控制盒的檔案（例如聯明的韌體）會被拒絕。</dd>
+  <dt>回到上一版</dt><dd>按鈕上寫著上一版的版本號。充電中、更新中不能按；上一版太舊、不支援這塊板子時會被擋下並說明。回到較舊的版本後，新版才有的紀錄格式（例如充電紀錄的 Ah）可能在下次充電時清掉，確認視窗會提醒。新版開不起來時控制盒也會自動退回上一版，但要控制盒的開機程式也是新版才有（線上更新不會更新開機程式）。</dd>
+  <dt>重新啟動控制器</dt><dd>效果跟關電源再開一樣。<b>充電中不能用</b>。OLED 選單裡沒存的設定會丟掉。重開前螢幕會顯示「重新啟動中…」。</dd>
+</dl>
+<div class="ops">
+  <div><b>用 OLED</b><ol>
+    <li>更新：OLED 不能啟動更新，只顯示進度。</li>
+    <li>重新啟動：按住 SETTING 約半秒 → 選「維護 &gt;」→「重新啟動」，按 SETTING，畫面變「再按一次重新啟動」，<b>3 秒內</b>再按一次 SETTING。移動游標就取消。充電中顯示「重新啟動(請先停止)」不能用。</li>
+  </ol></div>
+  <div><b>用網頁</b><ol>
+    <li>「🔄 韌體更新」→「⬆ 更新至最新韌體」→ 確認。</li>
+    <li>「↩ 回到上一版（vX.X.X）」→ 確認。</li>
+    <li>「手動上傳韌體 (.bin)」選檔案 →「📤 上傳韌體」。</li>
+    <li>「🔁 重新啟動控制器」→ 確認，網頁會等控制盒回來後自己重新整理。</li>
+  </ol></div>
+  <div><b>用手機 App</b><ol>
+    <li>「更多」→「🔄 韌體與重新啟動」。</li>
+    <li>「韌體更新」：「⬆ 更新至最新韌體」、「↩ 回到上一版（vX.X.X）」。</li>
+    <li>「手動上傳韌體（.bin）」：「選擇 .bin 檔案」→「上傳韌體」。</li>
+    <li>「重新啟動」：「🔁 重新啟動控制器」。</li>
+  </ol></div>
+</div>
+<!--steps:ota-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/ota_online.png" alt="線上更新韌體中" width="512" height="256"><figcaption>1. 線上更新韌體中</figcaption></figure></div><figure><img class="oled" src="img/oled/ota_upload.png" alt="上傳韌體中" width="512" height="256"><figcaption>2. 上傳韌體中</figcaption></figure><figure><img class="oled" src="img/oled/ota_reboot.png" alt="更新完成，重新啟動中" width="512" height="256"><figcaption>3. 更新完成，重新啟動中</figcaption></figure><figure><img class="oled" src="img/oled/ota_fail.png" alt="更新失敗（原本的韌體照常運作）" width="512" height="256"><figcaption>4. 更新失敗（原本的韌體照常運作）</figcaption></figure><figure><img class="oled" src="img/oled/m_top_6.png" alt="按 STOP 往下：「維護 &gt;」" width="512" height="256"><figcaption>5. 按 STOP 往下：「維護 &gt;」</figcaption></figure><figure><img class="oled" src="img/oled/m_restart_sel.png" alt="「重新啟動」" width="512" height="256"><figcaption>6. 「重新啟動」</figcaption></figure><figure><img class="oled" src="img/oled/m_restart_armed.png" alt="按 SETTING：「再按一次重新啟動」，3 秒內再按 SETTING 才執行" width="512" height="256"><figcaption>7. 按 SETTING：「再按一次重新啟動」，3 秒內再按 SETTING 才執行</figcaption></figure><figure><img class="oled" src="img/oled/m_restart_busy.png" alt="充電中：「重新啟動(請先停止)」不能用" width="512" height="256"><figcaption>8. 充電中：「重新啟動(請先停止)」不能用</figcaption></figure><figure><img class="oled" src="img/oled/restarting.png" alt="重新啟動中" width="512" height="256"><figcaption>9. 重新啟動中</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_ota_ver.png" alt="「🔄 韌體更新」：目前版本" width="750" height="928"><figcaption>1. 「🔄 韌體更新」：目前版本</figcaption></figure></div><figure><img src="img/web/w_ota_online.png" alt="「⬆ 更新至最新韌體」" width="750" height="928"><figcaption>2. 「⬆ 更新至最新韌體」</figcaption></figure><figure><img src="img/web/w_ota_rollback.png" alt="「↩ 回到上一版（版本號）」" width="750" height="928"><figcaption>3. 「↩ 回到上一版（版本號）」</figcaption></figure><figure><img src="img/web/w_ota_upload.png" alt="「手動上傳韌體 (.bin)」：選檔案 →「📤 上傳韌體」" width="750" height="928"><figcaption>4. 「手動上傳韌體 (.bin)」：選檔案 →「📤 上傳韌體」</figcaption></figure><figure><img src="img/web/w_reboot.png" alt="「🔁 重新啟動控制器」" width="750" height="928"><figcaption>5. 「🔁 重新啟動控制器」</figcaption></figure><p class="no">缺圖：按鈕按下後的確認框與更新中的進度條</p></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_more_sys.png" alt="「更多」→「🔄 韌體與重新啟動」" width="750" height="1208"><figcaption>1. 「更多」→「🔄 韌體與重新啟動」</figcaption></figure></div><figure><img src="img/app/a_ota_ver.png" alt="「韌體更新」：目前版本" width="750" height="1976"><figcaption>2. 「韌體更新」：目前版本</figcaption></figure><figure><img src="img/app/a_ota.png" alt="「⬆ 更新至最新韌體」" width="750" height="1976"><figcaption>3. 「⬆ 更新至最新韌體」</figcaption></figure><figure><img src="img/app/a_rollback.png" alt="「↩ 回到上一版」" width="750" height="1976"><figcaption>4. 「↩ 回到上一版」</figcaption></figure><figure><img src="img/app/a_upload.png" alt="「手動上傳韌體（.bin）」：「選擇 .bin 檔案」→「上傳韌體」" width="750" height="1976"><figcaption>5. 「手動上傳韌體（.bin）」：「選擇 .bin 檔案」→「上傳韌體」</figcaption></figure><figure><img src="img/app/a_reboot.png" alt="「重新啟動」：「🔁 重新啟動控制器」" width="750" height="1976"><figcaption>6. 「重新啟動」：「🔁 重新啟動控制器」</figcaption></figure><p class="no">缺圖：確認視窗、選檔畫面、更新中的進度</p></div></div>
+<!--/steps:ota-->
+<div class="oleds">
+  <figure><img src="img/oled/ota_online.png" alt="OLED 線上更新韌體畫面：進度條 63%、請勿斷電" width="512" height="256"><figcaption>OLED：更新中（示意）</figcaption></figure>
+  <figure><img src="img/oled/m_restart_armed.png" alt="OLED 選單「設定 > 維護」：復歸故障、再按一次重新啟動 反白" width="512" height="256"><figcaption>OLED：「維護」頁，按一下後變「再按一次重新啟動」</figcaption></figure>
+</div>
+<div class="shots">
+  <figure><img src="img/web_ota.png" alt="網頁的韌體更新區塊：更新至最新韌體、回到上一版、手動上傳韌體、重新啟動控制器" width="734" height="912"><figcaption>網頁：🔄 韌體更新</figcaption></figure>
+  <figure><img src="img/app_system.png" alt="App 的韌體與重新啟動頁：目前版本、更新至最新韌體、回到上一版、手動上傳韌體、周邊裝置、重新啟動控制器" width="750" height="1446"><figcaption>App：🔄 韌體與重新啟動</figcaption></figure>
+</div>
+
+<h3 id="mqtt">6.16 遠端監控（MQTT，Beta）</h3>
+<p>在家用網頁或 App 就夠了。想<b>出門在外也看到即時狀態</b>才需要：控制盒把狀態送到一個 MQTT 雲端伺服器（broker），手機從那裡讀。充電中每 10 秒、其他時候每 30 秒送一次，狀態一變就馬上送；控制盒斷線時，遠端會顯示「離線」。</p>
+<dl class="opts">
+  <dt>Broker URL</dt><dd>預設空白（不使用）。例如 <code>mqtts://帳號:密碼@xxxx.emqxsl.com:8883</code>。請用 <code>mqtts://</code>（加密）和需要帳號密碼的服務；免費的可以申請 EMQX Cloud Serverless。免帳號的公開 broker（例如 <code>broker.emqx.io</code>）任何人都看得到你的充電狀態，只建議測試用。</dd>
+  <dt>Topic Prefix</dt><dd>這台的頻道名稱，預設 <code>tes/xxxxxx</code>，通常不用改。</dd>
+  <dt>允許透過 MQTT 遠端啟停充電</dt><dd>打開後可以從遠端開始、停止充電。韌體預設是<b>開</b>（為了相容舊版）；用 App 設定精靈設定時會自動<b>關掉</b>。<b>任何能對這個 broker 發訊息的人都能控制你的充電樁</b>，只在用自己帳號密碼的 broker 時打開。</dd>
+  <dt>注意</dt><dd>MQTT 的設定改完，要<b>重新啟動控制器</b>才會生效（包括「允許遠端啟停」）。</dd>
+</dl>
+<div class="ops">
+  <div><b>用 OLED</b><p class="no">這項只能用網頁或 App 設定。</p></div>
+  <div><b>用網頁</b><ol>
+    <li>「⚙ 設定」→「📡 MQTT 遠端監控」：填「Broker URL（空白 = 停用）」「Topic Prefix」，按底部「💾 儲存」。</li>
+    <li>「允許透過 MQTT 遠端啟停充電」開關：打開時會先確認，一切換就存。</li>
+    <li>「🔁 重新啟動控制器」讓設定生效。</li>
+    <li>設定好後網頁多一個「📡 遠端監控」區塊：「🔗 開啟監控」打開遠端監控網頁，「📋 複製連結」可以傳給家人（連結裡沒有密碼）。</li>
+  </ol></div>
+  <div><b>用手機 App</b><ol>
+    <li>最簡單：「更多」→「📡 遠端監控」設定精靈，填「Broker 位址」「帳號」「密碼」，按「完成設定」。App 會寫進控制盒、重新啟動，等到第一筆遠端狀態就完成。家裡有好幾台時，別台按「套用 App 的遠端設定」。</li>
+    <li>還沒有 broker：展開「還沒有 broker？（免費的 EMQX Cloud）」→「開啟 EMQX Cloud」申請。</li>
+    <li>手動設定：「⚙ 設定」→「MQTT 遠端監控（Beta）」的「Broker URL」「Topic Prefix」「允許透過 MQTT 遠端啟停充電」。</li>
+    <li>遠端啟停按鈕只在 broker 有帳號密碼、而且控制盒允許遠端啟停時出現；開始要確認。</li>
+  </ol></div>
+</div>
+<!--steps:mqtt-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><p class="no">這項只能用網頁或 App 設定</p></div></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_mqtt_fields.png" alt="「📡 MQTT 遠端監控」：Broker URL、Topic Prefix，改完儲存並重新啟動" width="690" height="1066"><figcaption>1. 「📡 MQTT 遠端監控」：Broker URL、Topic Prefix，改完儲存並重新啟動</figcaption></figure></div><figure><img src="img/web/w_mqtt_cmd.png" alt="「允許透過 MQTT 遠端啟停充電」（打開時先確認）" width="690" height="1066"><figcaption>2. 「允許透過 MQTT 遠端啟停充電」（打開時先確認）</figcaption></figure><figure><img src="img/web/w_save_bar.png" alt="改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）" width="750" height="154"><figcaption>3. 改了數值後，底部出現「x 項設定未儲存」：按「💾 儲存」（「捨棄」放棄）</figcaption></figure><figure><img src="img/web/w_reboot.png" alt="「🔁 重新啟動控制器」" width="750" height="928"><figcaption>4. 「🔁 重新啟動控制器」</figcaption></figure><figure><img src="img/web/w_mqtt_card.png" alt="設定好後多一個「📡 遠端監控」：「📋 複製連結」「🔗 開啟監控」" width="750" height="604"><figcaption>5. 設定好後多一個「📡 遠端監控」：「📋 複製連結」「🔗 開啟監控」</figcaption></figure><p class="no">缺圖：遠端監控網頁（monitor.html）本身</p></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_more_remote.png" alt="「更多」→「📡 遠端監控」" width="750" height="1208"><figcaption>1. 「更多」→「📡 遠端監控」</figcaption></figure></div><figure><img src="img/app/a_wizard.png" alt="設定精靈：填「Broker 位址」「帳號」「密碼」，按「完成設定」" width="750" height="744"><figcaption>2. 設定精靈：填「Broker 位址」「帳號」「密碼」，按「完成設定」</figcaption></figure><figure><img src="img/app/a_emqx.png" alt="「還沒有 broker？」展開 →「開啟 EMQX Cloud」" width="750" height="640"><figcaption>3. 「還沒有 broker？」展開 →「開啟 EMQX Cloud」</figcaption></figure><figure><img src="img/app/a_cloud_link.png" alt="「網頁版監控連結（Cloud PWA）」：「📋 複製連結」「🔗 開啟監控」" width="750" height="640"><figcaption>4. 「網頁版監控連結（Cloud PWA）」：「📋 複製連結」「🔗 開啟監控」</figcaption></figure><figure><img src="img/app/a_mqtt_fields.png" alt="「MQTT 遠端監控（Beta）」：Broker URL、Topic Prefix" width="750" height="1096"><figcaption>5. 「MQTT 遠端監控（Beta）」：Broker URL、Topic Prefix</figcaption></figure><figure><img src="img/app/a_mqtt_cmd.png" alt="「允許透過 MQTT 遠端啟停充電」" width="750" height="1096"><figcaption>6. 「允許透過 MQTT 遠端啟停充電」</figcaption></figure><p class="no">缺圖：精靈按「完成設定」之後的進度畫面、遠端啟停按鈕（需要真的 broker）</p></div></div>
+<!--/steps:mqtt-->
+<p><b>遠端監控網頁（iPhone 或不用 App 的人）：</b>網址在海龜電能網站上，也可以從控制盒網頁的「🔗 開啟監控」直接打開。在監控網頁輸入 MQTT 帳號密碼後就能看即時狀態；建議先把它<b>加到主畫面，加好之後再</b>輸入帳號密碼（加到主畫面的網頁和瀏覽器是分開存的）。遠端開始會先確認；按鈕跟著狀態變（待機才能開始、充電中才能停止、離線時都不能按）；控制盒沒打開「允許遠端啟停」時按鈕不能按並說明原因；送出指令 20 秒狀態沒變，會告訴你控制盒沒有反應。</p>
+<div class="shots">
+  <figure><img src="img/web_mqtt.png" alt="網頁的 MQTT 遠端監控設定：Broker URL、Topic Prefix、允許透過 MQTT 遠端啟停充電" width="674" height="1050"><figcaption>網頁：📡 MQTT 遠端監控</figcaption></figure>
+  <figure><img src="img/app_mqtt.png" alt="App 的遠端監控設定精靈：Broker 位址、帳號、密碼、完成設定" width="750" height="728"><figcaption>App：📡 遠端監控設定精靈</figcaption></figure>
+</div>
+
+<h3 id="psu">6.17 搭配可程式電源（聯明）</h3>
+<p>用一般旋鈕電源的人<b>這一節不用設定</b>：網頁「PSU 電源」那行顯示「UART ---」是正常的。</p>
+<p>搭配<b>聯明可程式電源</b>（整流模組加上控制板）時，控制盒會照車子的要求直接設定電源的電壓與電流，並讀回實際值：</p>
+<ul>
+  <li>顯示的是<b>實際電流</b>，充入電量也不再是估算。</li>
+  <li>「最大電流」最多到電源的額定電流，填超過會自動改成上限。</li>
+  <li>網頁會多一行「AC 輸入／可用功率」（App 是「可用功率」）：電源量到的插座電壓與目前能用的功率（插座的電流上限在聯明那邊設定）。功率不夠時，控制盒會自動把電流降下來，並顯示「電流上限 x A（比最大電流設定小）」。</li>
+  <li>充電中電源斷線會停止充電（「電源斷線」）；開始時就沒連到電源的話，照旋鈕電源的方式充。</li>
+  <li>用無線（ESP-NOW）時，控制盒<b>充電中不會掃描 WiFi</b>（掃描會換頻道、讓電源斷線），家裡 WiFi 斷線要等充完才會重連。</li>
+</ul>
+<dl class="opts">
+  <dt>PSU 連線方式</dt><dd>UART（有線，預設）或 ESP-NOW（無線，Beta）。改了要儲存並<b>重新啟動</b>才會換過去。</dd>
+  <dt>無線配對</dt><dd>只有選 ESP-NOW 才需要。像藍牙一樣，兩邊會顯示同一組 <b>6 位數配對碼</b>，數字一樣才在兩邊都確認；之後每一則無線訊息都會驗證，別人沒辦法冒充你的電源。只有一邊確認，60 秒後逾時、什麼都不存。</dd>
+  <dt>周邊裝置</dt><dd>列出連著的電源：類型、有線或無線、硬體版本、韌體版本（舊版聯明韌體不會回報，顯示「版本未知」）。</dd>
+  <dt>更新聯明的韌體</dt><dd>選我給你的聯明 .bin 檔，控制盒轉傳給聯明；更新中不能充電，完成後控制盒會等聯明重新連上、確認新版本。顯示「這個節點的韌體還不能從控制器更新」時，那台聯明要先用 USB 更新一次，請私訊我。</dd>
+</dl>
+<div class="ops">
+  <div><b>用 OLED</b><ol>
+    <li>連線方式只能用網頁或 App 改。</li>
+    <li>配對時：螢幕顯示「電源配對」→「搜尋中…」→「找到電源…」→ 6 位數。數字跟聯明一樣按 <b>START</b>（是），不一樣按 <b>STOP</b>（否）。成功顯示「配對成功、已安全連線」；失敗會寫原因：逾時、已取消、電源端取消、安全檢查失敗（離其他裝置遠一點再試）、「電源韌體太舊」（先更新聯明）。</li>
+    <li>看狀態：按住 SETTING 約半秒 → 選「周邊裝置 &gt;」：「電源有線: OK」或「電源無線: -58dBm」（未配對、失聯、傳送失敗）、節點硬體、韌體、ID。</li>
+  </ol></div>
+  <div><b>用網頁</b><ol>
+    <li>「⚙ 設定」→「🔌 PSU 電源設定」選「UART（有線）」或「ESP-NOW（無線）」，按「💾 儲存」，再重新啟動控制器。</li>
+    <li>配對（控制盒待機中）：按「📡 開始配對」，聯明那邊也開始配對；網頁跳出配對碼，數字相同按「數字相同，確認」，不同按「不同／取消」；聯明那邊也要確認。</li>
+    <li>「網路狀態」的「PSU 電源」看連線（例如 <code>ESP-NOW -58dBm</code>，綠色最好；「需重新配對」是舊版留下的配對，重新配對一次）。</li>
+    <li>「🔌 周邊裝置」：看版本；更新聯明時選 .bin 檔，按「📤 上傳並更新電源節點」。</li>
+  </ol></div>
+  <div><b>用手機 App</b><ol>
+    <li>「更多」→「⚙ 設定」→「PSU 電源」點「UART（有線）」或「ESP-NOW（無線）」，按「儲存」，再重新啟動。</li>
+    <li>「📡 開始配對」：App 跳出配對碼視窗，比對後確認。</li>
+    <li>控制盒頁「連線」區塊看「PSU 電源」與「可用功率」。</li>
+    <li>「🔄 韌體與重新啟動」→「周邊裝置」看版本；「上傳電源節點韌體（.bin，由控制器轉傳）」更新聯明。</li>
+  </ol></div>
+</div>
+<!--steps:psu-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/pair_search.png" alt="配對：搜尋中" width="512" height="256"><figcaption>1. 配對：搜尋中</figcaption></figure></div><figure><img class="oled" src="img/oled/pair_found.png" alt="配對：找到電源" width="512" height="256"><figcaption>2. 配對：找到電源</figcaption></figure><figure><img class="oled" src="img/oled/pair_code.png" alt="配對：比對 6 位數（START＝是、STOP＝否）" width="512" height="256"><figcaption>3. 配對：比對 6 位數（START＝是、STOP＝否）</figcaption></figure><figure><img class="oled" src="img/oled/pair_wait.png" alt="配對：控制盒已確認，等聯明確認" width="512" height="256"><figcaption>4. 配對：控制盒已確認，等聯明確認</figcaption></figure><figure><img class="oled" src="img/oled/pair_done.png" alt="配對成功" width="512" height="256"><figcaption>5. 配對成功</figcaption></figure><figure><img class="oled" src="img/oled/pair_fail_timeout.png" alt="配對失敗：逾時" width="512" height="256"><figcaption>6. 配對失敗：逾時</figcaption></figure><figure><img class="oled" src="img/oled/pair_fail_cancel.png" alt="配對失敗：已取消" width="512" height="256"><figcaption>7. 配對失敗：已取消</figcaption></figure><figure><img class="oled" src="img/oled/pair_fail_peer.png" alt="配對失敗：電源端取消" width="512" height="256"><figcaption>8. 配對失敗：電源端取消</figcaption></figure><figure><img class="oled" src="img/oled/pair_fail_security.png" alt="配對失敗：安全檢查失敗" width="512" height="256"><figcaption>9. 配對失敗：安全檢查失敗</figcaption></figure><figure><img class="oled" src="img/oled/pair_legacy.png" alt="配對：聯明韌體太舊" width="512" height="256"><figcaption>10. 配對：聯明韌體太舊</figcaption></figure><figure><img class="oled" src="img/oled/m_top_5.png" alt="按 STOP 往下：「周邊裝置 &gt;」" width="512" height="256"><figcaption>11. 按 STOP 往下：「周邊裝置 &gt;」</figcaption></figure><figure><img class="oled" src="img/oled/m_nodes_uart.png" alt="「周邊裝置」：旋鈕電源（沒接聯明）" width="512" height="256"><figcaption>12. 「周邊裝置」：旋鈕電源（沒接聯明）</figcaption></figure><figure><img class="oled" src="img/oled/m_nodes_nopair.png" alt="「周邊裝置」：選了無線但還沒配對" width="512" height="256"><figcaption>13. 「周邊裝置」：選了無線但還沒配對</figcaption></figure><figure><img class="oled" src="img/oled/m_nodes_espnow.png" alt="「周邊裝置」：聯明無線連線中" width="512" height="256"><figcaption>14. 「周邊裝置」：聯明無線連線中</figcaption></figure><figure><img class="oled" src="img/oled/m_nodes_lost.png" alt="「周邊裝置」：配對過但失聯" width="512" height="256"><figcaption>15. 「周邊裝置」：配對過但失聯</figcaption></figure><figure><img class="oled" src="img/oled/ota_node.png" alt="更新聯明（電源）韌體中" width="512" height="256"><figcaption>16. 更新聯明（電源）韌體中</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_psu_mode.png" alt="「🔌 PSU 電源設定」選 UART 或 ESP-NOW，儲存後重新啟動" width="690" height="494"><figcaption>1. 「🔌 PSU 電源設定」選 UART 或 ESP-NOW，儲存後重新啟動</figcaption></figure></div><figure><img src="img/web/w_psu_pair.png" alt="「📡 開始配對」" width="690" height="494"><figcaption>2. 「📡 開始配對」</figcaption></figure><figure><img src="img/web/w_pair_code.png" alt="配對碼視窗：數字和聯明一樣按「數字相同，確認」，不同按「不同／取消」" width="738" height="476"><figcaption>3. 配對碼視窗：數字和聯明一樣按「數字相同，確認」，不同按「不同／取消」</figcaption></figure><figure><img src="img/web/w_psu_status.png" alt="網路狀態：「PSU 電源」與「AC 輸入／可用功率」" width="750" height="550"><figcaption>4. 網路狀態：「PSU 電源」與「AC 輸入／可用功率」</figcaption></figure><figure><img src="img/web/w_nodes.png" alt="「🔌 周邊裝置」：選聯明的 .bin →「📤 上傳並更新電源節點」" width="750" height="540"><figcaption>5. 「🔌 周邊裝置」：選聯明的 .bin →「📤 上傳並更新電源節點」</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_psu_mode.png" alt="「PSU 電源」：UART（有線）／ESP-NOW（無線），儲存後重新啟動" width="750" height="726"><figcaption>1. 「PSU 電源」：UART（有線）／ESP-NOW（無線），儲存後重新啟動</figcaption></figure></div><figure><img src="img/app/a_psu_pair.png" alt="「📡 開始配對」" width="750" height="726"><figcaption>2. 「📡 開始配對」</figcaption></figure><figure><img src="img/app/a_pair_code.png" alt="配對碼視窗：數字和聯明一樣才確認" width="750" height="642"><figcaption>3. 配對碼視窗：數字和聯明一樣才確認</figcaption></figure><figure><img src="img/app/a_psu_row.png" alt="「連線」：「PSU 電源」「可用功率」" width="750" height="712"><figcaption>4. 「連線」：「PSU 電源」「可用功率」</figcaption></figure><figure><img src="img/app/a_nodes.png" alt="「周邊裝置」與「上傳電源節點韌體」" width="750" height="1976"><figcaption>5. 「周邊裝置」與「上傳電源節點韌體」</figcaption></figure><p class="no">缺圖：上傳聯明 .bin 的選檔與轉傳進度</p></div></div>
+<!--/steps:psu-->
+<div class="shots">
+  <figure><img src="img/web_psu_status.png" alt="網路狀態區塊：PSU 電源 ESP-NOW -58dBm，AC 輸入／可用功率 110 V、1.30 kW（插座 15 A）" width="734" height="534"><figcaption>網頁：電源連線與可用功率</figcaption></figure>
+  <figure><img src="img/web_psu.png" alt="PSU 電源設定：UART 有線或 ESP-NOW 無線，配對狀態已配對，開始配對按鈕" width="674" height="478"><figcaption>網頁：🔌 PSU 電源設定</figcaption></figure>
+  <figure><img src="img/web_nodes.png" alt="周邊裝置區塊：電源節點、可控整流模組、ESP-NOW、硬體 1.0、韌體 v1.4.0，上傳並更新電源節點" width="734" height="524"><figcaption>網頁：🔌 周邊裝置</figcaption></figure>
+  <figure><img src="img/app_cfg_psu.png" alt="App 設定頁的 PSU 電源：UART（有線）、ESP-NOW（無線）；下面是自動充電" width="750" height="610"><figcaption>App：PSU 電源與自動充電</figcaption></figure>
+</div>
+
+<h3 id="diag">6.18 狀態與診斷：版本、CAN 診斷、硬體狀態</h3>
+<p>平常用不到。回報問題時我可能會請你截圖這些畫面。</p>
+<dl class="opts">
+  <dt>韌體版本、硬體版本、IP、本機編號</dt><dd>OLED「裝置資訊」頁有硬體與韌體版本，「網路」頁有 IP 與 <code>tes-xxxxxx</code>。網頁「🔄 韌體更新」區塊寫目前版本，「網路狀態」寫 IP 與主機名稱；App 在「🔄 韌體與重新啟動」與控制盒頁「連線」區塊。</dd>
+  <dt>🔌 CAN 診斷</dt><dd>控制盒和車子之間最後收發的 CAN 訊息（充電許可、車子要求的電壓電流、SOC 等）與通訊狀態，沒插車時全部是 0。網頁點標題展開；App 在「更多」→「🔌 CAN 診斷」。</dd>
+  <dt>🔧 硬體狀態</dt><dd>電路板圖，各零件即時上色（輸出開著會亮、按鍵按下會變藍、故障會框紅），旁邊是腳位、電壓量測、電源連線、CAN、系統的數值。網頁在「🔄 韌體更新」區塊最下面的連結；App 在「更多」→「🔧 硬體狀態」。裡面的「工作台測試模式」是維修用的，<b>請不要自己操作</b>（會讓充電槍頭帶電）。</dd>
+</dl>
+<div class="ops">
+  <div><b>用 OLED</b><ol><li>按住 SETTING 約半秒 → 選「裝置資訊 &gt;」看「硬體」與韌體版本；「網路 &gt;」看 IP 與本機編號。</li></ol><p class="no">CAN 診斷與硬體狀態只能用網頁或 App 看。</p></div>
+  <div><b>用網頁</b><ol><li>「🔌 CAN 診斷」點標題展開。</li><li>「🔄 韌體更新」最下面「🔧 硬體狀態（腳位、ADC、PSU、CAN、系統）→」。</li></ol></div>
+  <div><b>用手機 App</b><ol><li>「更多」→「🔌 CAN 診斷」或「🔧 硬體狀態」。</li></ol></div>
+</div>
+<!--steps:diag-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/m_top_4.png" alt="按 STOP 往下：「裝置資訊 &gt;」" width="512" height="256"><figcaption>1. 按 STOP 往下：「裝置資訊 &gt;」</figcaption></figure></div><figure><img class="oled" src="img/oled/m_net_sta.png" alt="「網路」：連著 WiFi" width="512" height="256"><figcaption>2. 「網路」：連著 WiFi</figcaption></figure><p class="no">缺圖：「裝置資訊」頁（會顯示硬體版本，說明書不放）</p></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_ota_ver.png" alt="「🔄 韌體更新」：目前版本" width="750" height="928"><figcaption>1. 「🔄 韌體更新」：目前版本</figcaption></figure></div><figure><img src="img/web/w_can.png" alt="「🔌 CAN 診斷」：點標題展開" width="750" height="3028"><figcaption>2. 「🔌 CAN 診斷」：點標題展開</figcaption></figure><figure><img src="img/web/w_hw_link.png" alt="「🔧 硬體狀態」連結" width="750" height="928"><figcaption>3. 「🔧 硬體狀態」連結</figcaption></figure><p class="no">缺圖：硬體狀態頁（/hw）本身（假控制盒沒有硬體資料）</p></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_ota_ver.png" alt="「韌體更新」：目前版本" width="750" height="1976"><figcaption>1. 「韌體更新」：目前版本</figcaption></figure></div><figure><img src="img/app/a_more_can.png" alt="「更多」→「🔌 CAN 診斷」" width="750" height="1208"><figcaption>2. 「更多」→「🔌 CAN 診斷」</figcaption></figure><figure><img src="img/app/a_more_hw.png" alt="「更多」→「🔧 硬體狀態」" width="750" height="1208"><figcaption>3. 「更多」→「🔧 硬體狀態」</figcaption></figure><p class="no">缺圖：CAN 診斷頁與硬體狀態頁的內容（假控制盒沒有 CAN 與硬體資料）</p></div></div>
+<!--/steps:diag-->
+
+<h3 id="lang">6.19 網頁與 App 的語言</h3>
+<p>網頁與 App 介面的語言，跟控制盒螢幕的語言（<a href="#screen">6.12</a>）是分開的。App 推播通知的文字會照 App 的語言。</p>
+<div class="ops">
+  <div><b>用 OLED</b><p class="no">OLED 只能設定它自己的語言（6.12）。</p></div>
+  <div><b>用網頁</b><ol><li>網頁右上角的「中／EN」切換，頁面會重新載入。預設跟手機瀏覽器的語言，記在這支手機的瀏覽器裡。</li></ol></div>
+  <div><b>用手機 App</b><ol><li>首頁最下面「語言」選「自動（跟手機）」「中文」或「English」。</li></ol></div>
+</div>
+<!--steps:lang-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/m_lang_sel.png" alt="「螢幕與燈」：選到「語言: 中文」" width="512" height="256"><figcaption>1. 「螢幕與燈」：選到「語言: 中文」</figcaption></figure></div><figure><img class="oled" src="img/oled/m_lang_en.png" alt="SETTING 進入、START 切成 English（選單此時還是中文，儲存後才換）" width="512" height="256"><figcaption>2. SETTING 進入、START 切成 English（選單此時還是中文，儲存後才換）</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用網頁</b><figure><img src="img/web/w_lang.png" alt="右上角「中／EN」切換網頁語言" width="750" height="97"><figcaption>1. 右上角「中／EN」切換網頁語言</figcaption></figure></div></div><div class="gcol"><div class="ghead"><b>用手機 App</b><figure><img src="img/app/a_lang.png" alt="首頁最下面「語言」：自動（跟手機）／中文／English" width="750" height="248"><figcaption>1. 首頁最下面「語言」：自動（跟手機）／中文／English</figcaption></figure></div></div></div>
+<!--/steps:lang-->
+
+<h2 id="oled" class="keep"><span class="n">7</span>OLED 畫面、按鍵與選單</h2>
+<h3>7.1 常見畫面</h3>
+<p class="sub">下面是新版的中文畫面；舊版韌體是英文畫面，內容相同。</p>
+<div class="oleds">
+  <figure><img src="img/oled/st_charging_soc.png" alt="充電中畫面" width="512" height="256"><figcaption>充電中：電壓、電流、電量／目標、剩餘時間</figcaption></figure>
+  <figure><img src="img/oled/st_done.png" alt="充電完成畫面" width="512" height="256"><figcaption>充電完成：顯示一分鐘，按任意鍵返回</figcaption></figure>
+  <figure><img src="img/oled/f_cp_lost.png" alt="故障畫面" width="512" height="256"><figcaption>故障停止：第一行原因、第二行怎麼處理</figcaption></figure>
+</div>
+<ul>
+  <li>最上面一行是狀態：待機中、連線中（跟車子交握）、準備充電、充電中、結束中、收尾中、故障、緊急停止。</li>
+  <li>最下面一行的 <code>REQ</code> 是車子目前要求的電壓與電流。第二、三行依停止條件不同，見 <a href="#stop">6.4</a>。</li>
+  <li>充電中右上角的電池圖示與往前流的箭頭是充電動畫（<a href="#screen">6.12</a>）。</li>
+  <li>待機一段時間沒人動會進入螢幕保護（<a href="#screen">6.12</a>）。待機時整個畫面每分鐘偏移 1 個像素，這是防止螢幕烙印，不是故障。</li>
+  <li>螢幕顯示「重新啟動中…」：有人從選單、網頁或 App 要求重新啟動，一秒內會重開。</li>
+  <li>螢幕出現反白的 <code>BENCH TEST</code>：有人在硬體狀態頁做工作台測試（維修用），繼電器與燈號由網頁控制。按 START、插上槍或按 EMERGENCY 會立刻結束，接著顯示 <code>TEST ENDED</code> 與原因 3 秒，然後恢復正常。</li>
+  <li>韌體更新與電源配對時，螢幕會換成專用畫面（<a href="#ota">6.15</a>、<a href="#psu">6.17</a>），而且蓋過選單。</li>
+  <li>畫面上的數字都是示意。</li>
+</ul>
+
+<h3>7.2 按鍵</h3>
+<p>「長按」是<b>按住約半秒</b>。調整數值時按住 START／STOP 會每 0.1 秒連續快速加減。</p>
+<div class="tablewrap"><table>
+  <tr><th>按鍵</th><th>平常</th><th>在選單中</th><th>調整數值時</th></tr>
+  <tr><td>START</td><td>開始充電；故障畫面時重試</td><td>往上</td><td>短按小步加，長按連續快速加</td></tr>
+  <tr><td>STOP</td><td>停止充電（交握中按也會取消）</td><td>往下</td><td>短按小步減，長按連續快速減</td></tr>
+  <tr><td>SETTING</td><td>短按：切換 SOC 目標 80／95／100%<br>長按：進入設定選單</td><td>短按：進入分頁／進入調整／執行<br>長按：在分頁裡回上一層</td><td>短按：確認，回到選單</td></tr>
+  <tr><td>EMERGENCY</td><td colspan="3">緊急停止，任何時候都有效。按下後要到選單「維護 › 復歸故障」才能恢復</td></tr>
+</table></div>
+<ul class="sub">
+  <li>充電完成畫面上，按任何一顆鍵都會回到待機畫面（這時按 SETTING 不會切換 %）。插著槍按 START 則會再充一次。</li>
+  <li>螢幕保護時，第一下按鍵只會喚醒（EMERGENCY 除外）。</li>
+  <li>電源配對時，START＝數字相同、確認；STOP＝取消（<a href="#psu">6.17</a>）。</li>
+  <li>沒有組合鍵。上蓋的 EN／BOOT 是維修用的，見第 3 章。</li>
+</ul>
+
+<h3 id="menu">7.3 設定選單怎麼操作</h3>
+<ol class="steps">
+  <li>在待機或充電畫面<b>按住 SETTING 約半秒</b>放開，進入「設定」最上層：七個分類，最下面是「儲存並離開」「取消」。右邊的 <code>^</code>／<code>v</code> 表示上面／下面還有。</li>
+  <li>START／STOP 移動，SETTING 進入分類。分類第一行是「&lt; 返回」；在分類裡長按 SETTING 也會回到最上層。</li>
+  <li>移到要改的項目按 SETTING，標題變成「&lt; 調整數值 &gt;」：START 加（或換下一個選項）、STOP 減（或換上一個），再按 SETTING 確認，回到移動模式。</li>
+  <li>全部改完，回到最上層選「<b>儲存並離開</b>」才會存。選「取消」全部不存。</li>
+</ol>
+<!--steps:menu-->
+<div class="gal"><div class="gcol"><div class="ghead"><b>用 OLED</b><figure><img class="oled" src="img/oled/m_top_0.png" alt="長按 SETTING：設定最上層，游標在「充電 &gt;」" width="512" height="256"><figcaption>1. 長按 SETTING：設定最上層，游標在「充電 &gt;」</figcaption></figure></div><figure><img class="oled" src="img/oled/m_top_1.png" alt="按 STOP 往下：「自動化 &gt;」" width="512" height="256"><figcaption>2. 按 STOP 往下：「自動化 &gt;」</figcaption></figure><figure><img class="oled" src="img/oled/m_top_2.png" alt="按 STOP 往下：「螢幕與燈 &gt;」" width="512" height="256"><figcaption>3. 按 STOP 往下：「螢幕與燈 &gt;」</figcaption></figure><figure><img class="oled" src="img/oled/m_top_3.png" alt="按 STOP 往下：「網路 &gt;」" width="512" height="256"><figcaption>4. 按 STOP 往下：「網路 &gt;」</figcaption></figure><figure><img class="oled" src="img/oled/m_top_4.png" alt="按 STOP 往下：「裝置資訊 &gt;」" width="512" height="256"><figcaption>5. 按 STOP 往下：「裝置資訊 &gt;」</figcaption></figure><figure><img class="oled" src="img/oled/m_top_5.png" alt="按 STOP 往下：「周邊裝置 &gt;」" width="512" height="256"><figcaption>6. 按 STOP 往下：「周邊裝置 &gt;」</figcaption></figure><figure><img class="oled" src="img/oled/m_top_6.png" alt="按 STOP 往下：「維護 &gt;」" width="512" height="256"><figcaption>7. 按 STOP 往下：「維護 &gt;」</figcaption></figure><figure><img class="oled" src="img/oled/m_top_7.png" alt="按 STOP 往下：「儲存並離開」" width="512" height="256"><figcaption>8. 按 STOP 往下：「儲存並離開」</figcaption></figure><figure><img class="oled" src="img/oled/m_top_8.png" alt="按 STOP 往下：「取消」" width="512" height="256"><figcaption>9. 按 STOP 往下：「取消」</figcaption></figure><figure><img class="oled" src="img/oled/m_charge_1.png" alt="按 SETTING 進「充電」：游標在第一個設定" width="512" height="256"><figcaption>10. 按 SETTING 進「充電」：游標在第一個設定</figcaption></figure><figure><img class="oled" src="img/oled/m_charge_back.png" alt="「&lt; 返回」：按 SETTING 回最上層（或在分類裡長按 SETTING）" width="512" height="256"><figcaption>11. 「&lt; 返回」：按 SETTING 回最上層（或在分類裡長按 SETTING）</figcaption></figure><figure><img class="oled" src="img/oled/m_save_before.png" alt="例：把「目標SOC」改成 85%（還沒存）" width="512" height="256"><figcaption>12. 例：把「目標SOC」改成 85%（還沒存）</figcaption></figure><figure><img class="oled" src="img/oled/m_save_sel.png" alt="長按 SETTING 回最上層，移到「儲存並離開」" width="512" height="256"><figcaption>13. 長按 SETTING 回最上層，移到「儲存並離開」</figcaption></figure><figure><img class="oled" src="img/oled/m_saved.png" alt="按 SETTING：存好，回到待機畫面（SOC 目標變成 85%）" width="512" height="256"><figcaption>14. 按 SETTING：存好，回到待機畫面（SOC 目標變成 85%）</figcaption></figure></div><div class="gcol"><div class="ghead"><b>用網頁</b><p class="no">—</p></div></div><div class="gcol"><div class="ghead"><b>用手機 App</b><p class="no">—</p></div></div></div>
+<!--/steps:menu-->
+<div class="oleds">
+  <figure><img src="img/oled/m_top_0.png" alt="OLED 選單最上層：充電 >、自動化 >、螢幕與燈 >、網路 >，右下有 v" width="512" height="256"><figcaption>最上層（往下還有）</figcaption></figure>
+  <figure><img src="img/oled/m_top_7.png" alt="OLED 選單最上層的最後：周邊裝置 >、維護 >、儲存並離開 反白、取消" width="512" height="256"><figcaption>最上層的最後：儲存並離開、取消</figcaption></figure>
+  <figure><img src="img/oled/m_maxa_up.png" alt="OLED 調整數值畫面" width="512" height="256"><figcaption>調整數值中</figcaption></figure>
+</div>
+<p class="sub">選單開著時別人用網頁或 App 改設定，選「儲存並離開」會蓋回去，見 <a href="#how">6.1</a>。韌體更新或電源配對開始時，螢幕會換成那個畫面。</p>
+
+<h3 id="menutree">7.4 完整選單樹</h3>
+<p>依螢幕上的順序。「選項／範圍」裡的「短按／長按」是調整數值時每按一下的變化。<b>預設</b>是韌體的出廠值。</p>
+<div class="tablewrap"><table>
+  <tr><th>分類 › 項目（螢幕上的字）</th><th>選項／範圍（預設）</th><th>短按／長按</th><th>說明</th></tr>
+  <tr><td colspan="4"><b>充電 &gt;</b></td></tr>
+  <tr><td>自動電壓</td><td>開／關（關）</td><td>切換</td><td><a href="#volt">6.5</a></td></tr>
+  <tr><td>最大電壓（自動電壓開著時叫「電壓上限」）</td><td>40–120 V，上限依板子（100.0 V）</td><td>±0.1 V／±1 V</td><td><a href="#volt">6.5</a></td></tr>
+  <tr><td>最大電流</td><td>1.0–100.0 A，接聯明時到額定（10.0 A）</td><td>±0.1 A／±1 A</td><td><a href="#amp">6.6</a></td></tr>
+  <tr><td>停止條件</td><td>SOC → 電壓 → 時間 → 電量（SOC）</td><td>換下一個／上一個</td><td><a href="#stop">6.4</a></td></tr>
+  <tr><td>目標SOC（停止條件＝SOC 時）</td><td>20–100%（80%）</td><td>±1%／±5%</td><td><a href="#stop">6.4</a></td></tr>
+  <tr><td>停止電壓（停止條件＝電壓時）</td><td>40–120 V，上限依板子（100.0 V）</td><td>±0.1 V／±1 V</td><td><a href="#stop">6.4</a></td></tr>
+  <tr><td>充電時長（停止條件＝時間時）</td><td>1–600 分（120 分）</td><td>±10 分／±30 分</td><td><a href="#stop">6.4</a></td></tr>
+  <tr><td>目標電量（停止條件＝電量時）</td><td>0.1–20.0 kWh（1.0 kWh）</td><td>±0.1／±1 kWh</td><td><a href="#stop">6.4</a></td></tr>
+  <tr><td colspan="4"><b>自動化 &gt;</b></td></tr>
+  <tr><td>[Beta]定時充電</td><td>開／關（關）；時間要用網頁或 App 設</td><td>切換</td><td><a href="#sched">6.7</a></td></tr>
+  <tr><td>[Beta]自動充電</td><td>開／關（關）</td><td>切換</td><td><a href="#auto">6.8</a></td></tr>
+  <tr><td colspan="4"><b>螢幕與燈 &gt;</b></td></tr>
+  <tr><td>語言</td><td>中文／English（中文）</td><td>切換</td><td><a href="#screen">6.12</a></td></tr>
+  <tr><td>充電動畫</td><td>全部／電池／箭頭／關（全部）</td><td>下一個／上一個</td><td><a href="#screen">6.12</a></td></tr>
+  <tr><td>螢幕保護</td><td>5分鐘／15分鐘／30分鐘／關（5分鐘）</td><td>下一個／上一個</td><td><a href="#screen">6.12</a></td></tr>
+  <tr><td>保護樣式（螢幕保護不是「關」時）</td><td>烏龜／全黑（烏龜）</td><td>切換</td><td><a href="#screen">6.12</a></td></tr>
+  <tr><td>LuxBeacon</td><td>開／關（關）</td><td>切換</td><td><a href="#beacon">6.13</a></td></tr>
+  <tr><td colspan="4"><b>網路 &gt;</b>（只能看）</td></tr>
+  <tr><td>IP: …／AP: …／WiFi: ---</td><td>連著 WiFi 顯示 IP；只有熱點顯示 AP 位址；都沒有顯示 ---</td><td>—</td><td><a href="#wifiset">6.10</a></td></tr>
+  <tr><td>熱點密碼</td><td>自動熱點的密碼</td><td>—</td><td><a href="#wifiset">6.10</a></td></tr>
+  <tr><td>tes-xxxxxx</td><td>本機編號，網址是 <code>tes-xxxxxx.local</code></td><td>—</td><td><a href="#wifi">5.3</a></td></tr>
+  <tr><td colspan="4"><b>裝置資訊 &gt;</b>（只能看）</td></tr>
+  <tr><td>硬體</td><td>硬體版本</td><td>—</td><td><a href="#diag">6.18</a></td></tr>
+  <tr><td>（版本號）</td><td>韌體版本，例如 v3.7.0</td><td>—</td><td><a href="#fw">5.5</a></td></tr>
+  <tr><td colspan="4"><b>周邊裝置 &gt;</b>（只能看）</td></tr>
+  <tr><td>電源有線: OK／---，或 電源無線: -xxdBm／未配對／失聯／傳送失敗</td><td>電源的連線狀態</td><td>—</td><td><a href="#psu">6.17</a></td></tr>
+  <tr><td>節點硬體、韌體版本、ID（連著聯明時才有）</td><td>聯明的版本與識別碼；舊版顯示「節點版本未知」</td><td>—</td><td><a href="#psu">6.17</a></td></tr>
+  <tr><td colspan="4"><b>維護 &gt;</b></td></tr>
+  <tr><td>復歸故障</td><td>按 SETTING 執行並關閉選單：清除緊急停止與故障說明</td><td>—</td><td><a href="#led">8.2</a></td></tr>
+  <tr><td>重新啟動</td><td>按 SETTING 後變「再按一次重新啟動」，3 秒內再按才執行；充電中顯示「重新啟動(請先停止)」</td><td>—</td><td><a href="#ota">6.15</a></td></tr>
+  <tr><td colspan="4"><b>（最上層最後兩行）</b></td></tr>
+  <tr><td>儲存並離開</td><td>把選單裡的值全部存起來，回到狀態畫面</td><td>—</td><td><a href="#how">6.1</a></td></tr>
+  <tr><td>取消</td><td>全部不存，回到狀態畫面</td><td>—</td><td></td></tr>
+</table></div>
+<div class="box warn">
+  <b class="t">「最大電壓」和「最大電流」請不要隨便改</b>
+  <b>最大電壓</b>要跟電源實際輸出的電壓一致，它不是「充到多少電壓」（那是停止條件的「停止電壓」）。<b>最大電流</b>出廠是 10 A，要跟電源實際輸出的電流一樣：接旋鈕電源時，改這個設定<b>不會</b>改變實際電流，要連電源的電流旋鈕一起調（見 <a href="#current">第 9 章</a>）。
+</div>
+
+<h2 id="led"><span class="n">8</span>指示燈與故障訊息</h2>
+<h3>8.1 指示燈</h3>
+<div class="tablewrap"><table class="ledtable">
+  <tr><th>燈</th><th>狀態</th><th>意思</th><th>樣子</th></tr>
+  <tr><td><span class="dot y"></span>黃</td><td>恆亮</td><td>控制盒有電</td><td class="ledimg"><img src="img/led/led_yellow.png" alt="黃燈恆亮" width="364" height="660"></td></tr>
+  <tr><td><span class="dot g"></span>綠</td><td>慢閃（亮半秒、滅半秒）</td><td>充電中</td><td class="ledimg"><img src="img/led/led_green_blink.png" alt="綠燈慢閃：亮 0.5 秒、滅 0.5 秒" width="694" height="660"></td></tr>
+  <tr><td><span class="dot g"></span>綠</td><td>恆亮</td><td>充電完成（拔槍或開始下一次後熄滅）</td><td class="ledimg"><img src="img/led/led_green.png" alt="綠燈恆亮" width="364" height="660"></td></tr>
+  <tr><td><span class="dot g"></span>綠</td><td>一組一組短閃</td><td>LuxBeacon 開啟時的充電中：用閃的次數報電量。例如 72% 是閃 7 下、停一下、閃 2 下；數字 0 閃 10 下；每組之間停約 1 秒</td><td class="ledimg"><img src="img/led/led_green_beacon.png" alt="綠燈一下一下短閃：每下亮 0.2 秒、滅 0.2 秒" width="694" height="660"></td></tr>
+  <tr><td><span class="dot r"></span>紅</td><td>恆亮</td><td>故障停止或緊急停止，看螢幕上的原因</td><td class="ledimg"><img src="img/led/led_red.png" alt="紅燈恆亮" width="364" height="660"></td></tr>
+  <tr><td><span class="dot r"></span>紅</td><td>每秒短閃一下</td><td>無線配對的電源斷線（只有使用無線電源節點時會出現）</td><td class="ledimg"><img src="img/led/led_red_flash.png" alt="紅燈每秒短閃：亮 0.1 秒、滅 0.9 秒" width="694" height="660"></td></tr>
+</table></div>
+<p class="sub">「樣子」是渲染圖：會閃的燈左邊一格是亮、右邊一格是滅，下面寫各多久。</p>
+
+<h3>8.2 故障訊息</h3>
+<p>故障時充電會停止，紅燈亮，螢幕顯示原因（舊版韌體是英文）。處理好之後按 <b>START</b> 重試即可（緊急停止除外）。原因會一直留在螢幕上，直到下一次開始充電。</p>
+<div class="tablewrap"><table>
+  <tr><th>螢幕顯示</th><th>意思</th><th>怎麼處理</th></tr>
+  <tr><td>車輛沒有回應</td><td>按了開始，但 15 秒內沒收到車子的回應</td><td>確認槍插好、車子電門狀態；檢查 CAN 線</td></tr>
+  <tr><td>車輛CAN中斷</td><td>充電途中收不到車子的訊號</td><td>檢查充電槍與 CAN 線</td></tr>
+  <tr><td>電源電壓不夠高</td><td>車子要的電壓比「最大電壓」設定高</td><td>需要換輸出電壓更高的電源（不是把設定調高）</td></tr>
+  <tr><td>預充電逾時</td><td>交握到一半沒有完成</td><td>拔起來重新插好再試</td></tr>
+  <tr><td>車輛接觸器沒閉合</td><td>車上的接觸器沒有動作</td><td>車輛端的問題，重試；持續發生請聯絡我</td></tr>
+  <tr><td>電源斷線</td><td>充電中電源失去連線（使用可通訊電源時）</td><td>檢查電源電源線與連線</td></tr>
+  <tr><td>車輛回報供電異常</td><td>車子認為充電端有問題</td><td>檢查充電樁與電源，重試</td></tr>
+  <tr><td>車輛電池異常</td><td>車子的電池回報故障</td><td>看車輛儀表，必要時找車廠</td></tr>
+  <tr><td>充電槍鬆脫</td><td>充電中 CP 訊號斷了</td><td>重新插好並鎖緊</td></tr>
+  <tr><td>緊急停止已按下</td><td>按了 EMERGENCY</td><td>確認安全後，選單「維護 › 復歸故障」</td></tr>
+  <tr><td>車輛緊急停止</td><td>車子送出停止要求</td><td>充電結束時出現屬正常，會自己恢復</td></tr>
+  <tr><td>!電源過高</td><td>待機時量到的電壓超過這塊板子能量的範圍</td><td>立刻關掉電源，確認電源輸出在 60–120 V 之內</td></tr>
+</table></div>
+<p>右上角的 <code>0x..</code> 是給我看的代碼，回報問題時請連同畫面一起拍照。第三行的小字是故障當下的數值（例如車子要求幾伏、等了幾秒），網頁上有完整的說明。</p>
+<!--steps:states-->
+<div class="tablewrap"><table class="stview"><tr><th>狀態</th><th>OLED</th><th>網頁</th><th>手機 App</th></tr><tr><td><b>待機中</b></td><td><figure><img class="oled" src="img/oled/st_standby.png" alt="待機中（停止條件 SOC，目標 80%）" width="512" height="256"><figcaption>OLED. 待機中（停止條件 SOC，目標 80%）</figcaption></figure></td><td><img src="img/web/s_standby.png" alt="待機中（網頁）" width="750" height="600"></td><td><img src="img/app/app_s_standby.png" alt="待機中（手機 App）" width="750" height="683"></td></tr><tr><td><b>待機中：電源電壓過高</b></td><td><figure><img class="oled" src="img/oled/st_volt_over.png" alt="待機中：電源電壓過高" width="512" height="256"><figcaption>OLED. 待機中：電源電壓過高</figcaption></figure></td><td><img src="img/web/s_volt_over.png" alt="待機中：電源電壓過高（網頁）" width="750" height="743"></td><td><img src="img/app/app_s_volt_over.png" alt="待機中：電源電壓過高（手機 App）" width="750" height="885"></td></tr><tr><td><b>連線中</b></td><td><figure><img class="oled" src="img/oled/st_connecting.png" alt="連線中（跟車子交握）" width="512" height="256"><figcaption>OLED. 連線中（跟車子交握）</figcaption></figure></td><td><img src="img/web/s_connecting.png" alt="連線中（網頁）" width="750" height="600"></td><td><img src="img/app/app_s_connecting.png" alt="連線中（手機 App）" width="750" height="683"></td></tr><tr><td><b>準備充電</b></td><td><figure><img class="oled" src="img/oled/st_precharge.png" alt="準備充電" width="512" height="256"><figcaption>OLED. 準備充電</figcaption></figure></td><td><img src="img/web/s_precharge.png" alt="準備充電（網頁）" width="750" height="600"></td><td><img src="img/app/app_s_precharge.png" alt="準備充電（手機 App）" width="750" height="683"></td></tr><tr><td><b>充電中</b></td><td><figure><img class="oled" src="img/oled/st_charging_soc.png" alt="充電中：停止條件 SOC" width="512" height="256"><figcaption>OLED. 充電中：停止條件 SOC</figcaption></figure></td><td><img src="img/web/s_charging.png" alt="充電中（網頁）" width="750" height="702"></td><td><img src="img/app/app_s_charging.png" alt="充電中（手機 App）" width="750" height="793"></td></tr><tr><td><b>結束中</b></td><td><figure><img class="oled" src="img/oled/st_ending.png" alt="結束中" width="512" height="256"><figcaption>OLED. 結束中</figcaption></figure></td><td><img src="img/web/s_ending.png" alt="結束中（網頁）" width="750" height="640"></td><td><img src="img/app/app_s_ending.png" alt="結束中（手機 App）" width="750" height="715"></td></tr><tr><td><b>收尾中</b></td><td><figure><img class="oled" src="img/oled/st_finalize.png" alt="收尾中" width="512" height="256"><figcaption>OLED. 收尾中</figcaption></figure></td><td><img src="img/web/s_finalize.png" alt="收尾中（網頁）" width="750" height="640"></td><td><img src="img/app/app_s_finalize.png" alt="收尾中（手機 App）" width="750" height="715"></td></tr><tr><td><b>充電完成</b></td><td><figure><img class="oled" src="img/oled/st_done.png" alt="充電完成（一分鐘或按任意鍵返回）" width="512" height="256"><figcaption>OLED. 充電完成（一分鐘或按任意鍵返回）</figcaption></figure></td><td><img src="img/web/s_done.png" alt="充電完成（網頁）" width="750" height="600"></td><td><img src="img/app/app_s_done.png" alt="充電完成（手機 App）" width="750" height="741"></td></tr><tr><td><b>車輛沒有回應</b></td><td><figure><img class="oled" src="img/oled/f_vehicle_timeout.png" alt="車輛沒有回應" width="512" height="256"><figcaption>OLED. 車輛沒有回應</figcaption></figure></td><td><img src="img/web/s_f_vehicle_timeout.png" alt="車輛沒有回應（網頁）" width="750" height="961"></td><td><img src="img/app/app_s_f_vehicle_timeout.png" alt="車輛沒有回應（手機 App）" width="750" height="1035"></td></tr><tr><td><b>車輛CAN中斷</b></td><td><figure><img class="oled" src="img/oled/f_can_lost.png" alt="車輛CAN中斷（充電中收不到車子訊號）" width="512" height="256"><figcaption>OLED. 車輛CAN中斷（充電中收不到車子訊號）</figcaption></figure></td><td><img src="img/web/s_f_can_lost.png" alt="車輛CAN中斷（網頁）" width="750" height="1003"></td><td><img src="img/app/app_s_f_can_lost.png" alt="車輛CAN中斷（手機 App）" width="750" height="1077"></td></tr><tr><td><b>電源電壓不夠高</b></td><td><figure><img class="oled" src="img/oled/f_voltage.png" alt="電源電壓不夠高" width="512" height="256"><figcaption>OLED. 電源電壓不夠高</figcaption></figure></td><td><img src="img/web/s_f_voltage.png" alt="電源電壓不夠高（網頁）" width="750" height="1003"></td><td><img src="img/app/app_s_f_voltage.png" alt="電源電壓不夠高（手機 App）" width="750" height="1161"></td></tr><tr><td><b>預充電逾時</b></td><td><figure><img class="oled" src="img/oled/f_precharge.png" alt="預充電逾時" width="512" height="256"><figcaption>OLED. 預充電逾時</figcaption></figure></td><td><img src="img/web/s_f_precharge.png" alt="預充電逾時（網頁）" width="750" height="961"></td><td><img src="img/app/app_s_f_precharge.png" alt="預充電逾時（手機 App）" width="750" height="1035"></td></tr><tr><td><b>車輛接觸器沒閉合</b></td><td><figure><img class="oled" src="img/oled/f_contactor.png" alt="車輛接觸器沒閉合" width="512" height="256"><figcaption>OLED. 車輛接觸器沒閉合</figcaption></figure></td><td><img src="img/web/s_f_contactor.png" alt="車輛接觸器沒閉合（網頁）" width="750" height="961"></td><td><img src="img/app/app_s_f_contactor.png" alt="車輛接觸器沒閉合（手機 App）" width="750" height="1035"></td></tr><tr><td><b>電源斷線</b></td><td><figure><img class="oled" src="img/oled/f_psu_lost.png" alt="電源斷線" width="512" height="256"><figcaption>OLED. 電源斷線</figcaption></figure></td><td><img src="img/web/s_f_psu_lost.png" alt="電源斷線（網頁）" width="750" height="961"></td><td><img src="img/app/app_s_f_psu_lost.png" alt="電源斷線（手機 App）" width="750" height="1035"></td></tr><tr><td><b>車輛回報供電異常</b></td><td><figure><img class="oled" src="img/oled/f_bms_supply.png" alt="車輛回報供電異常" width="512" height="256"><figcaption>OLED. 車輛回報供電異常</figcaption></figure></td><td><img src="img/web/s_f_bms_supply.png" alt="車輛回報供電異常（網頁）" width="750" height="1088"></td><td><img src="img/app/app_s_f_bms_supply.png" alt="車輛回報供電異常（手機 App）" width="750" height="1161"></td></tr><tr><td><b>車輛電池異常</b></td><td><figure><img class="oled" src="img/oled/f_bms_batt.png" alt="車輛電池異常" width="512" height="256"><figcaption>OLED. 車輛電池異常</figcaption></figure></td><td><img src="img/web/s_f_bms_batt.png" alt="車輛電池異常（網頁）" width="750" height="919"></td><td><img src="img/app/app_s_f_bms_batt.png" alt="車輛電池異常（手機 App）" width="750" height="993"></td></tr><tr><td><b>充電槍鬆脫</b></td><td><figure><img class="oled" src="img/oled/f_cp_lost.png" alt="充電槍鬆脫" width="512" height="256"><figcaption>OLED. 充電槍鬆脫</figcaption></figure></td><td><img src="img/web/s_f_cp_lost.png" alt="充電槍鬆脫（網頁）" width="750" height="919"></td><td><img src="img/app/app_s_f_cp_lost.png" alt="充電槍鬆脫（手機 App）" width="750" height="993"></td></tr><tr><td><b>緊急停止已按下</b></td><td><figure><img class="oled" src="img/oled/f_estop.png" alt="緊急停止已按下" width="512" height="256"><figcaption>OLED. 緊急停止已按下</figcaption></figure></td><td><img src="img/web/s_f_estop.png" alt="緊急停止已按下（網頁）" width="750" height="919"></td><td><img src="img/app/app_s_f_estop.png" alt="緊急停止已按下（手機 App）" width="750" height="993"></td></tr><tr><td><b>車輛緊急停止</b></td><td><figure><img class="oled" src="img/oled/f_vehicle_estop.png" alt="車輛緊急停止（充完出現屬正常）" width="512" height="256"><figcaption>OLED. 車輛緊急停止（充完出現屬正常）</figcaption></figure></td><td><img src="img/web/s_f_vehicle_estop.png" alt="車輛緊急停止（網頁）" width="750" height="1001"></td><td><img src="img/app/app_s_f_vehicle_estop.png" alt="車輛緊急停止（手機 App）" width="750" height="1077"></td></tr><tr><td><b>故障自動復歸後（原因還留著）</b></td><td><figure><img class="oled" src="img/oled/f_after_recover.png" alt="故障自動復歸後：回到待機但原因還留在畫面上" width="512" height="256"><figcaption>OLED. 故障自動復歸後：回到待機但原因還留在畫面上</figcaption></figure></td><td><img src="img/web/s_f_after_recover.png" alt="故障自動復歸後（原因還留著）（網頁）" width="750" height="919"></td><td><img src="img/app/app_s_f_after_recover.png" alt="故障自動復歸後（原因還留著）（手機 App）" width="750" height="993"></td></tr></table></div>
+<!--/steps:states-->
+<p><b>故障後多久能再充：</b>控制盒會自己回到待機——「充電槍鬆脫」1 秒、「車輛緊急停止」5 秒、其他故障 10 秒；只有按了 EMERGENCY 的「緊急停止已按下」要手動到選單「維護 › 復歸故障」。回到待機後原因還會留在螢幕與網頁上讓你看清楚，按 START 開始下一次、或在選單選「復歸故障」才會清掉。</p>
+<p class="sub">「充電槍鬆脫」在開著自動充電時不算故障：拔槍就是正常結束。</p>
+
+<h2 id="safety"><span class="n">9</span>安全注意事項</h2>
+<div class="box danger">
+  <b class="t">一定要知道的事</b>
+  <ul>
+    <li><b>沒有防水。</b>請不要放在戶外或會淋到雨的地方，也注意溫度與濕度，避免受潮生鏽。</li>
+    <li><b>未經 BSMI、UL 等安規認證。</b>這是個人研發的技術方案，不是通過認證的量產商品。</li>
+    <li>只能接直流 60–120 V 的電源，<b>不能直接插 110V／220V 交流電</b>。</li>
+    <li>內部有高壓直流。<b>通電時不要打開外殼</b>、不要拔插 U10 的接線。</li>
+    <li>充電中有異味、冒煙、異常發熱，立刻按 EMERGENCY，再關掉電源。</li>
+    <li>任何第三方補能設備都可能影響車輛原廠保固，請自行評估。</li>
+  </ul>
+</div>
+<h3 id="current">電流設定：設定值要和電源實際的電流一樣</h3>
+<p>控制盒目前<b>不量電流</b>，接一般旋鈕電源時也<b>沒辦法控制電源的輸出電流</b>：實際電流是電源上的電流旋鈕決定的。控制盒會把「最大電流」的設定值當成目前的電流，顯示在螢幕與網頁上、回報給車子，也用它估算充入的電量。所以：</p>
+<ul>
+  <li><b>「最大電流」的設定要跟電源旋鈕實際調的電流一樣。</b>出廠是 10 A，電源也要調在 10 A。</li>
+  <li>要改電流，<b>兩邊一起改</b>：先調電源的電流旋鈕，再把「最大電流」改成同一個數字。只改設定，實際電流不會變，顯示與電量估算就會不準。</li>
+  <li>不要超過你用的<b>充電槍、線材與電源的標示額定</b>；超過額定使用，風險由你自行承擔，造成的損壞不在保固範圍。電流調高後請定期摸摸槍頭與插頭，明顯燙手、有焦味或變色就立刻調回來。</li>
+</ul>
+<figure class="shot"><img src="img/web_current.png" alt="網頁「⚙ 設定」裡的電壓安全上限與最大電流 (A) 欄位" width="674" height="348"><figcaption>網頁「⚙ 設定」裡的「最大電流 (A)」（螢幕選單在「充電」頁）</figcaption></figure>
+<p class="sub">搭配聯明可程式電源時不用手動對齊：控制盒會直接設定電源的電流並讀回實際值（見 <a href="#psu">6.17</a>）。</p>
+<p>插家用 110V 插座時，插座的容量上限是 1650 W，連續好幾個小時接近滿載有過熱的風險；高功率使用請改插 220V，並避免使用延長線。</p>
+<h3 id="netsec">網路安全</h3>
+<ul>
+  <li><b>控制盒的網頁沒有登入密碼。</b>連在同一個 WiFi 的人（或連上控制盒熱點的人）都能打開網頁開始、停止充電、改設定、更新韌體。請只讓信任的人連你的 WiFi，WiFi 本身一定要有密碼。</li>
+  <li>第一次設定用的熱點<b>沒有密碼</b>，設定完請讓它連上家裡的 WiFi；之後自動開的熱點有密碼（見 <a href="#first">5.4</a>），也可以改成自己的。</li>
+  <li>別的網站沒辦法偷偷替你按控制盒的按鈕：控制盒只接受它自己網頁和 App 送來的操作。</li>
+  <li>遠端監控請用要帳號密碼的 MQTT 服務並用 <code>mqtts://</code>；「允許遠端啟停」只在這種服務上打開（見 <a href="#mqtt">6.16</a>）。</li>
+  <li>「最大電壓」會告訴車子電源最高多少伏，車子拿它當過壓保護的門檻。不要讓不熟的人亂改。</li>
+</ul>
+<h3>自己接線的人</h3>
+<p>控制盒只適合具備高壓直流經驗的人自行接線。電源的選配、充電槍、線材、保護與組裝都要自己負責；CAN Bus 接錯或短路會造成車輛 BMS 永久性損壞。</p>
+
+<h2 id="spec" class="keep"><span class="n">10</span>規格</h2>
+<div class="tablewrap"><table>
+  <tr><th>項目</th><th>內容</th></tr>
+  <tr><td>適用規格</td><td>TES-0D-02-01（台灣電動機車 TES 直流充電）</td></tr>
+  <tr><td>主控晶片</td><td>ESP32-S3（WiFi 2.4 GHz 802.11 b/g/n）</td></tr>
+  <tr><td>電源輸入（U10）</td><td>DC 60–120 V</td></tr>
+  <tr><td>出廠最大電流設定</td><td>10 A（要跟電源實際的電流一致，見第 9 章）</td></tr>
+  <tr><td>電流量測</td><td>無（顯示的電流是設定值）</td></tr>
+  <tr><td>控制輸出</td><td>12 V：接觸器線圈 ×2（CN3、CN5）、槍鎖（CN6）、VP（CN1）</td></tr>
+  <tr><td>顯示與操作</td><td>OLED 螢幕、4 顆按鍵、3 顆指示燈</td></tr>
+  <tr><td>外殼尺寸</td><td>約 68.7 × 102.7 × 21.3 mm（3D 列印外殼）</td></tr>
+  <tr><td>防水</td><td>無</td></tr>
+  <tr><td>安規認證</td><td>無</td></tr>
+</table></div>
+
+<h2 id="warranty"><span class="n">11</span>保固與聯絡</h2>
+<ul>
+  <li><b>控制盒：交付後 3 個月內</b>，非人為損壞免費維修或更換。</li>
+  <li>進水、受潮、摔落、自行拆改不在保固範圍。</li>
+  <li>電流調高到超過充電槍、線材或電源的額定，因此造成的損壞不在保固範圍。</li>
+  <li>過了保固期，有問題一樣可以找我，畢竟是我設計的，我會盡力協助。</li>
+</ul>
+<p><b>聯絡方式：</b>Facebook 粉專「海龜電能」私訊<br>
+<a href="https://www.facebook.com/profile.php?id=61582382523577">facebook.com/profile.php?id=61582382523577</a><br>
+網站：<a href="https://a950523a.github.io/">a950523a.github.io</a></p>
+<p>保固、維修請附上<b>訂單單號</b>，並拍下螢幕畫面（有故障時）與「裝置資訊」頁的韌體版本。</p>
+
+</main>
+<footer>
+  © 2026 海龜電能・新北中和<br>
+  「海龜電能」名稱與烏龜標誌為本工作室所有，請勿未經同意使用。<br>
+  本說明書內容以當時的韌體為準；功能更新後以網站與網頁上的說明為準。
+</footer>
+</body>
+</html>
