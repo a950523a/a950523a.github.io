@@ -60,6 +60,7 @@
       "交貨方式：" + val("ship"),
       "付款方式：" + PAY[val("pay")]
     ];
+    if (document.getElementById("addGunHolder").checked) lines.push("加購：TES 充電槍掛座 NT$200");
     if (document.getElementById("addPlateLed").checked) lines.push("加購：iE125 牌照燈 LED（T10，白光）NT$50");
     if (isStore()) lines.push("收件人：" + recv, "收件手機：" + phone, "取件門市：" + store);
     if (heard) lines.push("從哪裡知道我們：" + heard);
