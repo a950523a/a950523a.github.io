@@ -2,7 +2,7 @@
 (function () {
   var form = document.getElementById("orderForm");
   if (!form) return;
-  var PLAN = { retrofit: "原廠充電器改裝（控制盒 NT$3,200 ＋ 鑽孔費 NT$300）", xt90: "XT90 版（控制盒 NT$3,300，免施工費）" };
+  var PLAN = { retrofit: "原廠充電器改裝（控制盒 NT$3,200 ＋ 鑽孔費 NT$300）", xt90: "XT90 版（控制盒 NT$3,300，免施工費）", holder: "只買 TES 充電槍掛座 NT$250（運費另計）" };
   var PSU = { buy: "代購 1.5 kW 電源（請報價）", own: "自備電源" };
   var PAY = { transfer: "轉帳（寄回免運）", famistore: "好賣+下單（寄回運費 NT$60）", cash: "面交付現" };
   var PAY_HINT = {
@@ -26,13 +26,21 @@
   function isStore() { return val("ship") === "店到店寄送"; }
   // 付款方式：店到店可選轉帳或好賣+；面交可選轉帳或付現
   var payFami = document.getElementById("payFamiOpt"), payCash = document.getElementById("payCashOpt");
+  // 只買充電槍掛座：不用問電源、原廠充電器，也不會再加購自己；運費另計
+  function isHolder() { return val("plan") === "holder"; }
   function syncOrderFields() {
+    var h = isHolder();
+    document.getElementById("fsPsu").hidden = h;
+    document.getElementById("fsCharger").hidden = h;
+    document.getElementById("addGunHolderOpt").hidden = h;
+    if (h) document.getElementById("addGunHolder").checked = false;
+    Array.prototype.forEach.call(form.querySelectorAll(".svc-only"), function (el) { el.hidden = h; });
     shipInfo.hidden = !isStore();
     heardWrap.hidden = heardEl.value !== "other";
     payFami.hidden = !isStore(); payCash.hidden = isStore();
     var hiddenPick = form.querySelector('input[name="pay"]:checked');
     if (!hiddenPick || hiddenPick.closest("label").hidden) form.querySelector('input[name="pay"][value="transfer"]').checked = true;
-    document.getElementById("payHint").textContent = PAY_HINT[val("pay")] || "";
+    document.getElementById("payHint").textContent = (h && val("pay") === "transfer") ? "確認訂單後，我會私訊轉帳帳號和含運費的金額。" : (PAY_HINT[val("pay")] || "");
   }
   form.addEventListener("change", syncOrderFields);
   syncOrderFields();
@@ -54,12 +62,12 @@
       "【海龜電能 填單】",
       "單號：" + no,
       "稱呼：" + name,
-      "方案：" + PLAN[val("plan")],
-      "主電源：" + PSU[val("psu")] + (val("psu") === "own" ? (val("plan") === "retrofit" ? "（需確認是指定型號，會附型號或照片）" : "（會附型號或照片）") : ""),
-      "原廠充電器：" + val("charger") + (document.getElementById("chargerBroken").checked ? "（電源板已燒掉，充電槍完好）" : ""),
-      "交貨方式：" + val("ship"),
-      "付款方式：" + PAY[val("pay")]
+      "方案：" + PLAN[val("plan")]
     ];
+    if (!isHolder()) lines.push(
+      "主電源：" + PSU[val("psu")] + (val("psu") === "own" ? (val("plan") === "retrofit" ? "（需確認是指定型號，會附型號或照片）" : "（會附型號或照片）") : ""),
+      "原廠充電器：" + val("charger") + (document.getElementById("chargerBroken").checked ? "（電源板已燒掉，充電槍完好）" : ""));
+    lines.push("交貨方式：" + val("ship"), "付款方式：" + (isHolder() ? PAY[val("pay")].replace(/（.*）$/, "") : PAY[val("pay")]));
     if (document.getElementById("addGunHolder").checked) lines.push("加購：TES 充電槍掛座 NT$200");
     if (document.getElementById("addPlateLed").checked) lines.push("加購：iE125 牌照燈 LED（T10，白光）NT$50");
     if (isStore()) lines.push("收件人：" + recv, "收件手機：" + phone, "取件門市：" + store);
