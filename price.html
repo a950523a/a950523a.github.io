@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>線上填單・付款與運費｜海龜電能</title>
-<meta name="description" content="海龜電能線上填單：iE125 原廠充電器改裝、XT90 版控制盒與 TES 充電槍掛座，填完產生單號後私訊粉專。付款方式、運費說明。">
+<meta name="description" content="海龜電能線上填單：iE125 原廠充電器改裝、XT90 版控制盒，填完產生單號後私訊粉專。付款方式、運費說明。">
 <link rel="canonical" href="https://a950523a.github.io/price.html">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:site_name" content="海龜電能">
 <meta property="og:title" content="線上填單・付款與運費｜海龜電能">
-<meta property="og:description" content="海龜電能線上填單：iE125 原廠充電器改裝、XT90 版控制盒與 TES 充電槍掛座，填完產生單號後私訊粉專。付款方式、運費說明。">
+<meta property="og:description" content="海龜電能線上填單：iE125 原廠充電器改裝、XT90 版控制盒，填完產生單號後私訊粉專。付款方式、運費說明。">
 <meta property="og:url" content="https://a950523a.github.io/price.html">
 <meta property="og:image" content="https://a950523a.github.io/img/charger-360w-retrofit.jpg">
 <meta name="theme-color" content="#0f766e">
@@ -51,12 +51,12 @@
     <tbody>
       <tr><th>原廠充電器改裝</th><td>NT$3,500 ＋ 主電源（<a href="retrofit.html#price">明細與保固</a>）</td></tr>
       <tr><th>XT90 版</th><td>NT$3,300 ＋ 主電源（<a href="retrofit.html#price">兩種做法的差別</a>）</td></tr>
-      <tr><th>充電槍掛座</th><td>NT$250，跟改裝或控制盒一起買 NT$200（<a href="shop.html#gun-holder">介紹</a>）</td></tr>
+      <tr><th>充電槍掛座</th><td>NT$250（<a href="shop.html#gun-holder">介紹</a>），從<a href="https://famistore.famiport.com.tw/famistore/users/4843275/merchandises/6b06a0d173327985d5707014" target="_blank" rel="noopener">好賣+下單</a>；跟改裝或控制盒一起買 NT$200</td></tr>
       <tr><th>輪速感應器</th><td>NT$500（<a href="shop.html#sensor">介紹</a>），從<a href="https://famistore.famiport.com.tw/famistore/users/4843275/merchandises/68e9299c355df2437d5f520b" target="_blank" rel="noopener">好賣+下單</a></td></tr>
       <tr><th>牌照燈 LED</th><td>加購 NT$50（<a href="shop.html#plate-led">介紹</a>）</td></tr>
     </tbody>
   </table>
-  <p class="fine">輪速感應器和<a href="board.html">控制板</a>直接在好賣+下單，不用填這張單。</p>
+  <p class="fine">填單只用在改裝和 XT90 版。單買充電槍掛座、輪速感應器或<a href="board.html">控制板</a>，直接在好賣+下單就好，不用填單。</p>
 </section>
 
 
@@ -69,10 +69,9 @@
       <div class="opts">
         <label><input type="radio" name="plan" value="retrofit"> 原廠充電器改裝（NT$3,500 ＋ 主電源）</label>
         <label><input type="radio" name="plan" value="xt90" checked> XT90 版（NT$3,300 ＋ 主電源）</label>
-        <label><input type="radio" name="plan" value="holder"> 只買 TES 充電槍掛座（NT$250，運費另計）</label>
       </div>
     </fieldset>
-    <fieldset id="fsPsu">
+    <fieldset>
       <legend>主電源</legend>
       <div class="opts">
         <label><input type="radio" name="psu" value="buy" checked> 代購 1.5 kW 電源（依匯率報價）</label>
@@ -80,7 +79,7 @@
       </div>
       <span class="hint">原廠充電器改裝：必須是我指定的那款電源；XT90 版：規格符合就能接。私訊時請附上電源的型號或照片。</span>
     </fieldset>
-    <fieldset id="fsCharger">
+    <fieldset>
       <legend>你的原廠充電器</legend>
       <div class="opts">
         <label><input type="radio" name="charger" value="360 W"> 360 W</label>
@@ -91,7 +90,8 @@
     </fieldset>
     <fieldset>
       <legend>加購 <span class="hint">（選填）</span></legend>
-      <div class="opts" id="addGunHolderOpt"><label><input type="checkbox" id="addGunHolder"> TES 充電槍掛座 NT$200</label></div>
+      <div class="opts"><label><input type="checkbox" id="addGunHolder"> TES 充電槍掛座 NT$200</label></div>
+      <div class="opts"><label><input type="checkbox" id="addSensor"> iE125／勁炫125 輪速感應器 NT$500</label></div>
       <div class="opts"><label><input type="checkbox" id="addPlateLed"> iE125 牌照燈 LED（T10，白光）NT$50</label></div>
     </fieldset>
     <fieldset>
@@ -104,8 +104,8 @@
     <fieldset>
       <legend>付款方式</legend>
       <div class="opts">
-        <label><input type="radio" name="pay" value="transfer" checked> 轉帳<span class="svc-only">（寄回免運）</span></label>
-        <label id="payFamiOpt"><input type="radio" name="pay" value="famistore"> 好賣+下單<span class="svc-only">（寄回運費 NT$60）</span></label>
+        <label><input type="radio" name="pay" value="transfer" checked> 轉帳（寄回免運）</label>
+        <label id="payFamiOpt"><input type="radio" name="pay" value="famistore"> 好賣+下單（寄回運費 NT$60）</label>
         <label id="payCashOpt" hidden><input type="radio" name="pay" value="cash"> 面交付現</label>
       </div>
       <span class="hint" id="payHint"></span>
@@ -173,7 +173,7 @@
   <ul>
     <li><strong>轉帳：</strong>改好寄回的店到店運費由我負擔。</li>
     <li><strong>好賣+下單：</strong>寄回運費 NT$60，在好賣+一起結帳。</li>
-    <li><strong>只買充電槍掛座：</strong>好賣+下單運費 NT$60；其他方式運費另計，確認訂單時一起告訴你金額。</li>
+    <li><strong>單買充電槍掛座：</strong>在好賣+下單，運費 NT$60，全家取貨付款。</li>
     <li>原廠充電器寄來給我的運費由你負擔。選新北中和面交的話，也可以當面付現。</li>
   </ul>
   <p class="fine">改裝服務與 XT90 版控制盒都是用你的原廠充電槍製作的客製品，不適用七天鑑賞期。</p>
@@ -191,6 +191,6 @@
   </div>
 </footer>
 
-<script src="site.js?v=20261125"></script>
+<script src="site.js?v=20261125b"></script>
 </body>
 </html>
