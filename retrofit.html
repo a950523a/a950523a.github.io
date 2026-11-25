@@ -16,7 +16,7 @@
 <meta name="theme-color" content="#0f766e">
 <link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20261125">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -29,7 +29,7 @@
       "provider": { "@type": "Organization", "name": "海龜電能", "url": "https://a950523a.github.io/" },
       "areaServed": { "@type": "Country", "name": "Taiwan" },
       "description": "eMoving iE125 原廠充電器改裝：保留原廠充電槍，主電源換成 1.5 kW、控制板換成 TES 快充控制板，出廠 1 kW / 10 A，可連 WiFi 用手機監控並設定充電上限。原廠 360 W、600 W 皆可改，電源板燒掉、充電槍完好也能改。",
-      "offers": { "@type": "Offer", "url": "https://a950523a.github.io/price.html", "description": "控制盒 NT$3,200＋鑽孔費 NT$300（XT90 版 NT$3,300 免施工）；主電源另計，需自備原廠充電器。" }
+      "offers": { "@type": "Offer", "url": "https://a950523a.github.io/retrofit.html#price", "description": "控制盒 NT$3,200＋鑽孔費 NT$300（XT90 版 NT$3,300 免施工）；主電源另計，需自備原廠充電器。" }
     },
     {
       "@type": "BreadcrumbList",
@@ -49,11 +49,10 @@
     <a class="brand" href="index.html"><picture><source srcset="img/logo-icon-dark.png" media="(prefers-color-scheme: dark)"><img src="img/logo-icon.png" width="36" height="32" alt=""></picture>海龜電能</a>
     <nav>
       <a aria-current="page" href="retrofit.html">改裝</a>
-      <a href="price.html">價格與填單</a>
-      <a class="opt" href="board.html">控制板</a>
-      <a class="opt" href="lab.html">研究中</a>
-      <a class="opt2" href="faq.html">常見問題</a>
-      <a href="index.html#contact">聯絡</a>
+      <a href="shop.html">商品</a>
+      <a href="price.html">填單</a>
+      <a href="help.html">說明</a>
+      <a class="opt2" href="index.html#contact">聯絡</a>
     </nav>
   </div>
 </header>
@@ -64,6 +63,7 @@
   <span class="pill">一般車主適用</span>
   <h2>iE125 原廠充電器改裝</h2>
   <p>eMoving iE125 的原廠充電器（隨車充）嫌充太慢、電源板燒掉不能充，或想在家裡充快一點？不用買新的充電器，把手上的原廠充電器改裝就好。</p>
+  <div class="btns"><a class="btn ghost" href="#price">直接看價格</a></div>
   <p class="fine">充電器壞掉了、不確定還能不能改？先看<a href="charger-broken.html">原廠充電器壞掉怎麼辦</a>。</p>
   <p>原廠充電器由三個部分組成：主電源、控制板、充電槍。我的做法是<strong>只保留充電槍</strong>，主電源和控制板全部換成我自己的——控制板用的就是 <a href="board.html">TES 快充控制板</a>。</p>
   <ul>
@@ -108,22 +108,52 @@
   </ul>
   <p>如果決定要開，請定期摸摸看槍頭和插頭：明顯燙手、有焦味或變色，就立刻調回 10 A，也不要再用那個插座或那支充電槍。</p>
   <div class="note">這項改裝比原廠快，但做不到「30 分鐘充到 80%」那種等級的快充。</div>
-  <p>不想在電源外殼上鑽孔的話，也可以選 <strong>XT90 版</strong>：充電槍和控制板做在同一個控制盒裡，用 XT90 接頭接到電源，不用施工。兩種做法的差別見<a href="price.html">價格與填單</a>。</p>
+</section>
+
+<section id="price">
+  <h2>價格與兩種做法</h2>
+  <div class="note"><strong>請自備 iE125 原廠充電器。</strong>兩種做法都要用到它的充電槍；電源板已經燒掉也沒關係，只要充電槍完好。</div>
+  <p>兩種做法都沿用你原廠充電器的充電槍，出廠設定都是 <strong>1 kW / 10 A</strong>（電流可以自行調高，但原廠槍超過 10 A 風險自負，見<a href="#more-current">上面的說明</a>），控制板的功能也完全一樣；差別只在控制盒怎麼接到電源。</p>
+  <table class="price">
+    <thead><tr><th></th><th>原廠充電器改裝</th><th>XT90 版</th></tr></thead>
+    <tbody>
+      <tr><th>做法</th><td>控制盒鎖在主電源上，需要在電源外殼鑽孔</td><td>充電槍和控制板做在同一個控制盒，用 XT90 接頭接到電源</td></tr>
+      <tr><th>控制盒</th><td>NT$3,200</td><td>NT$3,300</td></tr>
+      <tr><th>施工費</th><td>鑽孔 NT$300</td><td>免（鎖上螺絲、接上接頭就能用）</td></tr>
+      <tr><th>主電源</th><td colspan="2">1.5 kW 版本，依當時匯率以實價計算，請私訊洽詢報價</td></tr>
+      <tr><th>以後換電源</th><td>可以自己換：拆開電源外殼、換上新的電源板，再把端子接線鎖回去（不用重新鑽孔）</td><td>換一顆有 XT90 輸出的電源，插上就能用</td></tr>
+      <tr><th>自備電源</th><td>可以，但必須是我指定的那款電源（請先私訊確認型號）</td><td>可以，規格符合就能接</td></tr>
+      <tr class="total"><th>合計</th><td>NT$3,500 ＋ 主電源</td><td>NT$3,300 ＋ 主電源</td></tr>
+    </tbody>
+  </table>
   <figure class="narrow">
     <img src="img/xt90-box.jpg" width="900" height="1200" loading="lazy" alt="XT90 版控制盒：黑色 3D 列印外殼，正面有 OLED 螢幕與按鍵，側面是黃色 XT90 接頭，原廠充電槍的線直接接進控制盒">
     <figcaption>XT90 版控制盒：原廠充電槍接進控制盒，側面的 XT90 接頭接到電源</figcaption>
   </figure>
+  <ul>
+    <li>主電源一律使用 <strong>1.5 kW</strong> 的版本，附 <strong>110V／220V 切換開關</strong>。出廠設定最多輸出 1 kW，只用到電源約 2/3 的能力，電源比較不容易壞；自行調高到 15 A 左右時，電源會接近滿載運轉。</li>
+    <li>XT90 版控制盒比較貴一點，但不用鑽孔、不收施工費，合計反而比較便宜；控制盒也不用鎖在電源上，以後換電源只要插上 XT90，不用拆殼、鎖端子。缺點是控制盒和電源是分開的兩件，中間用 XT90 線連接，收納沒有一整台方便。</li>
+  </ul>
+  <div class="note"><strong>電源和控制盒都沒有防水。</strong>請不要放在戶外或會淋到雨的地方，也請注意環境的溫度和濕度，避免電源受潮生鏽而損壞。</div>
+  <p class="fine">改裝服務與 XT90 版控制盒都是用你的原廠充電槍製作的客製品，不適用七天鑑賞期。</p>
+  <p class="fine">以上價格自 2026 年 10 月起實施。隨著施工流程固定，組裝與施工費已調降，XT90 版不再收取組裝費。價格如有調整，以洽詢當下為準。</p>
 </section>
-<div class="btns next"><a class="btn primary" href="price.html">看價格、線上填單</a></div>
+
+<section id="warranty">
+  <h2>保固</h2>
+  <ul>
+    <li><strong>控制盒：</strong>交付後 <strong>3 個月內</strong>，非人為損壞免費維修或更換；進水、受潮、摔落、自行拆改不在保固範圍。過了保固期，有問題一樣可以找我，畢竟是我設計的，我會盡力協助。</li>
+    <li><strong>主電源：</strong>交付後 <strong>14 天內</strong>新品不良換新，條件同控制盒（兩種做法都一樣）；自備的電源不在保固範圍。電源會依做法加裝控制盒或 XT90 接頭，大陸原廠因此不再保固。</li>
+    <li><strong>自行把電流調到 10 A 以上：</strong>超過原廠充電槍線材的標示額定，風險自行承擔；因此造成的充電槍、插座、室內線路損壞不在保固範圍。</li>
+  </ul>
+</section>
+
+<div class="btns next"><a class="btn primary" href="price.html#order">線上填單</a><a class="btn ghost" href="price.html#pay">付款與運費</a><a class="btn ghost" href="https://www.facebook.com/profile.php?id=61582382523577" target="_blank" rel="noopener">到 Facebook 粉專私訊洽詢</a></div>
 
 <section id="notes">
   <h2>有些話要先講清楚</h2>
   <ul>
-    <li>原廠充電器改裝出廠設定 1 kW / 10 A，是照保留下來的原廠充電槍線材標示額定設的。電流可以自行調高，但超過 10 A 就超過標示額定，風險自負（見上方<a href="#more-current">可以再高嗎？</a>）。</li>
     <li>家用 110V 插座的容量上限是 1650 W。老舊的電線與插座長時間接近滿載有風險，這也是我設定充電器功率上限時的考量。</li>
-    <li>控制板只適合具備高壓直流經驗的人。整流模組的選配、充電槍的訂做、線材、保護與組裝都要自己負責。</li>
-    <li>CAN Bus 接錯或短路，會造成車輛 BMS 永久性損壞。我在開發初期就燒過一台車的 CAN 埠，那是早期洞洞板時期外購 CAN 模組的瑕疵；現在的控制板已經是穩定的正式電路板，這條提醒是寫給要自己接線的人。</li>
-    <li>6 kW / 30 分鐘是我自己研究平台的實測結果，不是控制板的保證值。實際能做到多少，取決於整流模組、充電槍線徑和現場進線容量。</li>
     <li>控制板與改裝皆未經 BSMI、UL 等安規認證，性質是個人研發的技術方案，不是通過認證的量產商品。</li>
     <li>任何第三方補能設備都可能影響原廠保固，請自行評估。</li>
   </ul>
@@ -134,13 +164,13 @@
 <footer>
   <div class="wrap">
     <nav class="foot">
-      <a href="index.html">首頁</a><a href="retrofit.html">充電器改裝</a><a href="price.html">價格與填單</a><a href="board.html">控制板</a><a href="app.html">App 與遠端監控</a><a href="manual/">說明書</a><a href="lab.html">研究中</a><a href="charge-safety.html">充電安全</a><a href="faq.html">常見問題</a>
+      <a href="index.html">首頁</a><a aria-current="page" href="retrofit.html">充電器改裝</a><a href="shop.html">商品</a><a href="price.html">線上填單</a><a href="board.html">控制板</a><a href="faq.html">常見問題</a><a href="charger-broken.html">充電器壞掉怎麼辦</a><a href="charge-safety.html">充電安全</a><a href="app.html">App 與遠端監控</a><a href="manual/">說明書</a><a href="lab.html">研究中</a>
     </nav>
     <div>© 2026 海龜電能・新北中和・線上接單</div>
     <div class="fine">「海龜電能」名稱與烏龜標誌為本工作室所有，請勿未經同意使用。</div>
   </div>
 </footer>
 
-<script src="site.js"></script>
+<script src="site.js?v=20261125"></script>
 </body>
 </html>

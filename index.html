@@ -16,7 +16,7 @@
 <meta name="theme-color" content="#0f766e">
 <link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20261125">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -36,7 +36,7 @@
   "makesOffer": [
     {
       "@type": "Offer",
-      "url": "https://a950523a.github.io/price.html",
+      "url": "https://a950523a.github.io/retrofit.html",
       "itemOffered": {
         "@type": "Service",
         "name": "iE125 原廠充電器改裝",
@@ -72,11 +72,10 @@
     <a class="brand" href="index.html"><picture><source srcset="img/logo-icon-dark.png" media="(prefers-color-scheme: dark)"><img src="img/logo-icon.png" width="36" height="32" alt=""></picture>海龜電能</a>
     <nav>
       <a href="retrofit.html">改裝</a>
-      <a href="price.html">價格與填單</a>
-      <a class="opt" href="board.html">控制板</a>
-      <a class="opt" href="lab.html">研究中</a>
-      <a class="opt2" href="faq.html">常見問題</a>
-      <a href="index.html#contact">聯絡</a>
+      <a href="shop.html">商品</a>
+      <a href="price.html">填單</a>
+      <a href="help.html">說明</a>
+      <a class="opt2" href="index.html#contact">聯絡</a>
     </nav>
   </div>
 </header>
@@ -85,8 +84,8 @@
 
 <script>
 (function () {
-  var map = {retrofit: "retrofit.html", price: "price.html", order: "price.html#order", board: "board.html",
-    parts: "board.html#parts", lab: "lab.html", "no-bypass": "lab.html#no-bypass", notes: "retrofit.html#notes", faq: "faq.html"};
+  var map = {retrofit: "retrofit.html", price: "retrofit.html#price", order: "price.html#order", board: "board.html",
+    parts: "shop.html#sensor", lab: "lab.html", "no-bypass": "lab.html#no-bypass", notes: "retrofit.html#notes", faq: "faq.html"};
   function go() { var h = location.hash.slice(1); if (map[h]) location.replace(map[h]); }
   go();
   window.addEventListener("hashchange", go);
@@ -100,11 +99,41 @@
   <div class="btns">
     <a class="btn primary" href="https://www.facebook.com/profile.php?id=61582382523577" target="_blank" rel="noopener">到 Facebook 粉專洽詢</a>
     <a class="btn ghost" href="https://famistore.famiport.com.tw/famistore/users/4843275/malls/68ce64eb603c32b46e510c52" target="_blank" rel="noopener">線上賣場</a>
-    <a class="btn ghost" href="#services">看服務內容</a>
+    <a class="btn ghost" href="shop.html">看商品</a>
   </div>
 </div>
 
-<p>我自己也是 iE125 的車主。這裡整理了我目前提供的兩項服務、充電槍掛座、周邊零件、研究中與暫停販售的東西，以及各自能做到什麼、做不到什麼。</p>
+<p>我自己也是 iE125 的車主。你是哪一種情況？</p>
+
+<section id="services">
+  <h2>你需要什麼</h2>
+  <div class="cards">
+    <a class="card link" href="retrofit.html">
+      <span class="pill">充電太慢</span>
+      <h3>iE125 原廠充電器改裝</h3>
+      <p>只保留原廠充電槍，換上 1.5 kW 電源與 TES 快充控制板：出廠 1 kW / 10 A，手機可監控、可設定充到幾 % 就停。</p>
+      <span class="more">NT$3,300 起＋主電源 ›</span>
+    </a>
+    <a class="card link" href="charger-broken.html">
+      <span class="pill">充電器壞了</span>
+      <h3>原廠充電器壞掉、燒掉</h3>
+      <p>最容易壞的是電源板。充電槍完好就救得回來，先看怎麼判斷。</p>
+      <span class="more">看能不能救 ›</span>
+    </a>
+    <a class="card link" href="shop.html">
+      <span class="pill">買配件</span>
+      <h3>充電槍掛座、輪速感應器、牌照燈</h3>
+      <p>充電槍掛座鎖在牆上，充電槍不用時插進去掛著，不用改裝也能買。</p>
+      <span class="more">看商品 ›</span>
+    </a>
+    <a class="card link" href="board.html">
+      <span class="pill">自己組</span>
+      <h3>TES 快充控制板</h3>
+      <p>實作 TES-0D-02-01 快充協定，搭配整流模組與充電槍自行組裝。需要高壓直流經驗。</p>
+      <span class="more">看控制板 ›</span>
+    </a>
+  </div>
+</section>
 
 <div class="grid2">
   <figure>
@@ -116,37 +145,6 @@
     <figcaption>TES 快充控制板成品</figcaption>
   </figure>
 </div>
-
-<section id="services">
-  <h2>服務</h2>
-  <div class="cards">
-    <a class="card link" href="retrofit.html">
-      <span class="pill">一般車主適用</span>
-      <h3>iE125 原廠充電器改裝</h3>
-      <p>只保留原廠充電槍，換上 1.5 kW 電源與 TES 快充控制板：出廠 1 kW / 10 A（電流可自行調高，原廠槍超過 10 A 風險自負），手機可監控、可設定充到幾 % 就停。</p>
-      <span class="more">NT$3,300 起＋主電源 ›</span>
-    </a>
-    <a class="card link" href="price.html#gun-holder">
-      <span class="pill">不用改裝也能買</span>
-      <h3>TES 充電槍掛座</h3>
-      <p>鎖在牆上，充電槍不用時直接插進去掛著，不會垂在地上沾灰、被踩到。沒有卡扣，單手插拔；依 TES 規範的插頭外形設計。</p>
-      <span class="more">NT$250（跟改裝一起買 NT$200）›</span>
-    </a>
-    <a class="card link" href="board.html">
-      <span class="pill">具高壓直流經驗者適用</span>
-      <h3>TES 快充控制板</h3>
-      <p>實作 TES-0D-02-01 快充協定的控制板，搭配整流模組與充電槍自行組裝。另有 iE125／勁炫125 用輪速感應器。</p>
-      <span class="more">看控制板與周邊零件 ›</span>
-    </a>
-    <a class="card link" href="lab.html">
-      <span class="pill lab">目前不販售</span>
-      <h3>研究中與暫停販售</h3>
-      <p>1.5 kW 全副廠充電器、6 kW 直流快充研究平台，以及我為什麼不做「暴力改裝」。</p>
-      <span class="more">看研究中的東西 ›</span>
-    </a>
-  </div>
-  <div class="btns"><a class="btn primary" href="price.html">價格與線上填單</a><a class="btn ghost" href="faq.html">常見問題</a></div>
-</section>
 
 <section id="why">
   <h2>TES 車主的充電困境</h2>
@@ -173,7 +171,7 @@
 
 <section id="contact">
   <h2>聯絡</h2>
-  <p>洽詢請透過 Facebook 粉專私訊；控制板與輪速感應器可直接在線上賣場購買（店到店寄送，或新北中和面交）。技術問題也歡迎到社群討論；實測與教學影片都放在 YouTube 頻道。</p>
+  <p>洽詢請透過 Facebook 粉專私訊；控制板、輪速感應器與充電槍掛座可直接在線上賣場購買（店到店寄送，或新北中和面交）。技術問題也歡迎到社群討論；實測與教學影片都放在 YouTube 頻道。</p>
   <div class="btns">
     <a class="btn primary" href="https://www.facebook.com/profile.php?id=61582382523577" target="_blank" rel="noopener">海龜電能 Facebook 粉專</a>
     <a class="btn ghost" href="https://famistore.famiport.com.tw/famistore/users/4843275/malls/68ce64eb603c32b46e510c52" target="_blank" rel="noopener">線上賣場（全家好賣）</a>
@@ -187,13 +185,13 @@
 <footer>
   <div class="wrap">
     <nav class="foot">
-      <a href="index.html">首頁</a><a href="retrofit.html">充電器改裝</a><a href="price.html">價格與填單</a><a href="board.html">控制板</a><a href="app.html">App 與遠端監控</a><a href="manual/">說明書</a><a href="lab.html">研究中</a><a href="charge-safety.html">充電安全</a><a href="faq.html">常見問題</a>
+      <a aria-current="page" href="index.html">首頁</a><a href="retrofit.html">充電器改裝</a><a href="shop.html">商品</a><a href="price.html">線上填單</a><a href="board.html">控制板</a><a href="faq.html">常見問題</a><a href="charger-broken.html">充電器壞掉怎麼辦</a><a href="charge-safety.html">充電安全</a><a href="app.html">App 與遠端監控</a><a href="manual/">說明書</a><a href="lab.html">研究中</a>
     </nav>
     <div>© 2026 海龜電能・新北中和・線上接單</div>
     <div class="fine">「海龜電能」名稱與烏龜標誌為本工作室所有，請勿未經同意使用。</div>
   </div>
 </footer>
 
-<script src="site.js"></script>
+<script src="site.js?v=20261125"></script>
 </body>
 </html>

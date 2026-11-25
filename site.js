@@ -1,4 +1,4 @@
-// 海龜電能網站共用程式：線上填單（price.html）、現貨狀態（price.html）
+// 海龜電能網站共用程式：線上填單（price.html）、現貨狀態（shop.html）
 (function () {
   var form = document.getElementById("orderForm");
   if (!form) return;
@@ -42,6 +42,9 @@
     if (!hiddenPick || hiddenPick.closest("label").hidden) form.querySelector('input[name="pay"][value="transfer"]').checked = true;
     document.getElementById("payHint").textContent = (h && val("pay") === "transfer") ? "確認訂單後，我會私訊轉帳帳號和含運費的金額。" : (PAY_HINT[val("pay")] || "");
   }
+  // 商品頁連過來：price.html?plan=holder 先選好方案
+  var want = /[?&]plan=(retrofit|xt90|holder)\b/.exec(location.search);
+  if (want) form.querySelector('input[name="plan"][value="' + want[1] + '"]').checked = true;
   form.addEventListener("change", syncOrderFields);
   syncOrderFields();
   form.addEventListener("submit", function (e) {

@@ -22,8 +22,8 @@ header.top .wrap{display:flex;align-items:center;gap:16px;height:52px}
 .brand img{height:30px;width:auto;display:block}
 footer .fine{font-size:12px;color:var(--muted);margin-top:4px}
 nav{display:flex;gap:14px;font-size:15px;margin-left:auto}
-@media (max-width:520px){nav{gap:12px;font-size:14px} nav .opt{display:none}}
-@media (max-width:380px){nav .opt2{display:none}}
+@media (max-width:520px){nav{gap:12px;font-size:14px}}
+@media (max-width:359px){nav .opt2{display:none}}
 nav a{color:var(--muted);text-decoration:none;white-space:nowrap}
 nav a:hover{color:var(--accent)}
 .hero{padding:48px 0 28px}
@@ -78,8 +78,10 @@ details{background:var(--surface);border:1px solid var(--line);border-radius:12p
 summary{cursor:pointer;font-weight:600}
 details p{margin:8px 0 2px}
 footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
-nav a[aria-current=page]{color:var(--accent);font-weight:600}
+nav a[aria-current]{color:var(--accent);font-weight:600}
 .cards{display:grid;gap:12px}
+.cards.two{grid-template-columns:1fr 1fr}
+@media (max-width:420px){.cards.two{grid-template-columns:1fr}}
 .card.link{display:block;text-decoration:none;color:var(--text);margin:0}
 .card.link:hover{border-color:var(--accent)}
 .card.link h3{margin:4px 0 6px}
