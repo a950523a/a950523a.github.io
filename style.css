@@ -96,3 +96,23 @@ ul.stock li{display:flex;justify-content:space-between;gap:12px;align-items:cent
 .st.out{background:var(--line);color:var(--muted)}
 footer nav.foot{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0 0 10px;font-size:14px}
 footer nav.foot a{color:var(--muted)}
+/* 商品展示頁開頭（basic.html）：深色底襯渲染圖，字放大、對比夠 */
+.showcase{background:#0c1111;color:#eef4f2;padding:40px 0 32px}
+.showcase h1{font-size:clamp(32px,8vw,48px);line-height:1.15;margin:4px 0 6px}
+.showcase .tag{font-size:clamp(22px,5.5vw,30px);font-weight:700;color:#e2c58c;margin:0 0 8px}
+.showcase .lead{font-size:18px;color:#c9d6d3;margin:0 0 20px}
+.showcase .pill{background:#173431;color:#5eead4}
+.showcase .media{width:100%;height:auto;display:block;border-radius:14px;background:#000;margin:0 0 20px}
+.showcase .btn.ghost{background:transparent;color:#eef4f2;border-color:#3a4a47}
+.showcase .btn.primary{background:#2dd4bf;color:#06201d}
+ul.stats{list-style:none;padding:0;margin:0 0 22px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+ul.stats li{margin:0;background:#141c1c;border:1px solid #243130;border-radius:12px;padding:12px 6px}
+ul.stats b{display:block;font-size:clamp(20px,5.5vw,28px);line-height:1.2;color:#fff}
+ul.stats span{font-size:14px;color:#a9bab7}
+ul.steps{list-style:none;padding:0;counter-reset:s}
+ul.steps li{counter-increment:s;position:relative;padding:4px 0 4px 44px;margin:10px 0}
+ul.steps li::before{content:counter(s);position:absolute;left:0;top:2px;width:32px;height:32px;border-radius:50%;
+  background:var(--accent);color:var(--accent-ink);font-weight:700;text-align:center;line-height:32px}
+#models .card h3{margin:0 0 6px}
+#models .card p{margin:0}
+#models .cards .card{margin:0}

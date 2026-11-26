@@ -2,7 +2,8 @@
 (function () {
   var form = document.getElementById("orderForm");
   if (!form) return;
-  var PLAN = { retrofit: "原廠充電器改裝（控制盒 NT$3,200 ＋ 鑽孔費 NT$300）", xt90: "XT90 版（控制盒 NT$3,300，免施工費）" };
+  var PLAN = { retrofit: "原廠充電器改裝（鑽孔費 NT$300）", xt90: "XT90 版（控制盒 NT$3,300，免施工費）" };
+  var BOX = { hw: "高階款 NT$3,200", basic: "基礎款 NT$2,000", basicOled: "基礎款 OLED 版 NT$2,400" };
   var PSU = { buy: "代購 1.5 kW 電源（請報價）", own: "自備電源" };
   var PAY = { transfer: "轉帳（寄回免運）", famistore: "好賣+下單（寄回運費 NT$60）", cash: "面交付現" };
   var PAY_HINT = {
@@ -26,7 +27,10 @@
   function isStore() { return val("ship") === "店到店寄送"; }
   // 付款方式：店到店可選轉帳或好賣+；面交可選轉帳或付現
   var payFami = document.getElementById("payFamiOpt"), payCash = document.getElementById("payCashOpt");
+  // 控制盒只有改裝要選（XT90 版目前只有高階款）
+  var boxField = document.getElementById("boxField");
   function syncOrderFields() {
+    boxField.hidden = val("plan") !== "retrofit";
     shipInfo.hidden = !isStore();
     heardWrap.hidden = heardEl.value !== "other";
     payFami.hidden = !isStore(); payCash.hidden = isStore();
@@ -56,6 +60,7 @@
       "稱呼：" + name,
       "方案：" + PLAN[val("plan")]
     ];
+    if (val("plan") === "retrofit") lines.push("控制盒：" + BOX[val("box")]);
     lines.push(
       "主電源：" + PSU[val("psu")] + (val("psu") === "own" ? (val("plan") === "retrofit" ? "（需確認是指定型號，會附型號或照片）" : "（會附型號或照片）") : ""),
       "原廠充電器：" + val("charger") + (document.getElementById("chargerBroken").checked ? "（電源板已燒掉，充電槍完好）" : ""));
