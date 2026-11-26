@@ -116,3 +116,27 @@ ul.steps li::before{content:counter(s);position:absolute;left:0;top:2px;width:32
 #models .card h3{margin:0 0 6px}
 #models .card p{margin:0}
 #models .cards .card{margin:0}
+/* 控制盒總覽（controllers.html）與首頁新產品橫幅 */
+h1.page{font-size:clamp(28px,7vw,38px);line-height:1.2;margin:0 0 10px}
+section.first{border-top:0;padding-top:32px}
+.products{display:grid;gap:16px;margin:20px 0}
+@media (min-width:640px){.products{grid-template-columns:1fr 1fr}}
+.product{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-decoration:none;color:var(--text)}
+.product:hover{border-color:var(--accent)}
+.product img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#0c1111;border:0;border-radius:0}
+.product .body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.product h2{margin:2px 0 2px}
+.product .sub{margin:0 0 6px;color:var(--muted)}
+.product ul{margin:6px 0 10px}
+.product .price-tag{font-size:22px;font-weight:700;margin:auto 0 4px}
+.product .more{color:var(--accent);font-weight:600}
+a.newbar{display:grid;grid-template-columns:1fr;background:#0c1111;color:#eef4f2;border-radius:16px;overflow:hidden;text-decoration:none;margin:8px 0 4px}
+@media (min-width:560px){a.newbar{grid-template-columns:1.1fr 1fr;align-items:center}}
+a.newbar img{width:100%;aspect-ratio:16/9;object-fit:cover;border:0;border-radius:0}
+a.newbar .txt{padding:16px 18px 18px}
+a.newbar .pill{background:#173431;color:#5eead4}
+a.newbar b{display:block;font-size:24px;line-height:1.3;margin:2px 0}
+a.newbar .t2{color:#e2c58c;font-weight:700;font-size:18px}
+a.newbar .t3{color:#c9d6d3;font-size:15px;margin-top:6px;display:block}
+a.newbar .go{display:inline-block;margin-top:10px;color:#5eead4;font-weight:700}
+.product .pill,a.newbar .pill{align-self:flex-start;width:max-content}
